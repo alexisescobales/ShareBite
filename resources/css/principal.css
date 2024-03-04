@@ -1,0 +1,88 @@
+@font-face{
+    font-family: 'Helvetica';
+    src: url(../fonts/Helvetica-Bold.ttf);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica';
+    background-color: #252525;
+}
+
+/* TITULO Y LOGO */
+.header {
+    text-align: center;
+    margin-top: 20vh; /* Centramos verticalmente el contenedor principal */
+}
+
+/* LOGO */
+.logo {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* TITULO */
+.title {
+    color: #ffffff;
+    font-size: 90px;
+    margin-bottom: 20px;
+}
+
+/* AMARILLO PARA EL BITE */
+.amarillo {
+    color: #ECBC13;
+}
+
+/* CONTENEDOR DE LOS BOTONES */
+.button_container {
+    text-align: center;
+    margin-top: 300px;
+}
+
+/* ESTILO DE LOS BOTONES */
+.button_container button {
+    margin: 10px; /* Espacio entre los botones */
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* BOTON LOGIN */
+.button_container .login {
+background-color: #ECBC13;
+color: black;
+}
+
+/* EFECTO HOVER */
+.button_container button:hover {
+    background-color: #555;
+}
+
+/* QUITAMOS LO AZUL DE LOS ENLACES */
+a{
+    text-decoration: none;
+}
+
+/* Media queries para diferentes tamaños de pantalla */
+@media screen and (max-width: 600px) {
+    .title {
+        font-size: 24px;
+    }
+}
+
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+    .title {
+        font-size: 36px;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .title {
+        font-size: 48px;
+    }
+}

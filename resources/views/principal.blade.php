@@ -1,11 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+    <link rel="stylesheet" href="../resources/css/principal.css">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHAREBITES</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>SHAREBITES</h1>
+    <div class="header">
+        <h1 class="title">SHARE<span class="amarillo">BITES</span></h1>
+        <img src="../resources/img/icon_white.svg" alt="Logo" class="logo">
+    </div>
+
+    <div class="button_container">
+        <a href="../views/log-in.blade.php">
+        <button class="log-in">LOG-IN</button>
+        </a> 
+        <button class="registro">REGISTRO</button>
+    </div>
 </body>
 </html>
