@@ -28,7 +28,7 @@ body {
 .login_div {
     width: 500px; /* Ajusta el ancho según sea necesario */
     height: 550px; /* Ajusta la altura según sea necesario */
-    background-color: #ECBC13; /* Color del cuadrado */
+    background-color: #dddddd; /* Color del cuadrado */
     position: absolute;
     left: 23%; /* Posición a la izquierda */
     transform: translateX(-50%); /* Centrar horizontalmente */
