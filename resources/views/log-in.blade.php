@@ -14,7 +14,12 @@
     </div>
 
 
-    <div class="login_div"></div>
+    <div class="login_div">
+        <input type="text" placeholder="Nombre de usuario">
+        <input type="password" placeholder="Contraseña">
+        <button class="login">Ingresar</button>
+    </div>
+
 
 
     <div class="v-line"></div>

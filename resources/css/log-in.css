@@ -55,37 +55,36 @@ body {
     color: #ECBC13;
 }
 
-/* CONTENEDOR DE LOS BOTONES */
-.button_container {
-    text-align: center;
-    margin-top: 300px;
-}
-
-/* ESTILO DE LOS BOTONES */
-.button_container button {
-    margin: 10px; /* Espacio entre los botones */
-    padding: 10px 20px;
+/* Estilos para los campos de entrada */
+.login_div input[type="text"],
+.login_div input[type="password"] {
+    width: 300px; /* Ajusta el ancho según sea necesario */
+    padding: 10px; /* Ajusta el relleno según sea necesario */
+    margin-bottom: 10px; /* Espacio entre los campos */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 5px; /* Borde redondeado */
     font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
 }
 
-/* BOTON LOGIN */
-.button_container .login {
-background-color: #ECBC13;
-color: black;
+/* Estilos para el botón de login */
+.login_div button.login {
+    width: 100%; /* Ancho del botón al 100% */
+    background-color: #ECBC13; /* Color de fondo */
+    color: black; /* Color del texto */
+    padding: 10px 20px; /* Relleno */
+    font-size: 16px; /* Tamaño del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Borde redondeado */
+    cursor: pointer; /* Cursor de puntero */
+    font-weight: bold; /* Negrita */
+    display: block; /* Mostrar como bloque */
+    margin: 10px auto; /* Centrar horizontalmente */
 }
 
-/* EFECTO HOVER */
-.button_container button:hover {
-    background-color: #555;
-}
 
-/* QUITAMOS LO AZUL DE LOS ENLACES */
-a{
-    text-decoration: none;
+/* Estilo de hover para el botón de login */
+.login_div button.login:hover {
+    background-color: #555; /* Cambio de color de fondo en hover */
 }
 
 /* Media queries para diferentes tamaños de pantalla */
