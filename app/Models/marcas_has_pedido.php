@@ -13,4 +13,14 @@ class marcas_has_pedido extends Model
     public $incrementing = false;
     protected $primaryKey = ['marcas_id_marcas', 'pedido_id_pedido'];
     public $timestamps = false;
+
+    public function marcas(): BelongsTo
+    {
+        return $this->belongsTo(marcas::class);
+    }
+
+    public function pedido(): BelongsTo
+    {
+        return $this->belongsTo(pedido::class);
+    }
 }

@@ -20,4 +20,24 @@ class usuario extends Authenticatable
     protected $fillable = [
         'nombre', 'password', 'correo', 'foto', 'tipo_usuario_id_tipo'
     ];
+
+    public function tipo_usuario(): BelongsTo
+    {
+        return $this->belongsTo(tipo_usuario::class);
+    }
+
+    public function tiendas(): HasMany
+    {
+        return $this->hasMany(tiendas::class);
+    }
+
+    public function marcas(): HasMany
+    {
+        return $this->hasMany(marcas::class);
+    }
+
+    public function raider(): HasMany
+    {
+        return $this->hasMany(raider::class);
+    }
 }

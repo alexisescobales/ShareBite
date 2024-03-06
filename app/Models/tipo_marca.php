@@ -14,4 +14,9 @@ class tipo_marca extends Model
     protected $primaryKey = 'id_tipo';
     public $incrementing = false;
     public $timestamps = false;
+
+    public function marcas(): HasMany
+    {
+        return $this->hasMany(marcas::class);
+    }
 }

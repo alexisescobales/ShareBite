@@ -14,4 +14,9 @@ class tipo_usuario extends Model
     protected $primaryKey = 'id_tipo';
     public $incrementing = false;
     public $timestamps = false;
+
+    public function usuario(): HasMany
+    {
+        return $this->hasMany(usuario::class);
+    }
 }
