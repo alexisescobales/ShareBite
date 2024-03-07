@@ -33,7 +33,12 @@ body {
     left: 23%; /* Posición a la izquierda */
     transform: translateX(-50%); /* Centrar horizontalmente */
     top: 20%; /* Posición vertical */
+    text-align: center; /* Alinear el texto al centro */
+    box-sizing: border-box; /* Incluir el borde y el relleno en el ancho y la altura */
+    border-radius: 20px;
 }
+
+
 
 
 /* LOGO */
@@ -55,7 +60,7 @@ body {
     color: #ECBC13;
 }
 
-/* Estilos para los campos de entrada */
+/* INPUTS PROPS */
 .login_div input[type="text"],
 .login_div input[type="password"] {
     width: 300px; /* Ajusta el ancho según sea necesario */
@@ -66,13 +71,11 @@ body {
     font-size: 16px;
 }
 
-/* Estilos para el botón de login */
-.login_div button.login {
-    width: 100%; /* Ancho del botón al 100% */
+/* BOTONES GENERAL PROPS */
+.btn {
     background-color: #ECBC13; /* Color de fondo */
     color: black; /* Color del texto */
     padding: 10px 20px; /* Relleno */
-    font-size: 16px; /* Tamaño del texto */
     border: none; /* Sin borde */
     border-radius: 5px; /* Borde redondeado */
     cursor: pointer; /* Cursor de puntero */
@@ -81,27 +84,67 @@ body {
     margin: 10px auto; /* Centrar horizontalmente */
 }
 
-
-/* Estilo de hover para el botón de login */
-.login_div button.login:hover {
-    background-color: #555; /* Cambio de color de fondo en hover */
+/* BOTON LOGIN PROPS */
+#login{
+    width: 27%; /* Ancho del botón al 100% */
+    height: 10%;
+    font-size: 30px;
+    background-color: #252525;
+    color: #ECBC13; /* Color de fondo */
+    margin-bottom: 20px;
 }
 
-/* Media queries para diferentes tamaños de pantalla */
-@media screen and (max-width: 600px) {
-    .title {
-        font-size: 24px;
-    }
+/* BOTON REGISTRO PROPS */
+#registro{
+    width: 23%; /* Ancho del botón al 100% */
+    height: 7%;
+    font-size: 14px;
+    background-color: #dddddd; /* Color del cuadrado */
+    border: #000;
+    border-style:solid;
+    border-width: 2px;
 }
 
-@media screen and (min-width: 601px) and (max-width: 1024px) {
-    .title {
-        font-size: 36px;
-    }
+.subtitle {
+    font-size: 16px;
+    margin-bottom: 0; /* Eliminar el margen inferior predeterminado */
 }
 
-@media screen and (min-width: 1025px) {
-    .title {
-        font-size: 48px;
-    }
+.icons_login {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.btn :hover{
+    background-color: #252525;
+}
+
+.inputs {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column; /* Organiza los elementos en columnas */
+    align-items: center;
+    justify-content: center;
+}
+
+.inputs input[type="text"],
+.inputs input[type="password"] {
+    width: 300px;
+    padding: 10px;
+    margin-bottom: 20px; /* Agregar un margen inferior */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center; /* Alinea los elementos verticalmente en cada contenedor */
+}
+
+.input-label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Agregar un margen inferior */
 }
