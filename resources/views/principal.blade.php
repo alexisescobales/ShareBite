@@ -15,11 +15,11 @@
 
     <div class="button_container">
         <a href="{{ route('log-in') }}">
-        <button class="log-in">LOG-IN</button>
+        <button class="login_btn">LOG-IN</button>
         </a> 
 
         <a href="{{ route('register') }}">
-        <button class="registro">REGISTRO</button>
+        <button class="register_btn">REGISTER</button>
         </a> 
     </div>
 </body>

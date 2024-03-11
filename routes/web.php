@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\RegisterShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ Route::get('/', function () {
 
 Route::get('/log-in', [LoginController::class, 'showLoginForm'])->name('log-in');
 Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('register');
+Route::get('/register_shop', [RegisterShopController::class, 'showRegisterShopForm'])->name('register_shop');
 
 
 

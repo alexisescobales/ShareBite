@@ -17,14 +17,6 @@ body {
     margin-left: 90vh;
 }
 
-/* LINEA DIVISORA */
-.v-line{
-    border-left: thick solid #000;
-    height:80%;
-    left: 50%;
-    position: absolute;
-    top: 100px;
-}
 
 /* DIV LOGIN */
 .login_div {
