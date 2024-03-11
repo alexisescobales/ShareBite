@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('main-detail-screen');
+    return view('principal');
 });
 
 Route::get('/main-screen', function () {
