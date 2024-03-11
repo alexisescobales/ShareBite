@@ -14,7 +14,7 @@
     </div>
 
     <div class="button_container">
-        <a href="../views/log-in.blade.php">
+        <a href="{{ route('log-in') }}">
         <button class="log-in">LOG-IN</button>
         </a> 
         <button class="registro">REGISTRO</button>
