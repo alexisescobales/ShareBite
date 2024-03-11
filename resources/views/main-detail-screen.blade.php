@@ -35,13 +35,11 @@
         </div>
     </nav>
     <div class="row main-container">
-        <div class="col-4 left-column">
-            <h3>¿QUE BUSCAS?</h3>
-            <button>Puntos de entrega</button>
-            <button>Puntos de recogida</button>
+        <div class="col-5 left-column">
+            @yield('leftColumn')
         </div>
         <div class="col">
-
+            @yield('rightColumn')
         </div>
     </div>
 </body>
