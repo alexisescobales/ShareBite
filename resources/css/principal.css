@@ -1,7 +1,4 @@
-@font-face{
-    font-family: 'Helvetica';
-    src: url(../fonts/Helvetica-Bold.ttf);
-}
+@import url('main.css');
 
 body {
     margin: 0;
@@ -13,7 +10,8 @@ body {
 /* TITULO Y LOGO */
 .header {
     text-align: center;
-    margin-top: 20vh; /* Centramos verticalmente el contenedor principal */
+    margin-top: 20vh;
+    /* Centramos verticalmente el contenedor principal */
 }
 
 /* LOGO */
@@ -43,7 +41,8 @@ body {
 
 /* ESTILO DE LOS BOTONES */
 .button_container button {
-    margin: 10px; /* Espacio entre los botones */
+    margin: 10px;
+    /* Espacio entre los botones */
     padding: 10px 20px;
     font-size: 16px;
     border: none;
@@ -54,8 +53,8 @@ body {
 
 /* BOTON LOGIN */
 .button_container .login {
-background-color: #ECBC13;
-color: black;
+    background-color: #ECBC13;
+    color: black;
 }
 
 /* EFECTO HOVER */
@@ -64,7 +63,7 @@ color: black;
 }
 
 /* QUITAMOS LO AZUL DE LOS ENLACES */
-a{
+a {
     text-decoration: none;
 }
 
