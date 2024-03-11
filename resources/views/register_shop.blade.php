@@ -30,33 +30,58 @@
                     <!-- INPUTS -->
                     <div class="inputs">
 
-                        <!-- INPUT CORREO -->
+                        <!-- INPUT TIENDA -->
                         <div class="input-wrapper mb-3">
                             <div class="input-label">
-                                <img class="icons_login" src="../resources/img/user.png" alt="user_icon">
-                                <h2 class="subtitle">CORREO</h2>
+                                <img class="icons_login" src="../resources/img/tienda.png" alt="user_icon">
+                                <h2 class="subtitle">NOMBRE DE LA TIENDA</h2>
                             </div>
                             <input type="text" class="form-control">
                         </div>
-                        <!-- INPUT CORREO -->
+                        <!-- INPUT TIENDA -->
 
-                        <!-- INPUT CONTRASEÑA -->
+                        <!-- INPUT CATEGORIA -->
                         <div class="input-wrapper mb-3">
                             <div class="input-label">
-                                <img class="icons_login" src="../resources/img/password.png" alt="lock_icon">
-                                <h2 class="subtitle">CONTRASEÑA</h2>
+                                <!-- <img class="icons_login" src="../resources/img/tienda.png" alt="lock_icon"> -->
+                                <h2 class="subtitle">CATEGORIA</h2>
                             </div>
-                            <input type="password" class="form-control">
+                        <select id="categoria" name="categoria" class="form-control"  placeholder="Selecciona una categoría">
+                            <option value="restaurante">Restaurante</option>
+                            <option value="panaderia">Panadería</option>
+                            <option value="supermercado">Supermercado</option>
+                        </select>
                         </div>
-                        <!-- INPUT CONTRASEÑA -->
+                        <!-- INPUT CATEGORIA -->
+
+
+                        <!-- INPUT DIRECCIÓN -->
+                            <div class="input-wrapper mb-3">
+                            <div class="input-label">
+                                <img class="icons_login" src="../resources/img/ubicacion.png" alt="lock_icon">
+                                <h2 class="subtitle">DIRECCIÓN</h2>
+                            </div>
+                            <input type="text" class="form-control">
+                        </div>
+                        <!-- INPUT DIRECCIÓN -->
+
+                        <!-- INPUT HORARIO -->
+                            <div class="input-wrapper mb-3">
+                            <div class="input-label">
+                                <img class="icons_login" src="../resources/img/horarios.png" alt="lock_icon">
+                                <h2 class="subtitle">HORARIO</h2>
+                            </div>
+                            <input type="text" class="form-control">
+                        </div>
+                        <!-- INPUT HORARIO -->
 
                     </div>
                     <!-- INPUTS -->
 
                     <!-- BOTONES -->
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-primary btn-block" id="login_btn">LOGIN</button>
                         <button type="button" class="btn btn-secondary btn-block" id="register_btn">REGISTER</button>
+                        <button type="submit" class="btn btn-primary btn-block" id="login_btn">LOGIN</button>
                     </div>
                     <!-- BOTONES -->
 
@@ -70,4 +95,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
-
