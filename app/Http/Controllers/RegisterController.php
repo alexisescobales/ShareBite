@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class LoginController extends Controller
+class RegisterController extends Controller
 {
-    public function showLoginForm()
+    public function showRegisterForm()
     {
-        return view('log-in');
+        return view('register');
     }
 }

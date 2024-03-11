@@ -17,7 +17,10 @@
         <a href="{{ route('log-in') }}">
         <button class="log-in">LOG-IN</button>
         </a> 
+
+        <a href="{{ route('register') }}">
         <button class="registro">REGISTRO</button>
+        </a> 
     </div>
 </body>
 </html>
