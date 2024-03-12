@@ -95,7 +95,7 @@
 
                     <!-- BOTONES -->
                     <div class="mb-3">        
-                        <a href="{{ route('register_shop') }}">
+                        <a href="{{ route('log_in_pages.register_shop') }}">
                         <button type="button" class="btn btn-secondary btn-block" id="register_btn">REGISTER</button>
                         </a> 
                         <button type="submit" class="btn btn-primary btn-block" id="login_btn">LOGIN</button>

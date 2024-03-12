@@ -14,11 +14,11 @@
     </div>
 
     <div class="button_container">
-        <a href="{{ route('log-in') }}">
+        <a href="{{ route('log_in_pages.log_in') }}">
         <button class="login_btn">LOG-IN</button>
         </a> 
 
-        <a href="{{ route('register') }}">
+        <a href="{{ route('log_in_pages.register') }}">
         <button class="register_btn">REGISTER</button>
         </a> 
     </div>

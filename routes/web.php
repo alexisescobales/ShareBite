@@ -17,14 +17,14 @@ use App\Http\Controllers\RegisterShopController;
 */
 
 Route::get('/', function () {
-    return view('principal');
+    return view('log_in_pages.principal');
 });
 
 
 
-Route::get('/log-in', [LoginController::class, 'showLoginForm'])->name('log-in');
-Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('register');
-Route::get('/register_shop', [RegisterShopController::class, 'showRegisterShopForm'])->name('register_shop');
+Route::get('/log_in', [LoginController::class, 'showLoginForm'])->name('log_in_pages.log_in');
+Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('log_in_pages.register');
+Route::get('/register_shop', [RegisterShopController::class, 'showRegisterShopForm'])->name('log_in_pages.register_shop');
 
 
 
