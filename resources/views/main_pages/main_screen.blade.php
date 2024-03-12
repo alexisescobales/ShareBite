@@ -8,4 +8,10 @@
             <button>Puntos de recogida</button>
         </div>
     </div>
-@overwrite
+@endsection
+
+@section('rightColumn')
+    <div id='map' style='width: 100%; height: 400px;'>
+
+    </div>
+@endsection

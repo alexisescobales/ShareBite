@@ -55,7 +55,9 @@
 
                     <!-- BOTONES -->
                     <div class="mb-3">
-                        <button type="submit" class="btn btn-primary btn-block" id="login_btn">LOGIN</button>
+                        <a href="{{ route('main-detail-screen') }}">
+                            <button type="submit" class="btn btn-primary btn-block" id="login_btn">LOGIN</button>
+                        </a>
                         <button type="button" class="btn btn-secondary btn-block" id="register_btn">REGISTER</button>
                     </div>
                     <!-- BOTONES -->
