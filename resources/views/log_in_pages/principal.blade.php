@@ -14,10 +14,13 @@
     </div>
 
     <div class="button_container">
-        <a href="../views/log-in.blade.php">
-        <button class="log-in">LOG-IN</button>
+        <a href="{{ route('log_in_pages.log_in') }}">
+        <button class="login_btn">LOG-IN</button>
         </a> 
-        <button class="registro">REGISTRO</button>
+
+        <a href="{{ route('log_in_pages.register') }}">
+        <button class="register_btn">REGISTER</button>
+        </a> 
     </div>
 </body>
 </html>

@@ -1,0 +1,108 @@
+@font-face {
+    font-family: 'Helvetica';
+    src: url(../fonts/Helvetica-Bold.ttf);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica';
+    background-color: #252525;
+}
+
+/* HEADER */
+.header {
+    text-align: center;
+    margin-top: 25vh; /* Centramos verticalmente el contenedor principal */
+}
+
+/* LOGIN DIV */
+.login_div {
+    background-color: #dddddd;
+    border-radius: 20px;
+    box-sizing: border-box;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* LOGO Y TÍTULO */
+.logo-title {
+    margin-bottom: 20px;
+}
+
+/* LOGO */
+.logo {
+    max-width: 70%;
+    height: auto;
+}
+
+/* TÍTULO */
+.title {
+    color: #ffffff;
+    font-size: 90px;
+    margin-bottom: 20px;
+}
+
+.amarillo{
+    color: #ECBC13;
+}
+
+/* INPUTS PROPS */
+.login_div input[type="text"],
+.login_div input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+
+/* SUBTITULO */
+.subtitle {
+    font-size: 16px;
+    margin-bottom: 0;
+}
+
+/* ICONOS DE SUBTITULOS */
+.icons_login {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+/* BOTONES GENERAL PROPS */
+.btn {
+    background-color: #ECBC13;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    display: block;
+    margin: 10px auto;
+}
+
+#login_btn{
+    background-color: transparent;
+    border: #000;
+    border-width: 2px;
+    border-style: solid;
+}
+
+#register_btn{
+    font-size: 30px;
+    width: 200px;
+    background-color: #252525;
+    color: #ECBC13;
+}
+
+a{
+    text-decoration: none;
+}
+
