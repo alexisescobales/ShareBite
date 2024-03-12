@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/app.scss'])
     <script src="https://kit.fontawesome.com/6645ba3d64.js" crossorigin="anonymous"></script>
-    <title>aaaaa</title>
+    <title>HOME</title>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
 
@@ -46,5 +46,7 @@
         </div>
     </div>
 </body>
+
+<script src='../resources/js/mapbox.js'></script>
 
 </html>
