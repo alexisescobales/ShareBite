@@ -9,6 +9,6 @@ class RegisterShopController extends Controller
 {
     public function showRegisterShopForm()
     {
-        return view('register_shop');
+        return view('log_in_pages.register_shop');
     }
 }
