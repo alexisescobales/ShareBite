@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -11,10 +11,87 @@
 
 :root {
     --color-yellow: #ECBC13;
+    --color-dark-yellow: #cba312;
     --color-black: #252525;
+    --color-dark-black: #000;
     --color-white: #fbfbfb;
+    --color-dark-white: #d2d2d2;
 }
 
-body{
+html,
+body {
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+
+body {
     font-family: 'Helvetica';
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button.btn_principal_yellow {
+    background-color: var(--color-yellow);
+    font-weight: bold;
+    padding: 10px 20px;
+    font-size: 30px;
+    border: #000 solid 1px;
+
+    &:hover {
+        background-color: var(--color-dark-yellow);
+        transition: background-color .5s;
+    }
+}
+
+button.btn_grande{
+    font-size: 30px;
+    padding: 10px 20px;
+}
+
+button.btn_mediano{
+    font-size: 15px;
+    padding: 10px 10px;
+}
+
+button.btn_pequeno{
+    font-size: 10px;
+    padding: 5px 10px;
+}
+
+
+
+button.btn_principal_black {
+    background-color: var(--color-dark-black);
+    font-weight: bold;
+    color: var(--color-yellow);
+
+    &:hover {
+        background-color: var(--color-black);
+        transition: background-color .5s;
+    }
+}
+
+button.btn_secondary {
+    background-color: var(--color-white);
+    font-weight: bold;
+    border: #000 solid 1px;
+
+    &:hover {
+        background-color: var(--color-dark-white);
+        transition: background-color .5s;
+    }
+}
+
+.row {
+    --bs-gutter-x: 0;
 }

@@ -10,6 +10,6 @@ class LoginController extends Controller
 {
     public function showLoginForm()
     {
-        return view('log_in_pages.log_in');
+        return view('login_pages.log_in');
     }
 }
