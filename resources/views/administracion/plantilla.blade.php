@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/js/app.js', 'resources/css/app.scss'])
     <script src="https://kit.fontawesome.com/6645ba3d64.js" crossorigin="anonymous"></script>
-    <title>HOME</title>
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
+    <title>aaaaa</title>
+    @yield('cap')
 
 </head>
 
@@ -37,16 +36,9 @@
             </div>
         </div>
     </nav>
-    <div class="row main-container">
-        <div class="col-5 left-column">
-            @yield('leftColumn')
-        </div>
-        <div class="col">
-            @yield('rightColumn')
-        </div>
+    <div class="container">
+        @yield('contenido')
     </div>
 </body>
-
-<script src='../resources/js/mapbox.js'></script>
 
 </html>
