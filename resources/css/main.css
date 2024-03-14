@@ -1,0 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Helvetica';
+    src: url(../fonts/Helvetica-Bold.ttf);
+}
+
+:root {
+    --color-yellow: #ECBC13;
+    --color-black: #252525;
+    --color-white: #fbfbfb;
+}
+
+body{
+    font-family: 'Helvetica';
+}

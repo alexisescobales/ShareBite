@@ -17,7 +17,7 @@ use App\Http\Controllers\RegisterShopController;
 */
 
 Route::get('/', function () {
-    return view('log_in_pages.principal');
+    return view('main_pages.main_screen');
 });
 
 

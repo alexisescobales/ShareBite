@@ -73,6 +73,7 @@ body {
     height: 100%;
 }
 
+
 .left-column-container-buttons {
     display: flex;
     margin-top: 40px;
@@ -93,4 +94,10 @@ body {
 .left-column-container-buttons button:hover {
     background-color: var(--color-yellow);
     transition: background-color .5s;
+}
+
+.right-column-container{
+    position: absolute;
+    right: 60px;
+    top: 80px
 }

@@ -1,4 +1,4 @@
-@extends('main-detail-screen')
+@extends('main_pages.main_detail_screen')
 
 @section('leftColumn')
     <div class="left-column-container">
@@ -11,7 +11,7 @@
 @endsection
 
 @section('rightColumn')
-    <div id='map' style='width: 100%; height: 400px;'>
-
+    <div class="right-column-container">
+        <div id='map' style='width: 1000px; height: 700px;'></div>
     </div>
 @endsection
