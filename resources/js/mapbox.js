@@ -6,10 +6,20 @@ var map = new mapboxgl.Map({
     zoom: 12 // Nivel de zoom
 });
 
-// Añadir un marcador al hacer clic en el mapa
-map.on('click', function(e) {
-    var coordinates = e.lngLat;
+// Añadir marcadores para cada punto de entrega
+puntosEntrega.forEach(function (puntoEntrega) {
     new mapboxgl.Marker()
-      .setLngLat(coordinates)
-      .addTo(map);
-  });
+        .setLngLat(puntoEntrega.coordenadas)
+        .addTo(map);
+});
+
+
+
+
+// Añadir un marcador al hacer clic en el mapa
+// map.on('click', function(e) {
+//     var coordinates = e.lngLat;
+//     new mapboxgl.Marker()
+//       .setLngLat(coordinates)
+//       .addTo(map);
+//   });
