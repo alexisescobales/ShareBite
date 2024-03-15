@@ -18,12 +18,12 @@ class Marcas extends Model
 
     public function usuario(): BelongsTo
     {
-        return $this->belongsTo(usuario::class);
+        return $this->belongsTo(Usuario::class);
     }
 
     public function tipo_marca(): BelongsTo
     {
-        return $this->belongsTo(tipo_marca::class);
+        return $this->belongsTo(Tipo_marca::class);
     }
 
     public function marcas_has_pedido(): HasMany

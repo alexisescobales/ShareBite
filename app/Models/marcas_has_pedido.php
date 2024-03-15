@@ -16,7 +16,7 @@ class marcas_has_pedido extends Model
 
     public function marcas(): BelongsTo
     {
-        return $this->belongsTo(marcas::class);
+        return $this->belongsTo(Marcas::class);
     }
 
     public function pedido(): BelongsTo

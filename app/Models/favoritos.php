@@ -17,11 +17,11 @@ class favoritos extends Model
 
     public function tiendas(): BelongsTo
     {
-        return $this->belongsTo(tiendas::class);
+        return $this->belongsTo(Tiendas::class);
     }
 
     public function raider(): BelongsTo
     {
-        return $this->belongsTo(raider::class);
+        return $this->belongsTo(Raider::class);
     }
 }

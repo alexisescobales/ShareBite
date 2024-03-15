@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class tiendas extends Model
+class Tiendas extends Model
 {
     use HasFactory;
 
@@ -18,7 +18,7 @@ class tiendas extends Model
 
     public function usuario(): BelongsTo
     {
-        return $this->belongsTo(usuario::class);
+        return $this->belongsTo(Usuario::class);
     }
 
     public function favoritos(): HasMany

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class tipo_marca extends Model
+class Tipo_marca extends Model
 {
     use HasFactory;
 
@@ -17,6 +17,6 @@ class tipo_marca extends Model
 
     public function marcas(): HasMany
     {
-        return $this->hasMany(marcas::class);
+        return $this->hasMany(Marcas::class);
     }
 }
