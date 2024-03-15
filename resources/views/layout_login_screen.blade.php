@@ -7,6 +7,7 @@
     @vite(['resources/js/app.js', 'resources/css/app.scss'])
     <link rel="stylesheet" href="../resources/css/main.css">
     <link rel="stylesheet" href="../resources/css/login_pages/layout_login.css">
+    <link rel="stylesheet" href="../resources/css/login_pages/selection.css">
     <script src="https://kit.fontawesome.com/6645ba3d64.js" crossorigin="anonymous"></script>
     <title>aaaaa</title>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>

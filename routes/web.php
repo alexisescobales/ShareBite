@@ -17,7 +17,7 @@ use App\Http\Controllers\RegisterShopController;
 */
 
 Route::get('/', function () {
-    return view('principal');
+    return view('login_pages.selection');
 });
 
 
