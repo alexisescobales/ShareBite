@@ -1,4 +1,4 @@
-@extends('main_pages.main_detail_screen')
+@extends('layout_main_screen')
 
 @section('leftColumn')
     <div class="left-column-container">
