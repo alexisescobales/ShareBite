@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 
-use App\Http\Controllers\Controller;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
-    public function showLoginForm()
-    {
-        return view('login_pages.log_in');
-    }
+    
 }

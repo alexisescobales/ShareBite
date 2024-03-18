@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ControlerUsuario;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -17,12 +18,13 @@ use App\Http\Controllers\RegisterShopController;
 */
 
 Route::get('/', function () {
-    return view('login_pages.selection');
+    return view('principal');
 });
 
 
 
-Route::get('/log_in', [LoginController::class, 'showLoginForm'])->name('log_in_pages.log_in');
+Route::get('/log_in', [ControlerUsuario::class, 'showLoginForm'])->name('log_in_pages.log_in');
+Route::post('/log_in', [ControlerUsuario::class, 'login']);
 Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('log_in_pages.register');
 Route::get('/register_shop', [RegisterShopController::class, 'showRegisterShopForm'])->name('log_in_pages.register_shop');
 
