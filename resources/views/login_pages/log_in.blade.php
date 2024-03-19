@@ -20,8 +20,10 @@
             </div>
         </div>
         <div class="my-3 button-login-group">
-            <button type="submit" class="btn_principal_yellow btn_mediano" id="login_btn">LOGIN</button>
-            <button type="button" class="btn_secondary btn_mediano" id="register_btn">REGISTER</button>
+            <a href="{{ route('principal') }}">
+                <button type="button" class="btn_secondary btn_mediano" id="login_btn">VOLVER</button>
+            </a>
+            <button type="submit" class="btn_principal_yellow btn_mediano" id="register_btn">LOGIN</button>
         </div>
     </form>
 @endsection

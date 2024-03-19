@@ -17,16 +17,30 @@ use App\Http\Controllers\RegisterShopController;
 |
 */
 
-Route::get('/', function () {
-    return view('principal');
+Route::get('/', function () {return view('principal');})->name('principal');
+Route::get('/regisrtoElec', function () {return view('login_pages.selection');});
+
+
+route::middleware(['auth'])->group(function(){
+    Route::group(["middleware" => "rol:3,0"], function () {
+        Route::get('/mainRaider', function () {return view('main_pages.main_screen');});
+    });
+    Route::group(["middleware" => "rol:1,0"], function () {
+        Route::get('/mainAdmin', function () {return view('administracion.admins', compact(Auth::user()));});
+    });
+    Route::group(["middleware" => "rol:2,0"], function () {
+
+    });
+    Route::group(["middleware" => "rol:0"], function () {
+        
+    });
 });
-
-
 
 Route::get('/log_in', [ControlerUsuario::class, 'showLoginForm'])->name('log_in_pages.log_in');
 Route::post('/log_in', [ControlerUsuario::class, 'login']);
 Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('log_in_pages.register');
 Route::get('/register_shop', [RegisterShopController::class, 'showRegisterShopForm'])->name('log_in_pages.register_shop');
+Route::get('registro/{eleccion}',[]);
 
 
 

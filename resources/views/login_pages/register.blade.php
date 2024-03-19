@@ -1,27 +1,28 @@
 @extends('layout_login_screen')
 
 @section('leftColumn')
-    <form class="login_div">
+    <form class="login_div" action="{{ action([App\Http\Controllers\ControlerUsuario::class, 'registro1']) }}" method="POST">
+        @csrf
         <div class="inputs">
             <div class="input-wrapper mb-3">
                 <p class="subtitle">NOMBRE</p>
                 <div class="input-label">
                     <i class="fa-solid fa-user"></i>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="name">
                 </div>
             </div>
             <div class="input-wrapper mb-3">
                 <p class="subtitle">APELLIDOS</p>
                 <div class="input-label">
                     <i class="fa-solid fa-user"></i>
-                    <input type="text" class="form-control">
+                    <input type="text" class="form-control" name="apellido">
                 </div>
             </div>
             <div class="input-wrapper mb-3">
                 <p class="subtitle">CORREO</p>
                 <div class="input-label">
                     <i class="fa-solid fa-envelope"></i>
-                    <input type="email" class="form-control">
+                    <input type="email" class="form-control" name="correo">
                 </div>
             </div>
             <div class="input-wrapper mb-3">
@@ -47,10 +48,10 @@
             </div>
         </div>
         <div class="my-3 button-login-group">
-            <a href="{{ route('log_in_pages.register_shop') }}">
-                <button type="button" class="btn_principal_yellow btn_mediano" id="register_btn">REGISTER</button>
+            <a href="{{ route('principal') }}">
+                <button type="button" class=" btn_mediano btn_secondary" id="register_btn">VOLVER</button>
             </a>
-            <button type="submit" class="btn_secondary btn_mediano" id="login_btn">LOGIN</button>
+            <button type="submit" class="btn_principal_yellow btn_mediano" id="login_btn">REGISTRO</button>
         </div>
     </form>
 @endsection

@@ -18,12 +18,12 @@
                 <img src="../resources/img/icon_white.svg" alt="Logo" class="logo" draggable="false">
                 <div class="button_container">
                     <a href="{{ route('log_in_pages.log_in') }}">
-                        <button class="btn_principal_yellow" href="{{ route('log_in_pages.log_in') }}">
+                        <button class="btn_principal_yellow">
                             LOG-IN</button>
                     </a>
 
-                    <a href="{{ route('log_in_pages.register') }}">
-                        <button class="btn_secondary" href="{{ route('log_in_pages.register') }}">
+                    <a href="{{ URL('/regisrtoElec') }}">
+                        <button class="btn_secondary">
                             REGISTER</button>
                     </a>
                 </div>

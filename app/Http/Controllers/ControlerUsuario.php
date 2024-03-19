@@ -33,10 +33,45 @@ class ControlerUsuario extends Controller
 
         if($user !=null && Hash::check($password, $user->password)){
             Auth::login($user);
-            $response = redirect('/');
+            if ($user->tipo_usuario_id_tipo == 3) {
+                $response = redirect('/mainRaider');
+            }elseif ($user->tipo_usuario_id_tipo == 2) {
+                $response = redirect('/log_in');
+            }elseif ($user->tipo_usuario_id_tipo == 1) {
+                $response = redirect('/mainAdmin');
+            }
+            
         }else{
             $request->session()->flash('error', 'Usuario o contraseña incorrectos');
             $response = redirect('/log_in')->withInput();
+        }
+        return $response;
+    }
+
+    public function registro1(Request $request){
+        $name = $request->input('name') . $request->input('apellido');
+        $password = $request->input('password');
+        $correo = $request->input('correo');
+        $foto = "";
+        // $usuario = new Usuario();
+        // $usuario->nombre = 'Rachid';
+        // $usuario->correo = 'rachid@gmail.com';
+        // $usuario->password = \bcrypt('123');
+        // $usuario->foto = 'foto.png';
+        // $usuario->tipo_usuario_id_tipo = 3;
+        // $usuario->save();
+            
+        $response = redirect('/log_in');
+        
+        return $response;
+    }
+
+    public function seleccion(Request $request){
+        $eleccion = $request->input('eleccion');
+        if($eleccion == "proveedor"){
+            $response = route('/registro/proveedor');
+        }elseif($eleccion == "rider"){
+            $response = route('/registro/rider');
         }
         return $response;
     }
