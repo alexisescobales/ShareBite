@@ -23,7 +23,7 @@
                     </a>
 
                     <a href="{{ route('log_in_pages.register') }}">
-                        <button class="btn_secondary" href="{{ route('log_in_pages.register') }}">
+                        <button class="btn_secondary btn_mediano" href="{{ route('log_in_pages.register') }}">
                             REGISTER</button>
                     </a>
                 </div>

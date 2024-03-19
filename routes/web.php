@@ -17,8 +17,29 @@ use App\Http\Controllers\RegisterShopController;
 */
 
 Route::get('/', function () {
+    return view('principal');
+});
+
+Route::get('/login', function () {
+    return view('login_pages.log_in');
+});
+
+Route::get('/register', function () {
+    return view('login_pages.register');
+});
+
+Route::get('/register_shop', function () {
+    return view('login_pages.register_shop');
+});
+
+Route::get('/selection', function () {
     return view('login_pages.selection');
 });
+
+Route::get('/main', function () {
+    return view('main_pages.main_screen');
+});
+
 
 
 
