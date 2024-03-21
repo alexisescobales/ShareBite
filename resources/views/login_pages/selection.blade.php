@@ -2,18 +2,16 @@
 
 @section('leftColumn')
 <div>
-    <form style="margin: 10px" action="{{ action([App\Http\Controllers\ControlerUsuario::class, 'seleccion']) }} " method="POST">
+    <form style="margin: 10px" action="{{ action([App\Http\Controllers\ControlerUsuario::class, 'seleccion'], ['eleccion' => 'rider']) }} " method="POST">
         @csrf
-        <input type="text" hidden value="rider" name="eleccion">
         <div class="selection_group">
-            <a href="{{ route('log_in_pages.register') }}"><p>RIDER <i class="fa-solid fa-bicycle"></i></p></a>
+            <button class="btn_grande" type="submit">RIDER <i class="fa-solid fa-bicycle"></i></button>
         </div>
     </form>
-    <form style="margin: 10px" action="{{ action([App\Http\Controllers\ControlerUsuario::class, 'seleccion']) }}">
+    <form style="margin: 10px" action="{{ action([App\Http\Controllers\ControlerUsuario::class, 'seleccion'], ['eleccion' => 'proveedor']) }}" method="POST">
         @csrf
-        <input type="text" hidden value="proveedor">
         <div class="selection_group">
-            <a href=""><p><i class="fa-solid fa-shop"></i> PROVEEDOR</p></a>
+            <button class="btn_grande" type="submit">PROVEEDOR <i class="fa-solid fa-bicycle"></i></button>
         </div>
     </form>
 </div>

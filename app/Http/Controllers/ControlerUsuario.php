@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Marcas;
+use App\Models\Tiendas;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -17,12 +20,29 @@ class ControlerUsuario extends Controller
     {
 
         // $usuario = new Usuario();
-        // $usuario->nombre = 'Rachid';
-        // $usuario->correo = 'rachid@gmail.com';
+        // $usuario->nombre = 'consum';
+        // $usuario->correo = 'consum@gmail.com';
         // $usuario->password = \bcrypt('123');
         // $usuario->foto = 'foto.png';
-        // $usuario->tipo_usuario_id_tipo = 3;
+        // $usuario->tipo_usuario_id_tipo = 2;
         // $usuario->save();
+
+        // $usuario = new Tiendas();
+        // $usuario->tienda_id_usuario = 2;
+        // $usuario->estado = true;
+        // $usuario->menus = 2;
+        // $usuario->direccion = 'carrer villarroel 126';
+        // $usuario->save();
+
+        // $usuario = new Marcas();
+        // $usuario->estado = true;
+        // $usuario->usuario_id_usuario = 1;
+        // $usuario->tipo_marca_id_tipo_marca = 1;
+        // $usuario->lat = 41.391615;
+        // $usuario->long = 2.159614;
+        // $usuario->save();
+
+        
         return view('login_pages.log_in');
     }
 
@@ -66,91 +86,39 @@ class ControlerUsuario extends Controller
         return $response;
     }
 
-    public function seleccion(Request $request){
-        $eleccion = $request->input('eleccion');
-        if($eleccion == "proveedor"){
-            $response = route('/registro/proveedor');
-        }elseif($eleccion == "rider"){
-            $response = route('/registro/rider');
+    public function registro2(Request $request){
+        $name = $request->input('name') . $request->input('apellido');
+        $password = $request->input('password');
+        $passwordRepit = $request->input('repitPassword');
+        $correo = $request->input('correo');
+        $foto = "";
+        $repetido = false;
+        if ($password != $passwordRepit) {
+            $response = redirect('/');
+        }else {
+            $usuarios = Usuario::all();
+            foreach ($usuarios as $usuario) {
+                if ($usuario->correo == $correo) {
+                    $repetido = true;
+                    $response = redirect('/');
+                }
+            }
+            if ($repetido == false) {
+                $registro1 = array(
+                "name" => $name,
+                "apellido" => $request->input('apellido'),
+                "correo" => $correo,
+                "password" => $password,
+                "telefono" => $request->input('telefono'),
+                "tipo_usuario_id_tipo" => 2);
+                $response = view('login_pages.register_shop', compact('registro1'));
+
+            }
         }
         return $response;
     }
 
-
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Usuario  $usuario
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Usuario $usuario)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Usuario  $usuario
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Usuario $usuario)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Usuario  $usuario
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Usuario $usuario)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Usuario  $usuario
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Usuario $usuario)
-    {
-        //
+    public function seleccion($eleccion){
+        return view('login_pages.register', compact('eleccion'));
     }
 }

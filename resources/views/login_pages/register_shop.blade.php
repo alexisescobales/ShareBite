@@ -41,5 +41,11 @@
                 <button type="button" class="btn_principal_yellow btn_mediano" id="register_btn">REGISTER</button>
             <button type="submit" class="btn_secondary btn_mediano" id="login_btn">LOGIN</button>
         </div>
+
+        <input type="text" class="form-control" name="name" hidden value="{{$registro1->name}}">
+        <input type="text" class="form-control" name="apellido" hidden value="{{$registro1->apellido}}">
+        <input type="email" class="form-control" name="correo" hidden value="{{$registro1->email}}">
+        <input type="password" class="form-control" name="password" hidden value="{{$registro1->password}}">
+        <input type="number" class="form-control" name="telefono" hidden value="{{$registro1->telefono}}">
     </form>
 @endsection

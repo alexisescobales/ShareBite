@@ -38,9 +38,11 @@ route::middleware(['auth'])->group(function(){
 
 Route::get('/log_in', [ControlerUsuario::class, 'showLoginForm'])->name('log_in_pages.log_in');
 Route::post('/log_in', [ControlerUsuario::class, 'login']);
-Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('log_in_pages.register');
+Route::post('/registro/{eleccion}', [ControlerUsuario::class, 'seleccion']);
+Route::post('/registro1', [ControlerUsuario::class, 'registro1']);
+Route::post('/registro2', [ControlerUsuario::class, 'registro2']);
 Route::get('/register_shop', [RegisterShopController::class, 'showRegisterShopForm'])->name('log_in_pages.register_shop');
-Route::get('registro/{eleccion}',[]);
+
 
 
 
