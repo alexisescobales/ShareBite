@@ -6,20 +6,30 @@ var map = new mapboxgl.Map({
     zoom: 12 // Nivel de zoom
 });
 
-// Añadir marcadores para cada punto de entrega
-puntosEntrega.forEach(function (puntoEntrega) {
-    new mapboxgl.Marker()
-        .setLngLat(puntoEntrega.coordenadas)
-        .addTo(map);
-});
+let btn_entrega = document.getElementById('btn_entrega');
+
+btn_entrega.addEventListener('click', mostrarEntregas);
 
 
+function mostrarEntregas() {
+    // Recorrer las coordenadas y agregar un marcador por cada una
+    coordenadas.forEach(function (coordenada, index) {
+        // Crear un nuevo marcador con las coordenadas y color rojo
+        const marker = new mapboxgl.Marker({ color: 'red' })
+            .setLngLat([coordenada.long, coordenada.lat])
+            .addTo(map);
 
+        // Agregar información adicional sobre la marca usando info_marca
+        const infoMarca = info_marca[index]; // Obtener la información de la marca correspondiente
+        const popup = new mapboxgl.Popup().setHTML(`
+            <h5>Información de la marca</h5>
+            <p>Tipo: ${infoMarca.tipo_marca_id_tipo_marca}</p>
+            <p>Usuario: ${infoMarca.usuario_id_usuario}</p>
+            <p>Estado: ${infoMarca.estado}</p>
+        `);
 
-// Añadir un marcador al hacer clic en el mapa
-// map.on('click', function(e) {
-//     var coordinates = e.lngLat;
-//     new mapboxgl.Marker()
-//       .setLngLat(coordinates)
-//       .addTo(map);
-//   });
+        // Agregar un popup al marcador
+        marker.setPopup(popup);
+    });
+}
+

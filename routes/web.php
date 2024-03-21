@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RegisterShopController;
-use App\Models\puntos_entrega;
+use App\Http\Controllers\CoordenadasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,11 +16,8 @@ use App\Models\puntos_entrega;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    $puntosEntrega = puntos_entrega::all();
-    return view('main_pages.main_screen', ['puntosEntrega' => $puntosEntrega]);
-});
 
+Route::get('/', [CoordenadasController::class, 'index']);
 
 Route::get('/log_in', [LoginController::class, 'showLoginForm'])->name('log_in_pages.log_in');
 Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('log_in_pages.register');
