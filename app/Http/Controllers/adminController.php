@@ -25,25 +25,23 @@ class adminController extends Controller
     {
 
         $request->validate([
-            'nom' => 'required',
-            'cognoms' => 'required',
-            'username' => 'required|unique:usuaris,username',
-            'contrasenya' => 'required'
-        ], [
-            'required' => 'El camp :attribute es obligatori.',
-            'unique' => 'El :attribute ja existeix'
+            'nombre' => 'required',
+            'correo' => 'required',
+            'password' => 'required',
+            'foto' => 'required',
+            'tipo_usuario_id_tipo' => 'required'
         ]);
 
         $usuari = new usuario;
-        $usuari->nom = $request->nom;
-        $usuari->cognoms = $request->cognoms;
-        $usuari->username = $request->username;
-        $usuari->contrasenya = $request->contrasenya;
-        $usuari->tipus_usuaris_id = $request->tipus_usuaris_id;
+        $usuari->nombre = $request->nombre;
+        $usuari->correo = $request->correo;
+        $usuari->password = $request->password;
+        $usuari->foto = $request->foto;
+        $usuari->tipo_usuario_id_tipo = $request->tipo_usuario_id_tipo;
         $usuari->save();
 
-        return redirect()->route('gestioUsuaris')->with('success', 'Usuari creat correctament!');
+        return redirect()->route('administracion.admins')->with('success', 'Usuario creado correctamente.');
 
-        return redirect()->route('gestioUsuaris')->withErrors(['error' => 'Datos incorrectos, revisar datos introducidos']);
+        return redirect()->route('administracion.admins')->withErrors(['error' => 'Datos incorrectos, revisar datos introducidos']);
     }
 }
