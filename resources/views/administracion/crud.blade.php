@@ -3,30 +3,6 @@
 @section('cap')
 
 @endsection
-<script>
-    $(document).ready(function() {
-        $(".btn-group .btn").click(function() {
-            var inputValue = $(this).find("input").val();
-            if (inputValue != 'all') {
-                var target = $('table tr[data-status="' + inputValue + '"]');
-                $("table tbody tr").not(target).hide();
-                target.fadeIn();
-            } else {
-                $("table tbody tr").fadeIn();
-            }
-        });
-        // Changing the class of status label to support Bootstrap 4
-        var bs = $.fn.tooltip.Constructor.VERSION;
-        var str = bs.split(".");
-        if (str[0] == 4) {
-            $(".label").each(function() {
-                var classStr = $(this).attr("class");
-                var newClassStr = classStr.replace(/label/g, "badge");
-                $(this).removeAttr("class").addClass(newClassStr);
-            });
-        }
-    });
-</script>
 
 @section('contenido')
 <div class="container-xl">
@@ -40,16 +16,16 @@
                     <div class="col-sm-6">
                         <div class="btn-group" data-toggle="buttons">
                             <label class="btn btn-info active">
-                                <input type="radio" name="status" value="all" checked="checked"> All
+                                <input type="radio" name="status" value="admins" checked="checked"> Administradores
                             </label>
                             <label class="btn btn-success">
-                                <input type="radio" name="status" value="active"> Active
+                                <input type="radio" name="status" value="riders"> Riders
                             </label>
                             <label class="btn btn-warning">
-                                <input type="radio" name="status" value="inactive"> Inactive
+                                <input type="radio" name="status" value="provee"> Proveedores
                             </label>
                             <label class="btn btn-danger">
-                                <input type="radio" name="status" value="expired"> Expired
+                                <input type="radio" name="status" value="puas"> Puas
                             </label>
                         </div>
                     </div>
@@ -79,6 +55,7 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $usuarios->links() }}
         </div>
     </div>
 </div>
