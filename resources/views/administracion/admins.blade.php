@@ -1,5 +1,9 @@
 @extends('administracion.plantilla')
 
+@section('titulo')
+    Administración
+@endsection
+
 @section('cap')
     <link rel="stylesheet" href="../resources/css/admin.css">
 @endsection

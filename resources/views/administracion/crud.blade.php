@@ -1,5 +1,9 @@
 @extends('administracion.plantilla')
 
+@section('titulo')
+    Gestionar
+@endsection
+
 @section('cap')
 
 @endsection

@@ -30,3 +30,7 @@ Route::get('/register_shop', [RegisterShopController::class, 'showRegisterShopFo
 
 Route::get('/admins', [adminController::class, 'index'])->name('administrar');
 Route::get('/mostrar-usuarios', [adminController::class, 'mostrar'])->name('mostrar.usuarios');
+Route::post('crearUser', [adminController::class, 'store'])->name('crearUser');
+Route::get('/crear', function () {
+    return view('crud.crear');
+})->name('crear');

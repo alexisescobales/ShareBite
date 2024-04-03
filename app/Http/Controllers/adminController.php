@@ -24,24 +24,24 @@ class adminController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
-            'nombre' => 'required',
-            'correo' => 'required',
-            'password' => 'required',
-            'foto' => 'required',
-            'tipo_usuario_id_tipo' => 'required'
+        usuario::create([
+            'nombre' => $request->nombre,
+            'correo' => $request->correo,
+            'password' => bcrypt($request->contrasenya),
+            'foto' => $request->foto,
+            'tipo_usuario_id_tipo' => $request->tipo_usuario,
         ]);
 
-        $usuari = new usuario;
-        $usuari->nombre = $request->nombre;
-        $usuari->correo = $request->correo;
-        $usuari->password = $request->password;
-        $usuari->foto = $request->foto;
-        $usuari->tipo_usuario_id_tipo = $request->tipo_usuario_id_tipo;
-        $usuari->save();
+        return redirect()->route('mostrar.usuarios')->with('success', 'Usuario creado correctamente.');
 
-        return redirect()->route('administracion.admins')->with('success', 'Usuario creado correctamente.');
+        return redirect()->route('mostrar.usuarios')->withErrors(['error' => 'Datos incorrectos, revisar datos introducidos']);
+    }
 
-        return redirect()->route('administracion.admins')->withErrors(['error' => 'Datos incorrectos, revisar datos introducidos']);
+    public function delete($id) 
+    {
+        $usuario = usuario::findOrFail($id);
+
+        $usuario->delete();
+        return redirect()->route('mostrar.usuarios');
     }
 }
