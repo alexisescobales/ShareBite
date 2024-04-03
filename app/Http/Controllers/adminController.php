@@ -16,9 +16,9 @@ class adminController extends Controller
 
     public function mostrar()
     {
-        $usuaris = usuario::paginate(10);
+        $usuarios = usuario::with('tipo_usuario')->paginate(10)->withQueryString();
 
-        return view('administracion.crud', ['usuario' => $usuaris]);
+        return view('administracion.crud', compact('usuarios'));
     }
 
     public function store(Request $request)

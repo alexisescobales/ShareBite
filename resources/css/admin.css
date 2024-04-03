@@ -1,0 +1,45 @@
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.titulo {
+    position: absolute;
+    top: 20px;
+    text-align: center;
+}
+
+.titulo h1 {
+    color: #252525;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.card {
+    flex: 1;
+    border: 1px solid #252525;
+    background-color: #252525;
+    border-radius: 20px;
+    margin-right: 40px;
+    padding: 80px;
+    text-align: center;
+}
+
+.card i {
+    font-size: 64px;
+    color: #ECBC13;
+    margin-bottom: 40px; 
+}
+
+.card h2 {
+    margin: 0;
+    font-size: 48px;
+    color: #FBFBFB;
+}

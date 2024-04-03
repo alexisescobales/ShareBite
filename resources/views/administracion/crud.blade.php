@@ -35,7 +35,7 @@
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2>Manage <b>Domains</b></h2>
+                        <h2>Gestionar <b>Riders</b></h2>
                     </div>
                     <div class="col-sm-6">
                         <div class="btn-group" data-toggle="buttons">
@@ -67,46 +67,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr data-status="active">
-                        <td>1</td>
-                        <td><a href="#">loremvallis.com</a></td>
-                        <td>04/10/2013</td>
-                        <td><span class="label label-success">Active</span></td>
-                        <td>Buenos Aires</td>
-                        <td><a href="#" class="btn btn-sm manage">Manage</a></td>
+                    @foreach($usuarios as $usuario)
+                    <tr>
+                        <td>{{ $usuario->id_usuario }}</td>
+                        <td>{{ $usuario->nombre }}</td>
+                        <td>{{ $usuario->correo }}</td>
+                        <td>{{ $usuario->password }}</td>
+                        <td>{{ $usuario->foto }}</td>
+                        <td>{{ $usuario->tipo_usuario->nombre_tipo }}</td>
                     </tr>
-                    <tr data-status="inactive">
-                        <td>2</td>
-                        <td><a href="#">quisquamut.net</a></td>
-                        <td>05/08/2014</td>
-                        <td><span class="label label-warning">Inactive</span></td>
-                        <td>Australia</td>
-                        <td><a href="#" class="btn btn-sm manage">Manage</a></td>
-                    </tr>
-                    <tr data-status="active">
-                        <td>3</td>
-                        <td><a href="#">convallissed.com</a></td>
-                        <td>11/05/2015</td>
-                        <td><span class="label label-success">Active</span></td>
-                        <td>United Kingdom</td>
-                        <td><a href="#" class="btn btn-sm manage">Manage</a></td>
-                    </tr>
-                    <tr data-status="expired">
-                        <td>4</td>
-                        <td><a href="#">phasellusri.org</a></td>
-                        <td>06/09/2016</td>
-                        <td><span class="label label-danger">Expired</span></td>
-                        <td>Romania</td>
-                        <td><a href="#" class="btn btn-sm manage">Manage</a></td>
-                    </tr>
-                    <tr data-status="inactive">
-                        <td>5</td>
-                        <td><a href="#">facilisleo.com</a></td>
-                        <td>12/08/2017</td>
-                        <td><span class="label label-warning">Inactive</span></td>
-                        <td>Germany</td>
-                        <td><a href="#" class="btn btn-sm manage">Manage</a></td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

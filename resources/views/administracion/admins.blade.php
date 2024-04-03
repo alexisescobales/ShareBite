@@ -1,22 +1,27 @@
 @extends('administracion.plantilla')
 
 @section('cap')
-    <link rel="stylesheet" href="/resources/css/administracion/admin.css">
+    <link rel="stylesheet" href="../resources/css/admin.css">
 @endsection
 
 @section('contenido')
-<div class="card-container">
-    <div class="card">
-        <i class="fas fa-home"></i>
-        <h2>Card 1</h2>
+<div class="container">
+    <div class="titulo">
+        <h1>ADMINISTRACIÓN</h1>
     </div>
-    <div class="card">
-        <i class="fas fa-user"></i>
-        <h2>Card 2</h2>
-    </div>
-    <div class="card">
-        <i class="fas fa-envelope"></i>
-        <h2>Card 3</h2>
+    <div class="card-container">
+        <div class="card">
+            <i class="fas fa-home"></i>
+            <h2>Riders</h2>
+        </div>
+        <div class="card">
+            <i class="fas fa-user"></i>
+            <h2>Proveedores</h2>
+        </div>
+        <div class="card">
+            <i class="fas fa-envelope"></i>
+            <h2>Puas</h2>
+        </div>
     </div>
 </div>
 @endsection
