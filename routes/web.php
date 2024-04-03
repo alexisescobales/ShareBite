@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\adminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -27,4 +28,5 @@ Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('
 Route::get('/register_shop', [RegisterShopController::class, 'showRegisterShopForm'])->name('log_in_pages.register_shop');
 
 
-
+Route::get('/admins', [adminController::class, 'index'])->name('administrar');
+Route::get('/mostrar-usuarios', [adminController::class, 'mostrar'])->name('mostrar.usuarios');

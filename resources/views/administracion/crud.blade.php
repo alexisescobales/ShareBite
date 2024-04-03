@@ -58,12 +58,12 @@
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>Domain</th>
-                        <th>Created&nbsp;On</th>
-                        <th>Status</th>
-                        <th>Server&nbsp;Location</th>
-                        <th>Action</th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Contraseña</th>
+                        <th>Foto</th>
+                        <th>Tipo usuario</th>
                     </tr>
                 </thead>
                 <tbody>
