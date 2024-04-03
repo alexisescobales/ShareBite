@@ -22,8 +22,16 @@
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
             <div class="mb-3">
+                <label for="telefono" class="form-label">Telefono</label>
+                <input type="text" class="form-control" id="telefono" name="telefono" required>
+            </div>
+            <div class="mb-3">
                 <label for="foto" class="form-label">Foto</label>
                 <input type="text" class="form-control" id="foto" name="foto" required>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="activo" name="activo" checked>
+                <label class="form-check-label" for="activo">Activo</label>
             </div>
             <div class="mb-3">
                 <label for="tipo_usuario" class="form-label">Tipo Usuario</label>

@@ -28,7 +28,9 @@ class adminController extends Controller
             'nombre' => $request->nombre,
             'correo' => $request->correo,
             'password' => bcrypt($request->contrasenya),
+            'telefono' => $request->telefono,
             'foto' => $request->foto,
+            'activo' => $request->has('activo'),
             'tipo_usuario_id_tipo' => $request->tipo_usuario,
         ]);
 
@@ -41,7 +43,7 @@ class adminController extends Controller
     {
         $usuario = usuario::findOrFail($id);
 
-        $usuario->delete();
+        // $usuario->delete(); Cambiar per actiu/inactiu
         return redirect()->route('mostrar.usuarios');
     }
 }

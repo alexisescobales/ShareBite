@@ -41,7 +41,7 @@
                         <th>ID</th>
                         <th>Nombre</th>
                         <th>Correo</th>
-                        <th>Contraseña</th>
+                        <th>Telefono</th>
                         <th>Foto</th>
                         <th>Tipo usuario</th>
                     </tr>
@@ -52,7 +52,7 @@
                         <td>{{ $usuario->id_usuario }}</td>
                         <td>{{ $usuario->nombre }}</td>
                         <td>{{ $usuario->correo }}</td>
-                        <td>{{ $usuario->password }}</td>
+                        <td>{{ $usuario->telefono }}</td>
                         <td>{{ $usuario->foto }}</td>
                         <td>{{ $usuario->tipo_usuario->nombre_tipo }}</td>
                     </tr>
