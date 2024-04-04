@@ -11,16 +11,9 @@
 
 @section('leftColumn')
     <div class="left-column-container">
-        <h3>¿A DONDE QUIERES IR?</h3>
-        <div class="left-column-container-buttons">
-            <a href="{{ route('proveedores') }}"><button>Puntos de entrega</button></a>
-            <a href="{{ route('lista_puntos_entrega') }}"><button>Puntos de recogida</button></a>
-        </div>
+            
     </div>
 @endsection
 
-@section('rightColumn')
-    <div id='map' style='width: 100%; height: 400px;'>
-
-    </div>
+@section('rightColumn')    
 @endsection

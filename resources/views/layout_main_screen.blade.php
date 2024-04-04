@@ -9,7 +9,9 @@
     <title>aaaaa</title>
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.css' rel='stylesheet' />
-
+    <link rel="stylesheet" href="../resources/css/main.css">
+    <link rel="stylesheet" href="../resources/css/main_pages/first_page.css">
+    <link rel="stylesheet" href="../resources/css/main_pages/listas_style.css">
 </head>
 
 <body>
@@ -24,21 +26,13 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <i class="fa-solid fa-house activo"></i>
-                    </li>
-                    <li class="nav-item">
-                        <i class="fa-solid fa-chart-simple"></i>
-                    </li>
-                    <li class="nav-item">
-                        <i class="fa-solid fa-user"></i>
-                    </li>
+                    @yield('navbar')
                 </ul>
             </div>
         </div>
     </nav>
     <div class="row main-container">
-        <div class="col-5 left-column">
+        <div class="col-4 left-column">
             @yield('leftColumn')
         </div>
         <div class="col">
