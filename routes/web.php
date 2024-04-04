@@ -49,7 +49,7 @@ Route::post('/registro3', [ControlerUsuario::class, 'registro3']);
 
 Route::get('/login', function () {
     return view('login_pages.log_in');
-});
+})->name('login');
 
 Route::get('/register', function () {
     return view('login_pages.register');
