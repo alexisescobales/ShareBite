@@ -41,6 +41,7 @@ Route::post('/log_in', [ControlerUsuario::class, 'login']);
 Route::post('/registro/{eleccion}', [ControlerUsuario::class, 'seleccion']);
 Route::post('/registro1', [ControlerUsuario::class, 'registro1']);
 Route::post('/registro2', [ControlerUsuario::class, 'registro2']);
+Route::post('/registro3', [ControlerUsuario::class, 'registro3']);
 Route::get('/register_shop', [RegisterShopController::class, 'showRegisterShopForm'])->name('log_in_pages.register_shop');
 
 

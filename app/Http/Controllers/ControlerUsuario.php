@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Marcas;
+use App\Models\Raider;
 use App\Models\Tiendas;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
@@ -71,17 +72,40 @@ class ControlerUsuario extends Controller
     public function registro1(Request $request){
         $name = $request->input('name') . $request->input('apellido');
         $password = $request->input('password');
+        $passwordRepit = $request->input('repitPassword');
         $correo = $request->input('correo');
-        $foto = "";
-        // $usuario = new Usuario();
-        // $usuario->nombre = 'Rachid';
-        // $usuario->correo = 'rachid@gmail.com';
-        // $usuario->password = \bcrypt('123');
-        // $usuario->foto = 'foto.png';
-        // $usuario->tipo_usuario_id_tipo = 3;
-        // $usuario->save();
+        $repetido = false;
+
+        if ($password != $passwordRepit) {
+            $response = redirect('/');
+        }else {
+            $usuarios = Usuario::all();
+            foreach ($usuarios as $usuario) {
+                if ($usuario->correo == $correo) {
+                    $repetido = true;
+                    $response = redirect('/');
+                }
+            }
+            if ($repetido == false) {
+
+                $usuario = new Usuario();
+                $usuario->nombre = $name;
+                $usuario->correo = $correo;
+                $usuario->password = \bcrypt($password);
+                $usuario->foto = 'foto.png';
+                $usuario->tipo_usuario_id_tipo = 3;
+                $usuario->save();
+                $usuarioo = Usuario::orderBy('id_usuario', 'desc')->first();
+
+                $raider = new Raider();
+                $raider->id_raider_id_Usuario = $usuarioo->id_usuario;
+                $raider->estado = 1;
+                $raider->save();
+            }
+        }
+
             
-        $response = redirect('/log_in');
+        $response = redirect('/');
         
         return $response;
     }
@@ -115,6 +139,40 @@ class ControlerUsuario extends Controller
 
             }
         }
+        return $response;
+    }
+
+    public function registro3(Request $request){
+        
+        $nombreTienda = $request->input('nombreTienda');
+        $categoria = $request->input('categoria');
+        $direccion = $request->input('direccion');
+        $horario = $request->input('horario');
+
+        $name = $request->input('name') . $request->input('apellido');
+        $password = $request->input('password');
+        $correo = $request->input('correo');
+
+        $usuario = new Usuario();
+        $usuario->nombre = $name;
+        $usuario->correo = $correo;
+        $usuario->password = \bcrypt($password);
+        $usuario->foto = 'foto.png';
+        $usuario->tipo_usuario_id_tipo = 2;
+        $usuario->save();
+        $usuarioo = Usuario::orderBy('id_usuario', 'desc')->first();
+
+        $tienda = new Tiendas();
+        $tienda->tienda_id_usuario = $usuarioo->id_usuario;
+        $tienda->menus = 0;
+        $tienda->direccion = $direccion;
+        $tienda->categoria = $categoria;
+        $tienda->horario = $horario;
+        $tienda->nombre = $nombreTienda;
+        $tienda->estado = 1;
+        $tienda->save();
+
+        $response = redirect('/');
         return $response;
     }
 
