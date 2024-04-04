@@ -29,6 +29,15 @@ body {
     font-family: 'Helvetica';
 }
 
+p {
+    margin: 0;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
 a {
     text-decoration: none;
     color: var(--color-black);
@@ -54,17 +63,17 @@ button.btn_principal_yellow {
     }
 }
 
-button.btn_grande{
+button.btn_grande {
     font-size: 30px;
     padding: 10px 20px;
 }
 
-button.btn_mediano{
+button.btn_mediano {
     font-size: 15px;
     padding: 10px 10px;
 }
 
-button.btn_pequeno{
+button.btn_pequeno {
     font-size: 10px;
     padding: 5px 10px;
 }
@@ -95,4 +104,19 @@ button.btn_secondary {
 
 .row {
     --bs-gutter-x: 0;
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .5);
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
 }

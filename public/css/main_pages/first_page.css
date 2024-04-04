@@ -47,7 +47,6 @@
 
 .left-column {
     position: relative;
-    overflow: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -70,7 +69,7 @@
     margin-top: 40px;
 }
 
-.left-column-container-buttons button{
+.left-column-container-buttons a button {
     margin: 10px;
     width: 200px;
     height: 50px;
@@ -80,9 +79,10 @@
     border: none;
     cursor: pointer;
     box-shadow: 0 0 5px 0 rgba(0, 0, 0, .5);
-}
 
-.left-column-container-buttons button:hover {
-    background-color: var(--color-yellow);
-    transition: background-color .5s;
+    &:hover {
+        background-color: var(--color-yellow);
+        transition: background-color .5s;
+    }
+
 }
