@@ -9,6 +9,6 @@ class RegisterController extends Controller
 {
     public function showRegisterForm()
     {
-        return view('log_in_pages.register');
+        return view('login_pages.register');
     }
 }

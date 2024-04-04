@@ -1,0 +1,34 @@
+@import url('main.css');
+
+body{
+    background-color: var(--color-black);
+}
+
+.principal_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.title{
+    font-size: 90px;
+    color: var(--color-white);
+    margin-top: 4vh;
+}
+
+.title .amarillo{
+    color: var(--color-yellow);
+}
+
+.logo{
+    margin-top: 10vh;
+}
+
+.button_container{
+    margin-top: 10vh;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}

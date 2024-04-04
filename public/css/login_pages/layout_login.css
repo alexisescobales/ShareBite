@@ -1,0 +1,76 @@
+@import url('../main.css');
+
+body{
+    background-color: var(--color-black);
+}
+
+.left-column{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-column form{
+    background-color: var(--color-white);
+    border-radius: 15px;
+    padding: 20px 50px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.input-wrapper{
+    margin: 10px 0;
+}
+
+.input-wrapper p{
+    font-size: 15px;
+}
+
+.input-label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input-label i{
+    font-size: 25px;
+    margin-right: 10px;
+}
+
+.button-login-group{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divider{
+    width: 1px;
+    height: 80%;
+    background-color: var(--color-dark-white);
+    margin-top: 5%;
+}
+
+.right-column{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.right-column .title{
+    font-size: 70px;
+    color: var(--color-white);
+    margin-bottom: 40px;
+}
+
+.right-column .title .amarillo{
+    color: var(--color-yellow);
+}
+
+.right-column .logo{
+    width: 600px;
+}
+
+.row{
+    height: 100%;
+    width: 100%;
+}
