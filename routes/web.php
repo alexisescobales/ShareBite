@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RegisterShopController;
+use App\Http\Controllers\CoordenadasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,7 @@ Route::get('/regisrtoElec', function () {return view('login_pages.selection');})
 
 route::middleware(['auth'])->group(function(){
     Route::group(["middleware" => "rol:3,0"], function () {
-        Route::get('/mainRaider', function () {return view('main_pages.main_screen');});
+        Route::get('/mainRaider', [CoordenadasController::class, 'index']);
     });
     Route::group(["middleware" => "rol:1,0"], function () {
         Route::get('/mainAdmin', function () {return view('administracion.admins', compact(Auth::user()));});
@@ -76,6 +77,14 @@ Route::get('/lista_puntos_entrega', function () {
 
 Route::post('/proveedor_screen/{proveedor_id}', [ProveedorController::class, 'cargarProveedor'])->name('proveedor_screen'); 
 
+
+
+
+
+// Route::get('/puntos_entrega', function () {
+//     $puntos_entrega = puntos_entrega::all();
+//     return response()->json($puntos_entrega);
+// });
 
 
 
