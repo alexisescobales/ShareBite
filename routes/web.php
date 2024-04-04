@@ -31,6 +31,9 @@ Route::get('/register_shop', [RegisterShopController::class, 'showRegisterShopFo
 Route::get('/admins', [adminController::class, 'index'])->name('administrar');
 Route::get('/mostrar-usuarios', [adminController::class, 'mostrar'])->name('mostrar.usuarios');
 Route::post('crearUser', [adminController::class, 'store'])->name('crearUser');
+Route::get('/editarform/{id}', [adminController::class, 'editarUser'])->name('editarform');
+Route::get('/editar/{id}', [adminController::class, 'editar'])->name('editar');
+Route::delete('/usuarios/{id}', [adminController::class, 'eliminar'])->name('eliminar');
 Route::get('/crear', function () {
-    return view('crud.crear');
+    return view('administracion.crear');
 })->name('crear');

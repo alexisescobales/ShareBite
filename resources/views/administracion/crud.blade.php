@@ -1,7 +1,7 @@
 @extends('administracion.plantilla')
 
 @section('titulo')
-    Gestionar
+Gestionar
 @endsection
 
 @section('cap')
@@ -44,6 +44,7 @@
                         <th>Telefono</th>
                         <th>Foto</th>
                         <th>Tipo usuario</th>
+                        <th>Activo</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,6 +56,20 @@
                         <td>{{ $usuario->telefono }}</td>
                         <td>{{ $usuario->foto }}</td>
                         <td>{{ $usuario->tipo_usuario->nombre_tipo }}</td>
+                        <td>{{ $usuario->activo ? 'Sí' : 'No' }}</td>
+                        <td id="{{ $usuario->id_usuario }}">
+                            <form method="GET" action="{{ route('editarform', ['id' => $usuario->id_usuario]) }}">
+                                <input type="hidden" name="id_usuario" value="{{ $usuario->id_usuario }}">
+                                <button type="submit" class="btn btn-primary">Editar</button>
+                            </form>
+                        </td>
+                        <td id="{{ $usuario->id_usuario }}">
+                            <form method="POST" action="{{ route('eliminar', ['id' => $usuario->id_usuario]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">X</button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
