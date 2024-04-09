@@ -28,7 +28,7 @@ class Usuario extends Authenticatable
 
     public function tiendas(): HasMany
     {
-        return $this->hasMany(Tiendas::class);
+        return $this->hasMany(Tiendas::class, 'tienda_id_usuario');
     }
 
     public function marcas(): HasMany

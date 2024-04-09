@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ControlerUsuario;
+use App\Http\Controllers\PerfilProveedorControler;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\CoordenadasController;
@@ -21,8 +22,8 @@ Route::get('/regisrtoElec', function () {return view('login_pages.selection');})
 
 
 route::middleware(['auth'])->group(function(){
-    Route::group(["middleware" => "rol:3,0"], function () {
-        Route::get('/mainRaider', [CoordenadasController::class, 'index']);
+    Route::group(["middleware" => "rol:3,0,2"], function () {
+        Route::get('/mainRaider', [CoordenadasController::class, 'index'])->name('main');
     });
     Route::group(["middleware" => "rol:1,0"], function () {
         Route::get('/mainAdmin', function () {return view('administracion.admins', compact(Auth::user()));});
@@ -44,9 +45,7 @@ Route::post('/registro3', [ControlerUsuario::class, 'registro3']);
 
 
 
-Route::get('/estadisticas', function () {
-    return view('main_pages.estadisticas');
-})->name('estadisticas');
+Route::get('/estadisticas', [PerfilProveedorControler::class, 'index'])->name('estadisticas');
 
 Route::get('/login', function () {
     return view('login_pages.log_in');
@@ -63,10 +62,6 @@ Route::get('/register_shop', function () {
 Route::get('/selection', function () {
     return view('login_pages.selection');
 });
-
-Route::get('/main', function () {
-    return view('main_pages.main_screen');
-})->name('main');
 
 Route::get('/lista_proveedores', function () {
     return view('main_pages.lista_proveedores');
