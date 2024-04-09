@@ -5,7 +5,7 @@
         <a href="{{ route('main') }}"><i class="fa-solid fa-house activo"></i></a>
     </li>
     <li class="nav-item">
-        <a href="{{ route('main') }}"><i class="fa-solid fa-user"></i></a>
+        <a href="{{ route('estadisticas') }}"><i class="fa-solid fa-user"></i></a>
     </li>
 @endsection
 

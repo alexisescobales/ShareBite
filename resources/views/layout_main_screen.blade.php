@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main_pages/first_page.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main_pages/listas_style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main_pages/estadisticas.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 </head>
 
 <body>
@@ -42,8 +44,8 @@
 </body>
 
 <script>
-    let coordenadas = {!! json_encode($coordenadas) !!}; //Coordenadas
-    let info_marca = {!! json_encode($info_marca) !!}; //Info de la marca
+    //Coordenadas
+    //Info de la marca
 </script>
 
 <script src='../resources/js/mapbox.js'></script>

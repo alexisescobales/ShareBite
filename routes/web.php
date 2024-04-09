@@ -2,10 +2,7 @@
 
 use App\Http\Controllers\ControlerUsuario;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProveedorController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\RegisterShopController;
 use App\Http\Controllers\CoordenadasController;
 
 /*
@@ -46,6 +43,10 @@ Route::post('/registro2', [ControlerUsuario::class, 'registro2']);
 Route::post('/registro3', [ControlerUsuario::class, 'registro3']);
 
 
+
+Route::get('/estadisticas', function () {
+    return view('main_pages.estadisticas');
+})->name('estadisticas');
 
 Route::get('/login', function () {
     return view('login_pages.log_in');

@@ -1,0 +1,11 @@
+.btn_guardar {
+    margin-left: 133%;
+    padding: 10px 20px;
+    background-color: var(--color-dark-black);
+    font-weight: bold;
+    color: var(--color-yellow);
+}
+
+.nombreLocal{
+    margin-left: -67%;
+}
