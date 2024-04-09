@@ -41,11 +41,6 @@
     </div>
 </body>
 
-<script>
-    let coordenadas = {!! json_encode($coordenadas) !!}; //Coordenadas
-    let info_marca = {!! json_encode($info_marca) !!}; //Info de la marca
-</script>
-
 <script src='../resources/js/mapbox.js'></script>
 
 </html>

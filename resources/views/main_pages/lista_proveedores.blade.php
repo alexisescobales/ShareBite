@@ -89,7 +89,16 @@
             </li>
         </ul>
     </div>
+
+    <script src='/resources/js/mapbox.js'></script>
 @endsection
 
 @section('rightColumn')
+<div id='map' style='width: 1000px; height: 700px;'></div>
+
+<script>
+    console.log('Coordenadas:', @json($coordenadas));
+    console.log('Información de la marca:', @json($info_marca));
+    console.log('Tipos de marca:', @json($tipos_marca));
+</script>
 @endsection

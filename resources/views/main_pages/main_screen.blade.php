@@ -20,9 +20,9 @@
 @endsection
 
 @section('rightColumn')
-    <div class="right-column-container">
+    {{-- <div class="right-column-container">
         <div id='map' style='width: 1000px; height: 700px;'></div>
-    </div>
+    </div> --}}
 @endsection
 
 

@@ -19,7 +19,11 @@ use App\Http\Controllers\CoordenadasController;
 |
 */
 
+//Home de la pagina
 Route::get('/', function () {return view('principal');})->name('principal');
+
+
+//Home del registro a elegir rol...
 Route::get('/regisrtoElec', function () {return view('login_pages.selection');});
 
 
@@ -67,13 +71,16 @@ Route::get('/main', function () {
     return view('main_pages.main_screen');
 })->name('main');
 
-Route::get('/lista_proveedores', function () {
-    return view('main_pages.lista_proveedores');
-})->name('proveedores');
+Route::get('/lista_proveedores',  [CoordenadasController::class, 'index'])->name('proveedores'); 
+
+// Route::get('/lista_proveedores', function () {
+//     return view('main_pages.lista_proveedores');
+// })->name('proveedores');
 
 Route::get('/lista_puntos_entrega', function () {
     return view('main_pages.lista_puntos_entrega');
 })->name('lista_puntos_entrega');
+
 
 Route::post('/proveedor_screen/{proveedor_id}', [ProveedorController::class, 'cargarProveedor'])->name('proveedor_screen'); 
 
