@@ -64,9 +64,16 @@
     height: 100%;
 }
 
+.left-column-container>h3{
+    text-align: center;
+}
+
 .left-column-container-buttons {
     display: flex;
+    flex-wrap: wrap;
     margin-top: 40px;
+    align-items: center;
+    justify-content: center;
 }
 
 .left-column-container-buttons a button {

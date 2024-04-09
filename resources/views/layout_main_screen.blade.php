@@ -33,12 +33,12 @@
             </div>
         </div>
     </nav>
-    <div class="row main-container">
+    <div class="row main-container d-flex">
         <div class="col-4 left-column">
             @yield('leftColumn')
         </div>
         <div class="col">
-            @yield('rightColumn')
+            <div id='map' style='width: 100%; height: 100%;'></div>
         </div>
     </div>
 </body>

@@ -15,5 +15,4 @@
     </div>
 @endsection
 
-@section('rightColumn')    
-@endsection
+

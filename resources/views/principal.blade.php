@@ -23,7 +23,7 @@
                     </a>
 
                     <a href="{{ URL('/regisrtoElec') }}">
-                        <button class="btn_secondary">
+                        <button class="btn_secondary btn_mediano">
                             REGISTER</button>
                     </a>
                 </div>
