@@ -16,21 +16,28 @@
         </div>
         <ul class="main_list">
             @foreach ($tiendas as $tienda)
-                <li>
-                    <div class="tienda" data-lat="{{ $tienda->tiendas[0]->marca->lat }}" data-long="{{ $tienda->tiendas[0]->marca->long }}" data-nombre="{{ $tienda->nombre }}" data-direccion="{{ $tienda->tiendas[0]->direccion }}" data-lotes="{{ $tienda->tiendas[0]->menus }}">
-                        <img src="../resources/img/tienda.png" alt="">
-                        <div>
-                            <h4>{{ $tienda->nombre }}</h4>
-                            <ul>
-                                @foreach ($tienda->tiendas as $tienda_individual)
-                                    <p>Dirección: {{ $tienda_individual->direccion }}</p>
-                                    <p>Lotes: {{ $tienda_individual->menus }}</p>
-                                @endforeach
-                            </ul>
+            <li>
+                <div class="tienda" data-lat="{{ $tienda->tiendas[0]->marca->lat }}" data-long="{{ $tienda->tiendas[0]->marca->long }}">
+                    <img src="../resources/img/tienda.png" alt="">
+                    <div>
+                        <h4>{{ $tienda->nombre }}</h4>
+                        <button class="toggle-button">Reservar Lote</button>
+                        <ul>
+                            @foreach ($tienda->tiendas as $tienda_individual)
+                                <p>Dirección: {{ $tienda_individual->direccion }}</p>
+                                <p>Lotes: {{ $tienda_individual->menus }}</p>
+                            @endforeach
+                        </ul>
+                        <div class="lotes-container" style="display: none;">
+                            <p>Cantidad de Lotes: <span class="lotes-count">0</span></p>
+                            <button class="adjust-lotes" data-action="decrement">-</button>
+                            <button class="adjust-lotes" data-action="increment">+</button>
+                            <button class="reservar-button">Reservar</button>
                         </div>
                     </div>
-                </li>
-            @endforeach
+                </div>
+            </li>
+        @endforeach
         </ul>
     </div>
 @endsection

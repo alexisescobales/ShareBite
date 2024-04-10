@@ -2,8 +2,61 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYWxleGlzcG9saXRlY25pY3MiLCJhIjoiY2x0b2hwNmIzM
 let map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/navigation-night-v1', // Estilo de mapa predeterminado
-    center: [2.1734, 41.3851], // Coordenadas del centro del mapa
+    // center: [2.1734, 41.3851], // Coordenadas del centro del mapa
     zoom: 12 // Nivel de zoom
+});
+
+
+
+// Obtener la ubicación actual del usuario
+navigator.geolocation.getCurrentPosition(function (position) {
+    var lng = position.coords.longitude;
+    var lat = position.coords.latitude;
+
+    // Centrar el mapa en la ubicación actual del usuario
+    map.setCenter([lng, lat]);
+});
+
+// Agregar control de navegación
+map.addControl(new mapboxgl.NavigationControl());
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+//Maneja la funcionalidad de alternar la visibilidad de los elementos con la clase 
+document.querySelectorAll('.toggle-button').forEach(button => {
+    button.addEventListener('click', function () {
+        const lotesContainer = this.parentNode.querySelector('.lotes-container');
+        lotesContainer.style.display = (lotesContainer.style.display === 'none') ? 'block' : 'none';
+    });
+});
+
+
+//Cantidad de lotes: Este bloque maneja la funcionalidad de ajustar la cantidad de lotes. Para cada botón con la clase 
+document.querySelectorAll('.adjust-lotes').forEach(button => {
+    button.addEventListener('click', function () {
+        const action = this.getAttribute('data-action');
+        const lotesCount = parseInt(this.parentNode.querySelector('.lotes-count').textContent);
+
+        if (action === 'increment') {
+            this.parentNode.querySelector('.lotes-count').textContent = lotesCount + 1;
+        } else if (action === 'decrement' && lotesCount > 0) {
+            this.parentNode.querySelector('.lotes-count').textContent = lotesCount - 1;
+        }
+    });
+});
+
+//Este bloque maneja la funcionalidad de realizar una reserva con la cantidad de lotes especificada.
+document.querySelectorAll('.reservar-button').forEach(button => {
+    button.addEventListener('click', function () {
+        const lotesCount = parseInt(this.parentNode.querySelector('.lotes-count').textContent);
+        //MYSQL PARA RESERVA DE LOTES
+    });
 });
 
 
