@@ -57,7 +57,7 @@ class ControlerUsuario extends Controller
             if ($user->tipo_usuario_id_tipo == 3) {
                 $response = redirect('/mainRaider');
             }elseif ($user->tipo_usuario_id_tipo == 2) {
-                $response = redirect('/mainRaider');
+                $response = redirect('/estadisticas');
             }elseif ($user->tipo_usuario_id_tipo == 1) {
                 $response = redirect('/mainAdmin');
             }
@@ -101,11 +101,13 @@ class ControlerUsuario extends Controller
                 $raider->id_raider_id_Usuario = $usuarioo->id_usuario;
                 $raider->estado = 1;
                 $raider->save();
+
+                Auth::login($usuarioo);
             }
         }
 
             
-        $response = redirect('/');
+        $response = redirect('/mainRaider');
         
         return $response;
     }
@@ -171,12 +173,18 @@ class ControlerUsuario extends Controller
         $tienda->nombre = $nombreTienda;
         $tienda->estado = 1;
         $tienda->save();
+        Auth::login($usuarioo);
 
-        $response = redirect('/');
+        $response = redirect('estadisticas');
         return $response;
     }
 
     public function seleccion($eleccion){
         return view('login_pages.register', compact('eleccion'));
+    }
+
+    public function CerrarSesion(){
+        Auth::logout();
+        return redirect('/');
     }
 }

@@ -42,4 +42,27 @@ class PerfilProveedorControler extends Controller
 
         return $response;
     }
+
+    public function actualizarContraseña(Request $request){
+        
+        $password = $request->input('password');
+        $passwordRepit = $request->input('passwordConfirm');
+        
+        if ($password != $passwordRepit) {
+            $response = redirect('/');
+        }else {
+            Auth::user()->password = \bcrypt($password);
+            Auth::user()->save();
+        }
+
+        
+        $tienda = Auth::user()->tiendas;
+        $user = Auth::user();
+
+        $response = view('main_pages.estadisticas', compact('tienda', 'user'));
+
+
+        return $response;
+        
+    }
 }

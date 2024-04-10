@@ -2,10 +2,10 @@
 
 @section('navbar')
     <li class="nav-item">
-        <a href="{{ route('main') }}"><i class="fa-solid fa-house activo"></i></a>
+        <a href=""><i class="fa-solid fa-house activo"></i></a>
     </li>
     <li class="nav-item">
-        <a href="{{ route('main') }}"><i class="fa-solid fa-user"></i></a>
+        <button data-bs-toggle="modal" data-bs-target="#exampleModal3"><i class="fa-solid fa-user activo" ></i></button> 
     </li>>
 @endsection
 
@@ -32,6 +32,12 @@
             <input name="nombreTienda" type="text" value="{{ $tienda[0]->nombre }}">
             <label for="">Direccion</label>
             <input name="direccion" type="text" name="" value="{{ $tienda[0]->direccion }}">
+            <label for="">Nombre usuario</label>
+            <input name="nombreUsuario" type="text" value="{{ $user->nombre }}">
+            <label for="">Correo</label>
+            <input name="correo" type="text" value="{{ $user->correo }}">
+            <label for="">Cambiar contraseña</label>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fa-solid fa-pen-to-square"></i></button>
             <label for="">Telefono de contacto</label>
             <input name="telefono" type="text" value="{{ $user->telefono }}">
         </form>
@@ -58,6 +64,55 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ action([App\Http\Controllers\PerfilProveedorControler::class, 'actualizarContraseña']) }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    
+                        <div>
+                            <label for="">Nueva contraseña</label>
+                            <input name="password" type="password">
+                            <label for="">Comfirma contraseña</label>
+                            <input name="passwordConfirm" type="password">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ action([App\Http\Controllers\ControlerUsuario::class, 'CerrarSesion']) }}" method="GET">
+                @csrf
+                <div class="modal-body">
+                    <h1>Quieres cerrar sesion?</h1>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Salir</button>
                 </div>
             </form>
           </div>
