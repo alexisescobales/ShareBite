@@ -42,6 +42,10 @@ Route::post('/registro/{eleccion}', [ControlerUsuario::class, 'seleccion']);
 Route::post('/registro1', [ControlerUsuario::class, 'registro1']);
 Route::post('/registro2', [ControlerUsuario::class, 'registro2']);
 Route::post('/registro3', [ControlerUsuario::class, 'registro3']);
+Route::post('/actualizarMenu', [PerfilProveedorControler::class, 'actualizarMenu']);
+Route::post('/actualizarTienda', [PerfilProveedorControler::class, 'actualizarTienda']);
+
+
 
 
 

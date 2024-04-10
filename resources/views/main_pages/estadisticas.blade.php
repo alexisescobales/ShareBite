@@ -17,7 +17,8 @@
             <p><i class="fa-solid fa-pen-to-square"></i></p>
         </div>
         
-        <form class="formLocal" action="">
+        <form class="formLocal" action="{{ action([App\Http\Controllers\PerfilProveedorControler::class, 'actualizarTienda']) }}" method="POST">
+            @csrf
             <div class="container-header" style="display: flex">
                 <h2 class="nombreLocal">{{ $tienda[0]->nombre }}</h2>
                 <button id="btnGuardar" type="submit" class="btn_guardar">Guardar</button>
@@ -28,11 +29,11 @@
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square"></i></button>
             </div>
             <label for="">Nombre tienda</label>
-            <input type="text" value="{{ $tienda[0]->nombre }}">
-            <label for="">Dereccion</label>
-            <input type="text" name="" value="{{ $tienda[0]->direccion }}">
+            <input name="nombreTienda" type="text" value="{{ $tienda[0]->nombre }}">
+            <label for="">Direccion</label>
+            <input name="direccion" type="text" name="" value="{{ $tienda[0]->direccion }}">
             <label for="">Telefono de contacto</label>
-            <input type="text" value="{{ $user->telefono }}">
+            <input name="telefono" type="text" value="{{ $user->telefono }}">
         </form>
     </div>
 
@@ -43,12 +44,14 @@
               <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="">
+            <form action="{{ action([App\Http\Controllers\PerfilProveedorControler::class, 'actualizarMenu']) }}" method="POST">
+                @csrf
                 <div class="modal-body">
                     
                         <div style="display: flex">
                             <button id="btnMenosMenu" type="button" class="btn btn-primary">-</button>
                             <h1 id="numeroDeMenus">{{ $tienda[0]->menus }}</h1>
+                            <input id="inputMenus" name="inputMenus" type="text" hidden>
                             <button id="btnMasMenu" type="button" class="btn btn-primary">+</button>
                         </div>
                 </div>
@@ -62,38 +65,36 @@
       </div>
 
       <script>
-        // Obtener referencia a los elementos del DOM
+
         const h1menus = document.getElementById("numeroDeMenus");
         const btnMenosMenu = document.getElementById("btnMenosMenu");
         const btnMasMenu = document.getElementById("btnMasMenu");
+        const inputMenus = document.getElementById("inputMenus");
     
-        // Agregar un event listener al botón de restar menú
+
         btnMenosMenu.addEventListener("click", restarMenu);
     
-        // Definir la función para restar un menú
+
         function restarMenu() {
-            // Obtener el valor actual del número de menús
+      
             let cantidadMenus = parseInt(h1menus.textContent);
-            // Verificar si la cantidad de menús es mayor que 0
+         
             if (cantidadMenus > 0) {
-                // Restar un menú
                 cantidadMenus--;
-                // Actualizar el valor mostrado en el elemento h1
                 h1menus.textContent = cantidadMenus;
+                inputMenus.value = cantidadMenus;
             }
         }
-    
-        // Agregar un event listener al botón de sumar menú
+
         btnMasMenu.addEventListener("click", sumarMenu);
     
-        // Definir la función para sumar un menú
+
         function sumarMenu() {
-            // Obtener el valor actual del número de menús
+
             let cantidadMenus = parseInt(h1menus.textContent);
-            // Sumar un menú
             cantidadMenus++;
-            // Actualizar el valor mostrado en el elemento h1
             h1menus.textContent = cantidadMenus;
+            inputMenus.value = cantidadMenus;
         }
     </script>
 @endsection
