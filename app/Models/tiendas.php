@@ -18,7 +18,7 @@ class Tiendas extends Model
 
     public function usuario(): BelongsTo
     {
-        return $this->belongsTo(Usuario::class);
+        return $this->belongsTo(Usuario::class, 'id_usuario');
     }
 
     public function favoritos(): HasMany

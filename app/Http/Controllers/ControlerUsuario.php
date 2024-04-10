@@ -57,7 +57,7 @@ class ControlerUsuario extends Controller
             if ($user->tipo_usuario_id_tipo == 3) {
                 $response = redirect('/mainRaider');
             }elseif ($user->tipo_usuario_id_tipo == 2) {
-                $response = redirect('/log_in');
+                $response = redirect('/mainRaider');
             }elseif ($user->tipo_usuario_id_tipo == 1) {
                 $response = redirect('/mainAdmin');
             }

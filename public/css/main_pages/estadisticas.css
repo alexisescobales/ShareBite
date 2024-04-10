@@ -1,5 +1,5 @@
 .btn_guardar {
-    margin-left: 133%;
+    margin-left: 52%;
     padding: 10px 20px;
     background-color: var(--color-dark-black);
     font-weight: bold;
@@ -14,3 +14,19 @@
     display: flex;
     flex-wrap: wrap;
 }
+.formLocal{
+    margin-left: 7%;
+}
+.divImg{
+    display: block;
+}
+
+.divImg p{
+    position: relative;
+}
+
+.divImg img{
+    position: relative;
+}
+
+
