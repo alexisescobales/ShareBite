@@ -30,4 +30,5 @@ class Marcas extends Model
     {
         return $this->hasMany(marcas_has_pedido::class);
     }
+
 }

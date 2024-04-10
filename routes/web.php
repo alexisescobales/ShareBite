@@ -29,7 +29,11 @@ Route::get('/regisrtoElec', function () {return view('login_pages.selection');})
 
 route::middleware(['auth'])->group(function(){
     Route::group(["middleware" => "rol:3,0"], function () {
-        Route::get('/mainRaider', [CoordenadasController::class, 'index']);
+        // Route::get('/mainRaider', [CoordenadasController::class, 'index']);
+        Route::get('/mainRaider', function () {
+            return view('main_pages.main_screen');
+        });
+        
     });
     Route::group(["middleware" => "rol:1,0"], function () {
         Route::get('/mainAdmin', function () {return view('administracion.admins', compact(Auth::user()));});
@@ -71,18 +75,20 @@ Route::get('/main', function () {
     return view('main_pages.main_screen');
 })->name('main');
 
-Route::get('/lista_proveedores',  [CoordenadasController::class, 'index'])->name('proveedores'); 
+Route::get('/lista_proveedores',  [CoordenadasController::class, 'recogida'])->name('proveedores'); 
 
 // Route::get('/lista_proveedores', function () {
 //     return view('main_pages.lista_proveedores');
 // })->name('proveedores');
 
-Route::get('/lista_puntos_entrega', function () {
-    return view('main_pages.lista_puntos_entrega');
-})->name('lista_puntos_entrega');
+Route::get('/lista_puntos_entrega',  [CoordenadasController::class, 'entrega'])->name('lista_puntos_entrega'); 
+
+// Route::get('/lista_puntos_entrega', function () {
+//     return view('main_pages.lista_puntos_entrega');
+// })->name('lista_puntos_entrega');
 
 
-Route::post('/proveedor_screen/{proveedor_id}', [ProveedorController::class, 'cargarProveedor'])->name('proveedor_screen'); 
+Route::post('/proveedor_screen/{proveedor_id}', [CoordenadasController::class, 'cargarProveedor'])->name('proveedor_screen'); 
 
 
 

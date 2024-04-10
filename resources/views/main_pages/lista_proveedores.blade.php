@@ -12,93 +12,72 @@
 @section('leftColumn')
     <div class="left-column-container">
         <div style="padding: 35px">
-            <h3>Puntos de entrega</h3>
+            <h3>Puntos de recogida</h3>
         </div>
         <ul class="main_list">
-            <a href="{{ route('main') }}">
-                <li>
-                    <div>
-                        <img src="../resources/img/tienda.png" alt="">
-                        <div>
-                            <h4>Vivari</h4>
-                            <p>3 paquetes disponibles</p>
-                        </div>
-                        <p>20m</p>
-                    </div>
-                </li>
-            </a>
+            @foreach ($tiendas as $tienda)
             <li>
                 <div>
                     <img src="../resources/img/tienda.png" alt="">
                     <div>
-                        <h4>Vivari</h4>
-                        <p>3 paquetes disponibles</p>
+                        <h4>{{ $tienda->nombre }}</h4>
+                        <ul>
+                            @foreach ($tienda->tiendas as $tienda_individual)
+                                <p>Dirección: {{ $tienda_individual->direccion }}</p>
+                                <p>Lotes: {{ $tienda_individual->menus }}</p>
+                                <ul>
+                                    @foreach ($tienda_individual->marca as $marca_individual)
+                                    @endforeach
+                                </ul>
+                            @endforeach
+                        </ul>
                     </div>
-                    <p>20m</p>
+                    <!-- Aquí puedes calcular la distancia desde la ubicación actual si es necesario -->
                 </div>
             </li>
-            <li>
-                <div>
-                    <img src="../resources/img/tienda.png" alt="">
-                    <div>
-                        <h4>Vivari</h4>
-                        <p>3 paquetes disponibles</p>
-                    </div>
-                    <p>20m</p>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <img src="../resources/img/tienda.png" alt="">
-                    <div>
-                        <h4>Vivari</h4>
-                        <p>3 paquetes disponibles</p>
-                    </div>
-                    <p>20m</p>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <img src="../resources/img/tienda.png" alt="">
-                    <div>
-                        <h4>Vivari</h4>
-                        <p>3 paquetes disponibles</p>
-                    </div>
-                    <p>20m</p>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <img src="../resources/img/tienda.png" alt="">
-                    <div>
-                        <h4>Vivari</h4>
-                        <p>3 paquetes disponibles</p>
-                    </div>
-                    <p>20m</p>
-                </div>
-            </li>
-            <li>
-                <div>
-                    <img src="../resources/img/tienda.png" alt="">
-                    <div>
-                        <h4>Vivari</h4>
-                        <p>3 paquetes disponibles</p>
-                    </div>
-                    <p>20m</p>
-                </div>
-            </li>
+        @endforeach
+        
         </ul>
     </div>
-
-    <script src='/resources/js/mapbox.js'></script>
 @endsection
 
 @section('rightColumn')
-<div id='map' style='width: 1000px; height: 700px;'></div>
+    {{-- Mapa --}}
+    <div id='map' style='width: 1000px; height: 700px;'></div>
 
-<script>
-    console.log('Coordenadas:', @json($coordenadas));
-    console.log('Información de la marca:', @json($info_marca));
-    console.log('Tipos de marca:', @json($tipos_marca));
-</script>
+    {{-- Script Mapbox --}}
+    <script src="{{ asset('../resources/js/mapbox.js') }}"></script>
+
+    <script>
+        // Convertimos la variable PHP a JSON
+        let tiendas = @json($tiendas);
+    
+        // Función para agregar marcadores
+        function addMarkers(tiendas) {
+            tiendas.forEach(function(tienda) {
+                tienda.tiendas.forEach(function(tienda_individual) {
+                    // Accedemos a la propiedad "marca" de cada tienda_individual
+                    let marca = tienda_individual.marca;
+    
+                    // Verificamos si la marca es un objeto válido
+                    if (marca) {
+                        // Obtenemos la latitud y longitud de la marca
+                        let lat = marca.lat;
+                        let long = marca.long;
+    
+                        // Verificamos que tengamos valores válidos de latitud y longitud
+                        if (lat && long) {
+                            // Agregamos un marcador al mapa con la latitud y longitud
+                            new mapboxgl.Marker()
+                                .setLngLat([parseFloat(long), parseFloat(lat)]) // Convertimos a números flotantes
+                                .addTo(map);
+                        }
+                    }
+                });
+            });
+        }
+    
+        // Llamamos a la función para agregar los marcadores
+        addMarkers(tiendas);
+    </script>
 @endsection
