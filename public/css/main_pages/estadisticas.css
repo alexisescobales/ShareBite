@@ -9,3 +9,8 @@
 .nombreLocal{
     margin-left: -67%;
 }
+
+.div-estadisticas{
+    display: flex;
+    flex-wrap: wrap;
+}

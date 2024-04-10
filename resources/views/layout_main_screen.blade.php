@@ -38,7 +38,7 @@
             @yield('leftColumn')
         </div>
         <div class="col">
-            <div id='map' style='width: 100%; height: 100%;'></div>
+            @yield('rightColumn')
         </div>
     </div>
 </body>

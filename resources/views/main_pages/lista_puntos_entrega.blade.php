@@ -16,3 +16,6 @@
 @endsection
 
 
+@section('rightColumn')
+    <div id='map' style='width: 100%; height: 100%;'></div>
+@endsection
