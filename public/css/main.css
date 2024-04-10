@@ -121,4 +121,10 @@ button.btn_secondary {
     background: rgba(0, 0, 0, 0);
 }
 
+.flotante{
+    position: absolute;
+    top: 90%;
+    left: 90%;
+}
+
  

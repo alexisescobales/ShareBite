@@ -23,6 +23,30 @@
     <div class="right-column-container">
         <div id='map' style='width: 1000px; height: 700px;'></div>
     </div>
+
+    <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-primary flotante">IA</button>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+                <div class="modal-body">
+                    <input type="text" placeholder="Write your prompt" id="prompt">
+                    <button id="generate">Generate</button>
+
+                    <p id="output"></p>
+                    <script src="{{ asset('js/app.js') }}"></script>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+          </div>
+        </div>
+      </div>
 @endsection
 
 
