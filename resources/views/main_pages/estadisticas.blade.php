@@ -11,65 +11,74 @@
 
 
 @section('leftColumn')
-    <div class="left-column-container">
+    <div class="left-column-container left-column-estadisticas">
         <div class="divImg">
             <img src="{{ asset('img/tiendas/fornet.jpg') }}" alt="">
-            <p><i class="fa-solid fa-pen-to-square"></i></p>
+            <div><i class="fa-solid fa-pen-to-square"></i></div>
         </div>
-        
+
         <form class="formLocal" action="">
-            <div class="container-header" style="display: flex">
+            <div class="container-header">
                 <h2 class="nombreLocal">{{ $tienda[0]->nombre }}</h2>
                 <button id="btnGuardar" type="submit" class="btn_guardar">Guardar</button>
             </div>
-            <div class="lotesDisp" style="display: flex">
-                <label for="">Lotes disponibles:</label>
-                <p>{{ $tienda[0]->menus }}</p>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square"></i></button>
+            <div class="settings-form">
+                <div class="lotesDisp" style="display: flex">
+                    <label for="">Lotes disponibles:</label>
+                    <p>{{ $tienda[0]->menus }}</p>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                            class="fa-solid fa-pen-to-square"></i></button>
+                </div>
+                <div class="form-row">
+                    <label for="">Nombre tienda</label>
+                    <input type="text" value="{{ $tienda[0]->nombre }}">
+                </div>
+                <div class="form-row">
+                    <label for="">Dereccion</label>
+                    <input type="text" name="" value="{{ $tienda[0]->direccion }}">
+                </div>
+                <div class="form-row">
+                    <label for="">Telefono de contacto</label>
+                    <input type="text" value="{{ $user->telefono }}">
+                </div>
             </div>
-            <label for="">Nombre tienda</label>
-            <input type="text" value="{{ $tienda[0]->nombre }}">
-            <label for="">Dereccion</label>
-            <input type="text" name="" value="{{ $tienda[0]->direccion }}">
-            <label for="">Telefono de contacto</label>
-            <input type="text" value="{{ $user->telefono }}">
         </form>
     </div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="">
-                <div class="modal-body">
-                    
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="">
+                    <div class="modal-body">
+
                         <div style="display: flex">
                             <button id="btnMenosMenu" type="button" class="btn btn-primary">-</button>
                             <h1 id="numeroDeMenus">{{ $tienda[0]->menus }}</h1>
                             <button id="btnMasMenu" type="button" class="btn btn-primary">+</button>
                         </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
-          </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
         </div>
-      </div>
+    </div>
 
-      <script>
+    <script>
         // Obtener referencia a los elementos del DOM
         const h1menus = document.getElementById("numeroDeMenus");
         const btnMenosMenu = document.getElementById("btnMenosMenu");
         const btnMasMenu = document.getElementById("btnMasMenu");
-    
+
         // Agregar un event listener al botón de restar menú
         btnMenosMenu.addEventListener("click", restarMenu);
-    
+
         // Definir la función para restar un menú
         function restarMenu() {
             // Obtener el valor actual del número de menús
@@ -82,10 +91,10 @@
                 h1menus.textContent = cantidadMenus;
             }
         }
-    
+
         // Agregar un event listener al botón de sumar menú
         btnMasMenu.addEventListener("click", sumarMenu);
-    
+
         // Definir la función para sumar un menú
         function sumarMenu() {
             // Obtener el valor actual del número de menús
@@ -121,6 +130,8 @@
 
             var optionsPieChart = {
                 'legend': 'up',
+                'width': 500,
+                'height': 500,
                 'title': 'Lotes de comida salvados',
                 'is3D': false
             }
@@ -156,6 +167,8 @@
 
             var optionsColumnChart = {
                 title: "Paquetes entregados en los ultimos 7 dias",
+                width: 500,
+                height: 500,                
                 bar: {
                     groupWidth: "90%"
                 },
