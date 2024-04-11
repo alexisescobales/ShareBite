@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ControlerPedido;
 use App\Http\Controllers\ControlerUsuario;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
@@ -87,8 +88,12 @@ Route::get('/lista_puntos_entrega',  [CoordenadasController::class, 'entrega'])-
 //     return view('main_pages.lista_puntos_entrega');
 // })->name('lista_puntos_entrega');
 
+Route::post('/pedido',  [ControlerPedido::class, 'crearPedido'])->name('crear_pedido'); 
 
-Route::post('/proveedor_screen/{proveedor_id}', [CoordenadasController::class, 'cargarProveedor'])->name('proveedor_screen'); 
+
+// Route::post('/proveedor_screen/{proveedor_id}', [CoordenadasController::class, 'cargarProveedor'])->name('proveedor_screen'); 
+
+
 
 
 

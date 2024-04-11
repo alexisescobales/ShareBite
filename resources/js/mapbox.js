@@ -38,12 +38,13 @@ document.querySelectorAll('.toggle-button').forEach(button => {
 
 
 //Cantidad de lotes: Este bloque maneja la funcionalidad de ajustar la cantidad de lotes. Para cada botón con la clase 
-document.querySelectorAll('.adjust-lotes').forEach(button => {
+document.querySelectorAll('.ajuste-lotes').forEach(button => {
     button.addEventListener('click', function () {
         const action = this.getAttribute('data-action');
-        const lotesCount = parseInt(this.parentNode.querySelector('.lotes-count').textContent);
+        const lotesCount = parseInt(this.parentNode.querySelector('.lotes-count').textContent); // Obtenemos el numero de lotes ah reservar
+        const maxLotes = parseInt(this.parentNode.querySelector('.max-lotes').textContent); // Obtenemos la clase max-lotes que indica el numero de lotes disponibles en tienda
 
-        if (action === 'increment') {
+        if (action === 'increment' && lotesCount < maxLotes) {
             this.parentNode.querySelector('.lotes-count').textContent = lotesCount + 1;
         } else if (action === 'decrement' && lotesCount > 0) {
             this.parentNode.querySelector('.lotes-count').textContent = lotesCount - 1;
@@ -51,13 +52,8 @@ document.querySelectorAll('.adjust-lotes').forEach(button => {
     });
 });
 
-//Este bloque maneja la funcionalidad de realizar una reserva con la cantidad de lotes especificada.
-document.querySelectorAll('.reservar-button').forEach(button => {
-    button.addEventListener('click', function () {
-        const lotesCount = parseInt(this.parentNode.querySelector('.lotes-count').textContent);
-        //MYSQL PARA RESERVA DE LOTES
-    });
-});
+
+
 
 
 
