@@ -18,7 +18,7 @@ class Usuario extends Authenticatable
     protected $primaryKey = 'id_usuario';
     public $timestamps = false;
     protected $fillable = [
-        'nombre', 'password', 'correo', 'foto', 'tipo_usuario_id_tipo'
+        'nombre', 'password', 'telefono', 'correo', 'foto', 'activo', 'tipo_usuario_id_tipo'
     ];
 
     public function tipo_usuario(): BelongsTo

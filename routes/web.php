@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\ControlerUsuario;
-use App\Http\Controllers\PerfilProveedorControler;
+use App\Http\Controllers\adminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\CoordenadasController;
@@ -83,4 +82,16 @@ Route::post('/proveedor_screen/{proveedor_id}', [ProveedorController::class, 'ca
 // });
 
 
+Route::get('/admins', [adminController::class, 'index'])->name('administrar');
+Route::get('/mostrar-usuarios', [adminController::class, 'mostrar'])->name('mostrar.usuarios');
+Route::post('crearUser', [adminController::class, 'store'])->name('crearUser');
+Route::get('/editarform/{id}', [adminController::class, 'editarUser'])->name('editarform');
+Route::get('/editar/{id}', [adminController::class, 'editar'])->name('editar');
+Route::delete('/usuarios/{id}', [adminController::class, 'eliminar'])->name('eliminar');
+Route::get('/crear', function () {
+    return view('administracion.crear');
+})->name('crear');
 
+Route::get('/adminsvue', function () {
+    return view('administracion.adminsvue');
+});
