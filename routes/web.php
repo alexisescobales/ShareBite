@@ -37,3 +37,7 @@ Route::delete('/usuarios/{id}', [adminController::class, 'eliminar'])->name('eli
 Route::get('/crear', function () {
     return view('administracion.crear');
 })->name('crear');
+
+Route::get('/adminsvue', function () {
+    return view('administracion.adminsvue');
+});
