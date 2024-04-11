@@ -47,7 +47,8 @@
                                     @csrf
                                     <input type="hidden" name="tienda_id" id="tiendaIdInput"
                                         value="{{ $tienda_individual->tienda_id_usuario }}">
-                                    <input type="hidden" name="cantidad_menus" id="lotesReservados">
+                                    <!-- Value 0 como default de lotes predeterminados -->
+                                    <input type="hidden" name="cantidad_menus" id="lotesReservados" value="0"> 
                                     <button type="submit">Crear Pedido</button>
                                 </form>
 

@@ -37,20 +37,33 @@ document.querySelectorAll('.toggle-button').forEach(button => {
 });
 
 
-//Cantidad de lotes: Este bloque maneja la funcionalidad de ajustar la cantidad de lotes. Para cada botón con la clase 
+// Cantidad de lotes: Este bloque maneja la funcionalidad de ajustar la cantidad de lotes. Para cada botón con la clase 'ajuste-lotes'
 document.querySelectorAll('.ajuste-lotes').forEach(button => {
     button.addEventListener('click', function () {
         const action = this.getAttribute('data-action');
-        const lotesCount = parseInt(this.parentNode.querySelector('.lotes-count').textContent); // Obtenemos el numero de lotes ah reservar
-        const maxLotes = parseInt(this.parentNode.querySelector('.max-lotes').textContent); // Obtenemos la clase max-lotes que indica el numero de lotes disponibles en tienda
+        const lotesCountElement = this.parentNode.querySelector('.lotes-count'); // Elemento que muestra la cantidad de lotes seleccionados
+        let lotesCount = parseInt(lotesCountElement.textContent); // Obtener la cantidad actual de lotes seleccionados
+        const maxLotes = parseInt(this.parentNode.querySelector('.max-lotes').textContent); // Número máximo de lotes disponibles en la tienda
 
         if (action === 'increment' && lotesCount < maxLotes) {
-            this.parentNode.querySelector('.lotes-count').textContent = lotesCount + 1;
+            lotesCount++; // Incrementar la cantidad de lotes seleccionados
         } else if (action === 'decrement' && lotesCount > 0) {
-            this.parentNode.querySelector('.lotes-count').textContent = lotesCount - 1;
+            lotesCount--; // Decrementar la cantidad de lotes seleccionados
         }
+
+        // Actualizar el valor de la cantidad de lotes seleccionados en el elemento HTML
+        lotesCountElement.textContent = lotesCount;
+
+        // Actualizar el valor del campo oculto en el formulario
+        this.closest('.lotes-container').querySelector('.lotes-count').textContent = lotesCount;
+        this.closest('.lotes-container').querySelector('#lotesReservados').value = lotesCount;
+
+        // Imprimir el valor de lotesCount en la consola del navegador
+        console.log("Valor de lotesCount:", lotesCount);
     });
 });
+
+
 
 
 
