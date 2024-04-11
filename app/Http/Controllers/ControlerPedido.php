@@ -30,8 +30,8 @@ class ControlerPedido extends Controller
         $pedido->raider_id_raider_id_usuario = $usuario->id_usuario; //id del usuario
         $pedido->tiendas_tienda_id_usuario = $request->tienda_id; //id de la tienda
         $pedido->cantidad_menus = $request->cantidad_menus; //Cantidad de menus reservados
-        $pedido->estado = 'creado'; // Puedes establecer el estado inicial aquí
-        $pedido->time_reco = now(); // Puedes establecer la fecha y hora actual aquí
+        $pedido->estado = 'creado'; // Estado inicial aquí
+        $pedido->time_reco = now(); // Establecer la fecha y hora actual 
         $pedido->save(); //Guardamos el pedido
     
         // Redirigir a puntos de entrega
