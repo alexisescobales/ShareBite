@@ -15,6 +15,9 @@ class Tiendas extends Model
     protected $primaryKey = 'tienda_id_usuario';
     public $incrementing = false;
     public $timestamps = false;
+    protected $fillable = [
+        'tienda_id_usuario', 'estado', 'menus', 'direccion'
+    ];
 
     public function usuario(): BelongsTo
     {

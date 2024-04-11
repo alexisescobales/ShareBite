@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\usuario;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\adminsResource;
@@ -17,7 +17,7 @@ class gestionController extends Controller
      */
     public function index()
     {
-        $usuarios = Usuario::with('tipo_usuario')->paginate(30);
+        $usuarios = Usuario::with(['tipo_usuario', 'tiendas'])->paginate(30);
 
         return AdminsResource::collection($usuarios);
     }
@@ -39,6 +39,9 @@ class gestionController extends Controller
         $usuario->foto = $request->input('foto');
         $usuario->activo = $request->has('activo');
         $usuario->tipo_usuario_id_tipo = $request->input('tipo_usuario_id_tipo');
+        if($request->input('tipo_usuario_id_tipo') == 2) {
+            
+        }
 
         try {
             $usuario->save();

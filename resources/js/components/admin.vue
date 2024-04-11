@@ -40,6 +40,7 @@
                                     <th>Correo</th>
                                     <th>Telefono</th>
                                     <th>Foto</th>
+                                    <th v-if="selectedType === 'provee'">Dirección</th>
                                     <th>Tipo usuario</th>
                                     <th>Activo</th>
                                     <td></td>
@@ -53,6 +54,12 @@
                                     <td>{{ usuario.correo }}</td>
                                     <td>{{ usuario.telefono }}</td>
                                     <td>{{ usuario.foto }}</td>
+                                    <td v-if="selectedType === 'provee'">
+                                        <div>
+                                            <div v-for="tienda in usuario.tiendas" :key="tienda.id">{{ tienda.direccion
+                                                }}</div>
+                                        </div>
+                                    </td>
                                     <td>{{ usuario.tipo_usuario.nombre_tipo }}</td>
                                     <td>{{ usuario.activo ? 'Sí' : 'No' }}</td>
                                     <td>
@@ -100,6 +107,16 @@
                 <div class="modal-body">
                     <form>
                         <div class="mb-3">
+                            <label for="tipo_usuario_id_tipo" class="form-label">Tipo Usuario</label>
+                            <select class="form-select" id="tipo_usuario_id_tipo" name="tipo_usuario_id_tipo" required
+                                v-model="usuario.tipo_usuario_id_tipo">
+                                <option value="1" :selected="usuario.tipo_usuario_id_tipo === '1'">Administrador
+                                </option>
+                                <option value="3" :selected="usuario.tipo_usuario_id_tipo === '3'">Rider</option>
+                                <option value="2" :selected="usuario.tipo_usuario_id_tipo === '2'">Proveedor</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre</label>
                             <input type="text" class="form-control" id="nombre" name="nombre" required
                                 v-model="usuario.nombre">
@@ -110,12 +127,12 @@
                                 v-model="usuario.correo">
                         </div>
                         <div class="mb-3">
-                            <label for="password" class="form-label">Contrasenya</label>
+                            <label for="password" class="form-label">Contraseña</label>
                             <input type="password" class="form-control" id="password" name="password" required
                                 v-model="usuario.password">
                         </div>
                         <div class="mb-3">
-                            <label for="telefono" class="form-label">Telefono</label>
+                            <label for="telefono" class="form-label">Teléfono</label>
                             <input type="text" class="form-control" id="telefono" name="telefono" required
                                 v-model="usuario.telefono">
                         </div>
@@ -124,22 +141,15 @@
                             <input type="text" class="form-control" id="foto" name="foto" required
                                 v-model="usuario.foto">
                         </div>
+                        <div class="mb-3" v-if="usuario.tipo_usuario_id_tipo === '2'">
+                            <label for="direccion" class="form-label">Dirección</label>
+                            <input type="text" class="form-control" id="direccion" name="direccion"
+                                v-model="usuario.direccion">
+                        </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="activo" name="activo" checked
                                 v-model="usuario.activo">
                             <label class="form-check-label" for="activo">Activo</label>
-                        </div>
-                        <div class="mb-3">
-                            <label for="tipo_usuario_id_tipo" class="form-label">Tipo Usuario</label>
-                            <select class="form-select" id="tipo_usuario_id_tipo" name="tipo_usuario_id_tipo" required
-                                v-model="usuario.tipo_usuario_id_tipo">
-                                <option value="1" :selected="usuario.tipo_usuario_id_tipo === '1'">Superadministrador
-                                </option>
-                                <option value="2" :selected="usuario.tipo_usuario_id_tipo === '2'">Administrador
-                                </option>
-                                <option value="3" :selected="usuario.tipo_usuario_id_tipo === '3'">Rider</option>
-                                <option value="4" :selected="usuario.tipo_usuario_id_tipo === '4'">Proveedor</option>
-                            </select>
                         </div>
                     </form>
                 </div>
@@ -183,11 +193,11 @@ export default {
         filterUsuarios() {
             this.filteredUsuarios = this.usuarios.filter(usuario => {
                 if (this.selectedType === 'admins') {
-                    return usuario.tipo_usuario_id_tipo === 1 || usuario.tipo_usuario_id_tipo === 2;
+                    return usuario.tipo_usuario_id_tipo === 0 || usuario.tipo_usuario_id_tipo === 1;
                 } else if (this.selectedType === 'riders') {
                     return usuario.tipo_usuario_id_tipo === 3;
                 } else if (this.selectedType === 'provee') {
-                    return usuario.tipo_usuario_id_tipo === 4;
+                    return usuario.tipo_usuario_id_tipo === 2;
                 }
             });
         },
@@ -210,7 +220,7 @@ export default {
         insertarUsuario() {
             const me = this;
             console.log(me.usuario);
-            
+
             axios.post('http://localhost/ShareBites/public/api/gestion', me.usuario)
                 .then(response => {
                     console.log(response.data);
@@ -223,13 +233,15 @@ export default {
         },
         updateUser(id) {
             const me = this;
+            console.log(me.usuario);
             axios.put(`http://localhost/ShareBites/public/api/gestion/${id}`, me.usuario)
                 .then(response => {
+                    console.log(response.data);
                     me.selectUsers()
                     me.myModal.hide()
                 })
                 .catch(error => {
-                    console.error('Error al crear el usuario:', error);
+                    console.error('Error al editar el usuario:', error);
                 });
         },
         desactivarUser(id) {
