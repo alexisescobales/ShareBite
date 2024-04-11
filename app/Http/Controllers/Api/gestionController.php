@@ -34,11 +34,11 @@ class gestionController extends Controller
 
         $usuario->nombre = $request->input('nombre');
         $usuario->correo = $request->input('correo');
-        $usuario->password = $request->input('password');
+        $usuario->password = bcrypt($request->input('password'));
         $usuario->telefono = $request->input('telefono');
         $usuario->foto = $request->input('foto');
-        $usuario->activo = $request->input('activo');
-        $usuario->tipo_usuario_id_tipo = $request->input('tipo_usuario');
+        $usuario->activo = $request->has('activo');
+        $usuario->tipo_usuario_id_tipo = $request->input('tipo_usuario_id_tipo');
 
         try {
             $usuario->save();

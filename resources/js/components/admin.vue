@@ -130,8 +130,8 @@
                             <label class="form-check-label" for="activo">Activo</label>
                         </div>
                         <div class="mb-3">
-                            <label for="tipo_usuario" class="form-label">Tipo Usuario</label>
-                            <select class="form-select" id="tipo_usuario" name="tipo_usuario" required
+                            <label for="tipo_usuario_id_tipo" class="form-label">Tipo Usuario</label>
+                            <select class="form-select" id="tipo_usuario_id_tipo" name="tipo_usuario_id_tipo" required
                                 v-model="usuario.tipo_usuario_id_tipo">
                                 <option value="1" :selected="usuario.tipo_usuario_id_tipo === '1'">Superadministrador
                                 </option>
@@ -209,8 +209,11 @@ export default {
         },
         insertarUsuario() {
             const me = this;
+            console.log(me.usuario);
+            
             axios.post('http://localhost/ShareBites/public/api/gestion', me.usuario)
                 .then(response => {
+                    console.log(response.data);
                     me.selectUsers()
                     me.myModal.hide()
                 })
