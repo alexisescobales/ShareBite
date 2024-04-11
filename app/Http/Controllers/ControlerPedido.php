@@ -12,7 +12,8 @@ use Illuminate\Support\Facades\Auth; //Para utilizar Auth
 class ControlerPedido extends Controller
 {
 
-    public function crearPedido(Request $request) {
+    public function crearPedido(Request $request)
+    {
 
         //Guardamos el utlitimo id del campo id_pedido
         $ultimoId = DB::table('pedido')->max('id_pedido');
@@ -23,7 +24,7 @@ class ControlerPedido extends Controller
 
 
 
-    
+
         // Crear un nuevo pedido con los datos del formulario
         $pedido = new Pedido(); //Crea un nuevo pedido
         $pedido->id_pedido = $ultimoId + 1; //Hacemos autoincremenetal la primary key
@@ -33,9 +34,14 @@ class ControlerPedido extends Controller
         $pedido->estado = 'creado'; // Estado inicial aquí
         $pedido->time_reco = now(); // Establecer la fecha y hora actual 
         $pedido->save(); //Guardamos el pedido
-    
+
+        // Restar los lotes reservados del campo 'menus' en la tabla 'tiendas'
+        DB::table('tiendas')
+            ->where('tienda_id_usuario', $request->tienda_id)
+            ->decrement('menus', $request->cantidad_menus);
+
         // Redirigir a puntos de entrega
         return redirect()->route('lista_puntos_entrega');
     }
-    
+
 }

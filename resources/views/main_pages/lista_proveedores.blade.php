@@ -17,7 +17,7 @@
         <ul class="main_list">
             @foreach ($tiendas as $tienda)
                 <li>
-                    {{-- data-lat y data-long guardan las coordenadas de la tienda en el indice actual --}}
+                    {{-- Guardamos lat y long de la tienda actual en data-set--}}
                     <div class="tienda" data-lat="{{ $tienda->tiendas[0]->marca->lat }}"
                         data-long="{{ $tienda->tiendas[0]->marca->long }}">
                         <img src="../resources/img/tienda.png">
@@ -42,7 +42,7 @@
                                 <button class="ajuste-lotes" data-action="decrement">-</button>
                                 <button class="ajuste-lotes" data-action="increment">+</button>
 
-                                <!-- Formulario para enviar la reserva -->
+                                <!-- Formulario para crear pedido -->
                                 <form id="reservaForm" action="{{ route('crear_pedido') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="tienda_id" id="tiendaIdInput"
@@ -64,7 +64,9 @@
 
 @section('rightColumn')
     {{-- Mapa --}}
-    <div id='map' style='width: 1000px; height: 700px;'></div>
+    <div class="map-container">
+        <div id='map' style='width: 1000px; height: 700px;'></div>
+    </div>
 
     {{-- Script Mapbox --}}
     <script src="{{ asset('../resources/js/mapbox.js') }}"></script>
@@ -122,7 +124,6 @@
                 });
             });
         }
-
 
         // Llamamos a la función para agregar los marcadores
         addMarkers(tiendas);

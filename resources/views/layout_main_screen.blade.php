@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main_pages/first_page.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main_pages/listas_style.css') }}">
+    
+    <!-- Necesario para añadir pua como rider -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>

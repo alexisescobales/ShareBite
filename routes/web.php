@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ControlerCrearPua;
 use App\Http\Controllers\ControlerPedido;
 use App\Http\Controllers\ControlerUsuario;
 use Illuminate\Support\Facades\Route;
@@ -89,6 +90,11 @@ Route::get('/lista_puntos_entrega',  [CoordenadasController::class, 'entrega'])-
 // })->name('lista_puntos_entrega');
 
 Route::post('/pedido',  [ControlerPedido::class, 'crearPedido'])->name('crear_pedido'); 
+
+//Crea una pua en el mapa
+Route::post('/crear_pua', [ControlerCrearPua::class, 'crearPua'])->name('crear_pua'); 
+
+
 
 
 // Route::post('/proveedor_screen/{proveedor_id}', [CoordenadasController::class, 'cargarProveedor'])->name('proveedor_screen'); 
