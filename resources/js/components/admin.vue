@@ -62,6 +62,24 @@
                                                 }}</div>
                                         </div>
                                     </td>
+                                    <td v-if="selectedType === 'provee'">
+                                        <div>
+                                            <div v-for="tienda in usuario.tiendas" :key="tienda.id">{{ tienda.categoria
+                                                }}</div>
+                                        </div>
+                                    </td>
+                                    <td v-if="selectedType === 'provee'">
+                                        <div>
+                                            <div v-for="tienda in usuario.tiendas" :key="tienda.id">{{ tienda.menus
+                                                }}</div>
+                                        </div>
+                                    </td>
+                                    <td v-if="selectedType === 'provee'">
+                                        <div>
+                                            <div v-for="tienda in usuario.tiendas" :key="tienda.id">{{ tienda.horario
+                                                }}</div>
+                                        </div>
+                                    </td>
                                     <td>{{ usuario.activo ? 'Sí' : 'No' }}</td>
                                     <td>
                                         <button class="btn btn-primary" @click="editUser(usuario)">Editar</button>
@@ -146,6 +164,21 @@
                             <label for="direccion" class="form-label">Dirección</label>
                             <input type="text" class="form-control" id="direccion" name="direccion"
                                 v-model="usuario.direccion">
+                        </div>
+                        <div class="mb-3" v-if="usuario.tipo_usuario_id_tipo === '2'">
+                            <label for="categoria" class="form-label">Categoria</label>
+                            <input type="text" class="form-control" id="categoria" name="categoria"
+                                v-model="usuario.categoria">
+                        </div>
+                        <div class="mb-3" v-if="usuario.tipo_usuario_id_tipo === '2'">
+                            <label for="menus" class="form-label">Menus</label>
+                            <input type="text" class="form-control" id="menus" name="menus"
+                                v-model="usuario.menus">
+                        </div>
+                        <div class="mb-3" v-if="usuario.tipo_usuario_id_tipo === '2'">
+                            <label for="horario" class="form-label">Horario</label>
+                            <input type="text" class="form-control" id="horario" name="horario"
+                                v-model="usuario.horario">
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="activo" name="activo" checked
