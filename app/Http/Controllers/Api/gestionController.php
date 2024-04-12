@@ -19,7 +19,7 @@ class gestionController extends Controller
     {
         $usuarios = Usuario::with('tipo_usuario')->paginate(30);
 
-        return AdminsResource::collection($usuarios);
+        return adminsResource::collection($usuarios);
     }
 
     /**

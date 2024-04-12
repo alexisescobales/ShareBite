@@ -4,6 +4,9 @@ use App\Http\Controllers\adminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\CoordenadasController;
+use App\Http\Controllers\ControlerUsuario;
+use App\Http\Controllers\PerfilProveedorControler;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------

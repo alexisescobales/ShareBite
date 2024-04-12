@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/js/app.js', 'resources/css/app.scss'])
     <script src="https://kit.fontawesome.com/6645ba3d64.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main_pages/first_page.css') }}">
     <title>@yield('titulo')</title>
     @yield('cap')
 

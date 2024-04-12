@@ -171,7 +171,7 @@ export default {
     },
     methods: {
         selectUsers() {
-            axios.get('http://localhost/ShareBites/public/api/gestion')
+            axios.get('http://localhost:8080/practicas/ShareBites/public/api/gestion')
                 .then(response => {
                     this.usuarios = response.data.data;
                     this.filterUsuarios();
@@ -211,7 +211,7 @@ export default {
             const me = this;
             console.log(me.usuario);
             
-            axios.post('http://localhost/ShareBites/public/api/gestion', me.usuario)
+            axios.post('http://localhost:8080/practicas/ShareBites/public/api/gestion', me.usuario)
                 .then(response => {
                     console.log(response.data);
                     me.selectUsers()
@@ -223,7 +223,7 @@ export default {
         },
         updateUser(id) {
             const me = this;
-            axios.put(`http://localhost/ShareBites/public/api/gestion/${id}`, me.usuario)
+            axios.put(`http://localhost:8080/practicas/ShareBites/public/api/gestion/${id}`, me.usuario)
                 .then(response => {
                     me.selectUsers()
                     me.myModal.hide()
@@ -233,7 +233,7 @@ export default {
                 });
         },
         desactivarUser(id) {
-            axios.delete(`http://localhost/ShareBites/public/api/gestion/${id}`)
+            axios.delete(`http://localhost:8080/practicas/ShareBites/public/api/gestion/${id}`)
                 .then(response => {
                     console.log(response.data.mensaje);
                     this.selectUsers();
