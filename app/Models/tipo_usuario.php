@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class tipo_usuario extends Model
+class Tipo_usuario extends Model
 {
     use HasFactory;
 
@@ -17,6 +17,6 @@ class tipo_usuario extends Model
 
     public function usuario(): HasMany
     {
-        return $this->hasMany(usuario::class);
+        return $this->hasMany(Usuario::class);
     }
 }

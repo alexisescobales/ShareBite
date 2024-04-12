@@ -1,17 +1,24 @@
 @extends('layout_main_screen')
 
+@section('navbar')
+    <li class="nav-item">
+        <a href="{{ route('main') }}"><i class="fa-solid fa-house activo"></i></a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ route('estadisticas') }}"><i class="fa-solid fa-user"></i></a>
+    </li>
+@endsection
+
 @section('leftColumn')
     <div class="left-column-container">
         <h3>¿A DONDE QUIERES IR?</h3>
         <div class="left-column-container-buttons">
-            <button>Puntos de entrega</button>
-            <button>Puntos de recogida</button>
+            <a href="{{ route('proveedores') }}"><button id="btn_entrega">Puntos de entrega</button></a>
+            <a href="{{ route('lista_puntos_entrega') }}"><button id="btn_recogida">Puntos de recogida</button></a>
         </div>
     </div>
 @endsection
 
 @section('rightColumn')
-    <div id='map' style='width: 100%; height: 400px;'>
-
-    </div>
+    <div id='map' style='width: 100%; height: 100%;'></div>
 @endsection

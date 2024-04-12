@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class marcas extends Model
+class Marcas extends Model
 {
     use HasFactory;
 
@@ -18,12 +18,12 @@ class marcas extends Model
 
     public function usuario(): BelongsTo
     {
-        return $this->belongsTo(usuario::class);
+        return $this->belongsTo(Usuario::class);
     }
 
     public function tipo_marca(): BelongsTo
     {
-        return $this->belongsTo(tipo_marca::class);
+        return $this->belongsTo(Tipo_marca::class);
     }
 
     public function marcas_has_pedido(): HasMany

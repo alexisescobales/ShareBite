@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class usuario extends Authenticatable
+class Usuario extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -18,26 +18,26 @@ class usuario extends Authenticatable
     protected $primaryKey = 'id_usuario';
     public $timestamps = false;
     protected $fillable = [
-        'nombre', 'password', 'correo', 'foto', 'tipo_usuario_id_tipo'
+        'nombre', 'password', 'telefono', 'correo', 'foto', 'activo', 'tipo_usuario_id_tipo'
     ];
 
     public function tipo_usuario(): BelongsTo
     {
-        return $this->belongsTo(tipo_usuario::class);
+        return $this->belongsTo(Tipo_usuario::class);
     }
 
     public function tiendas(): HasMany
     {
-        return $this->hasMany(tiendas::class);
+        return $this->hasMany(Tiendas::class, 'tienda_id_usuario');
     }
 
     public function marcas(): HasMany
     {
-        return $this->hasMany(marcas::class);
+        return $this->hasMany(Marcas::class);
     }
 
     public function raider(): HasMany
     {
-        return $this->hasMany(raider::class);
+        return $this->hasMany(Raider::class);
     }
 }

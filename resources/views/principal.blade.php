@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite(['resources/js/app.js', 'resources/css/app.scss'])
-    <link rel="stylesheet" href="../resources/css/main.css">
-    <link rel="stylesheet" href="../resources/css/principal.css">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/principal.css') }}">
     <title>SHAREBITES</title>
 </head>
 
@@ -18,12 +18,12 @@
                 <img src="../resources/img/icon_white.svg" alt="Logo" class="logo" draggable="false">
                 <div class="button_container">
                     <a href="{{ route('log_in_pages.log_in') }}">
-                        <button class="btn_principal_yellow" href="{{ route('log_in_pages.log_in') }}">
+                        <button class="btn_principal_yellow">
                             LOG-IN</button>
                     </a>
 
-                    <a href="{{ route('log_in_pages.register') }}">
-                        <button class="btn_secondary btn_mediano" href="{{ route('log_in_pages.register') }}">
+                    <a href="{{ URL('/regisrtoElec') }}">
+                        <button class="btn_secondary btn_mediano">
                             REGISTER</button>
                     </a>
                 </div>
