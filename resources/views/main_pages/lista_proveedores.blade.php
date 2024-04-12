@@ -17,13 +17,15 @@
         <ul class="main_list">
             @foreach ($tiendas as $tienda)
                 <li>
-                    {{-- Guardamos lat y long de la tienda actual en data-set--}}
+                    {{-- Guardamos lat y long de la tienda actual en data-set --}}
                     <div class="tienda" data-lat="{{ $tienda->tiendas[0]->marca->lat }}"
                         data-long="{{ $tienda->tiendas[0]->marca->long }}">
                         <img src="../resources/img/tienda.png">
                         <div>
-                            {{-- Muestra el nombre de la tienda --}}
-                            <h4>{{ $tienda->nombre }}</h4>
+
+                            {{-- Muestra el nombre de la tienda  ($loop->index para acceder al índice actual del bucle y obtener el nombre de la tienda correspondiente desde el array $nombre_tiendas.) --}}
+                            <h4>{{ $nombre_tiendas[$loop->index]->nombre }}</h4>
+
                             {{-- Boton para desplegar div de reserva de lote --}}
                             <button class="toggle-button">Reservar Lotes</button>
                             <ul>
@@ -48,7 +50,7 @@
                                     <input type="hidden" name="tienda_id" id="tiendaIdInput"
                                         value="{{ $tienda_individual->tienda_id_usuario }}">
                                     <!-- Value 0 como default de lotes predeterminados -->
-                                    <input type="hidden" name="cantidad_menus" id="lotesReservados" value="0"> 
+                                    <input type="hidden" name="cantidad_menus" id="lotesReservados" value="0">
                                     <button type="submit">Crear Pedido</button>
                                 </form>
 
@@ -75,8 +77,12 @@
 
         console.log(tiendas)
 
+        let nombre_tiendas = @json($nombre_tiendas);
+
+        console.log(nombre_tiendas)
+
         // Función para agregar marcadores
-        function addMarkers(tiendas) {
+        function addMarkers(tiendas, nombre_tiendas) {
             tiendas.forEach(function(tienda) {
                 tienda.tiendas.forEach(function(tienda_individual) {
                     let marca = tienda_individual.marca;
@@ -84,6 +90,10 @@
                         let lat = marca.lat;
                         let long = marca.long;
                         if (lat && long) {
+                            // Encontrar el nombre correspondiente a la tienda actual
+                            let nombre_tienda = nombre_tiendas.find(item => item.id === tienda_individual
+                                .id).nombre;
+
                             // Crear un elemento de imagen para el marcador
                             let el = document.createElement('img');
                             el.src = "../resources/img/tienda_pua.png"; // Ruta de la imagen del marcador
@@ -98,7 +108,7 @@
                             // Agregar popup al marcador
                             let popup = new mapboxgl.Popup()
                                 .setHTML(
-                                    `<h4>${tienda.nombre}</h4><p>Dirección: ${tienda_individual.direccion}</p><p>Lotes: ${tienda_individual.menus}</p>`
+                                    `<h4>${nombre_tienda}</h4><p>Dirección: ${tienda_individual.direccion}</p><p>Lotes: ${tienda_individual.menus}</p>`
                                 );
 
                             marker.setPopup(popup);
@@ -108,7 +118,7 @@
             });
 
             // Agregar evento de clic a todos los divs de la clase 'tienda'
-            document.querySelectorAll('.tienda').forEach(function(tiendaDiv) {
+            document.querySelectorAll('.tienda').forEach(function(tiendaDiv, index) {
                 tiendaDiv.addEventListener('click', function() {
                     let lat = tiendaDiv.getAttribute('data-lat');
                     let long = tiendaDiv.getAttribute('data-long');
@@ -123,7 +133,9 @@
             });
         }
 
+
+
         // Llamamos a la función para agregar los marcadores
-        addMarkers(tiendas);
+        addMarkers(tiendas, nombre_tiendas);
     </script>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Marcas;
+use App\Models\Tiendas;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 
@@ -25,14 +26,21 @@ class CoordenadasController extends Controller
     }
 
     public function recogida()
-    {    
-        // Obtener usuarios que son tiendas (tipo_usuario_id_tipo igual a 2)
-        // Obtener todos los usuarios cuyo tipo de usuario es 2 (tiendas)
+    {
+        // Obtener todas las tiendas que tengan mas de 0 menus
         $tiendas = Usuario::where('tipo_usuario_id_tipo', 2)
-            ->with('tiendas.marca') // Cargar la relación tiendas junto con las marcas de cada tienda
+            ->whereHas('tiendas', function($query) {
+                $query->where('menus', '>', 0);
+            })
+            ->with('tiendas.marca')
             ->get();
     
-        return view('main_pages.lista_proveedores', compact('tiendas'));
-    }
+        // Obtener solo los nombres de las tiendas que tienen más de 0 menús
+        $nombre_tiendas = Tiendas::where('menus', '>', 0)
+            ->select('nombre')
+            ->get();
     
+        return view('main_pages.lista_proveedores', compact('tiendas', 'nombre_tiendas'));
+    }
+
 }

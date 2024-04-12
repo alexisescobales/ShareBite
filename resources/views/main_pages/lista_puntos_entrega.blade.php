@@ -12,8 +12,8 @@
         <ul class="main_list">
             @foreach ($coordenadas as $coordenada)
                 <li>
-                    <div class="entregas">
-                        <div>
+                    <div class="entregas" data-lat="{{ $coordenada->lat }}" data-long="{{ $coordenada->long }}">
+                        <div class="entregas">
                             <p>Punto de entrega</p>
                         </div>
                     </div>
@@ -65,15 +65,21 @@
 
                     marker.setPopup(popup);
 
-                    // Agregar evento de clic para hacer zoom en el punto de entrega
-                    marker.getElement().addEventListener('click', function() {
-                        // Hacer zoom en la ubicación del punto de entrega
-                        map.flyTo({
-                            center: [long, lat],
-                            zoom: 15, // Nivel de zoom deseado
-                            essential: true // Marcar como esencial para evitar el bloqueo por el navegador
+                    // Agregar evento de clic a todos los divs de la clase 'entregas'
+                    document.querySelectorAll('.entregas').forEach(function(entregaDiv) {
+                        entregaDiv.addEventListener('click', function() {
+                            let lat = entregaDiv.getAttribute('data-lat');
+                            let long = entregaDiv.getAttribute('data-long');
+
+                            // Hacer zoom en la ubicación de la entrega
+                            map.flyTo({
+                                center: [long, lat], // Corregir el orden de latitud y longitud
+                                zoom: 15,
+                                essential: true
+                            });
                         });
                     });
+
                 }
             });
         }
