@@ -42,7 +42,6 @@
             // Llamar a la función para agregar los marcadores al mapa
             addMarkers(coordenadas);
         });
-
         // Función para agregar marcadores al mapa
         function addMarkers(coordenadas) {
             coordenadas.forEach(function(coordenada) {
@@ -67,7 +66,7 @@
                     marker.setPopup(popup);
 
                     // Agregar evento de clic para hacer zoom en el punto de entrega
-                    el.addEventListener('click', function() {
+                    marker.getElement().addEventListener('click', function() {
                         // Hacer zoom en la ubicación del punto de entrega
                         map.flyTo({
                             center: [long, lat],
@@ -78,6 +77,7 @@
                 }
             });
         }
+
 
         // Agregar evento de clic al botón para agregar una nueva marca
         document.getElementById('addMarkerButton').addEventListener('click', function(event) {
@@ -102,26 +102,27 @@
 
             // Realizar la solicitud AJAX para enviar los datos al servidor
             fetch('{{ route('crear_pua') }}', {
-                method: 'POST', // Método POST para enviar los datos al servidor
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': token
-                },
-                body: JSON.stringify(data) // Convertir el objeto a formato JSON y enviarlo en el cuerpo de la solicitud
-            })
-            .then(response => {
-                if (response.ok) {
-                    // La solicitud fue exitosa, recargar la página
-                    location.reload();
-                } else {
-                    // La solicitud no fue exitosa, manejar el error según sea necesario
-                    console.error('Error al agregar la marca');
-                }
-            })
-            .catch(error => {
-                // Manejar cualquier error de red u otro tipo
-                console.error('Error de red:', error);
-            });
+                    method: 'POST', // Método POST para enviar los datos al servidor
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': token
+                    },
+                    body: JSON.stringify(
+                        data) // Convertir el objeto a formato JSON y enviarlo en el cuerpo de la solicitud
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // La solicitud fue exitosa, recargar la página
+                        location.reload();
+                    } else {
+                        // La solicitud no fue exitosa, manejar el error según sea necesario
+                        console.error('Error al agregar la marca');
+                    }
+                })
+                .catch(error => {
+                    // Manejar cualquier error de red u otro tipo
+                    console.error('Error de red:', error);
+                });
         });
     </script>
 @endsection

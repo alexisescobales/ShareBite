@@ -43,33 +43,35 @@ class ControlerUsuario extends Controller
         // $usuario->long = 2.159614;
         // $usuario->save();
 
-        
+
         return view('login_pages.log_in');
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $correo = $request->input('correo');
         $password = $request->input('password');
         $user = Usuario::where('correo', $correo)->first();
 
-        if($user !=null && Hash::check($password, $user->password)){
+        if ($user != null && Hash::check($password, $user->password)) {
             Auth::login($user);
             if ($user->tipo_usuario_id_tipo == 3) {
                 $response = redirect('/mainRaider');
-            }elseif ($user->tipo_usuario_id_tipo == 2) {
+            } elseif ($user->tipo_usuario_id_tipo == 2) {
                 $response = redirect('/mainRaider');
-            }elseif ($user->tipo_usuario_id_tipo == 1) {
+            } elseif ($user->tipo_usuario_id_tipo == 1) {
                 $response = redirect('/mainAdmin');
             }
-            
-        }else{
+
+        } else {
             $request->session()->flash('error', 'Usuario o contraseña incorrectos');
             $response = redirect('/log_in')->withInput();
         }
         return $response;
     }
 
-    public function registro1(Request $request){
+    public function registro1(Request $request)
+    {
         $name = $request->input('name') . $request->input('apellido');
         $password = $request->input('password');
         $passwordRepit = $request->input('repitPassword');
@@ -78,7 +80,7 @@ class ControlerUsuario extends Controller
 
         if ($password != $passwordRepit) {
             $response = redirect('/');
-        }else {
+        } else {
             $usuarios = Usuario::all();
             foreach ($usuarios as $usuario) {
                 if ($usuario->correo == $correo) {
@@ -104,13 +106,14 @@ class ControlerUsuario extends Controller
             }
         }
 
-            
+
         $response = redirect('/');
-        
+
         return $response;
     }
 
-    public function registro2(Request $request){
+    public function registro2(Request $request)
+    {
         $name = $request->input('name') . $request->input('apellido');
         $password = $request->input('password');
         $passwordRepit = $request->input('repitPassword');
@@ -119,7 +122,7 @@ class ControlerUsuario extends Controller
         $repetido = false;
         if ($password != $passwordRepit) {
             $response = redirect('/');
-        }else {
+        } else {
             $usuarios = Usuario::all();
             foreach ($usuarios as $usuario) {
                 if ($usuario->correo == $correo) {
@@ -129,12 +132,13 @@ class ControlerUsuario extends Controller
             }
             if ($repetido == false) {
                 $registro1 = array(
-                "name" => $name,
-                "apellido" => $request->input('apellido'),
-                "correo" => $correo,
-                "password" => $password,
-                "telefono" => $request->input('telefono'),
-                "tipo_usuario_id_tipo" => 2);
+                    "name" => $name,
+                    "apellido" => $request->input('apellido'),
+                    "correo" => $correo,
+                    "password" => $password,
+                    "telefono" => $request->input('telefono'),
+                    "tipo_usuario_id_tipo" => 2
+                );
                 $response = view('login_pages.register_shop', compact('registro1'));
 
             }
@@ -142,8 +146,9 @@ class ControlerUsuario extends Controller
         return $response;
     }
 
-    public function registro3(Request $request){
-        
+    public function registro3(Request $request)
+    {
+
         $nombreTienda = $request->input('nombreTienda');
         $categoria = $request->input('categoria');
         $direccion = $request->input('direccion');
@@ -176,7 +181,8 @@ class ControlerUsuario extends Controller
         return $response;
     }
 
-    public function seleccion($eleccion){
+    public function seleccion($eleccion)
+    {
         return view('login_pages.register', compact('eleccion'));
     }
 }
