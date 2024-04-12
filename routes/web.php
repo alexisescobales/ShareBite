@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\ControlerCrearPua;
+use App\Http\Controllers\ControlerPedido;
+use App\Http\Controllers\ControlerUsuario;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\CoordenadasController;
-use App\Http\Controllers\ControlerUsuario;
 use App\Http\Controllers\PerfilProveedorControler;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,7 +21,11 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+//Home de la pagina
 Route::get('/', function () {return view('principal');})->name('principal');
+
+
+//Home del registro a elegir rol...
 Route::get('/regisrtoElec', function () {return view('login_pages.selection');});
 
 
@@ -65,15 +71,33 @@ Route::get('/selection', function () {
     return view('login_pages.selection');
 });
 
-Route::get('/lista_proveedores', function () {
-    return view('main_pages.lista_proveedores');
-})->name('proveedores');
+Route::get('/main', function () {
+    return view('main_pages.main_screen');
+})->name('main');
 
-Route::get('/lista_puntos_entrega', function () {
-    return view('main_pages.lista_puntos_entrega');
-})->name('lista_puntos_entrega');
+Route::get('/lista_proveedores',  [CoordenadasController::class, 'recogida'])->name('proveedores'); 
 
-Route::post('/proveedor_screen/{proveedor_id}', [ProveedorController::class, 'cargarProveedor'])->name('proveedor_screen'); 
+// Route::get('/lista_proveedores', function () {
+//     return view('main_pages.lista_proveedores');
+// })->name('proveedores');
+
+Route::get('/lista_puntos_entrega',  [CoordenadasController::class, 'entrega'])->name('lista_puntos_entrega'); 
+
+// Route::get('/lista_puntos_entrega', function () {
+//     return view('main_pages.lista_puntos_entrega');
+// })->name('lista_puntos_entrega');
+
+Route::post('/pedido',  [ControlerPedido::class, 'crearPedido'])->name('crear_pedido'); 
+
+//Crea una pua en el mapa
+Route::post('/crear_pua', [ControlerCrearPua::class, 'crearPua'])->name('crear_pua'); 
+
+
+
+
+// Route::post('/proveedor_screen/{proveedor_id}', [CoordenadasController::class, 'cargarProveedor'])->name('proveedor_screen'); 
+
+
 
 
 

@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="{{ asset('css/main_pages/listas_style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/main_pages/estadisticas.css') }}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+    
+    <!-- Necesario para añadir pua como rider -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 
 <body>
@@ -42,11 +45,6 @@
         </div>
     </div>
 </body>
-
-<script>
-    //Coordenadas
-    //Info de la marca
-</script>
 
 <script src='../resources/js/mapbox.js'></script>
 

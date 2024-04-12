@@ -13,8 +13,8 @@
     <div class="left-column-container">
         <h3>¿A DONDE QUIERES IR?</h3>
         <div class="left-column-container-buttons">
-            <a href="{{ route('proveedores') }}"><button id="btn_entrega">Puntos de entrega</button></a>
-            <a href="{{ route('lista_puntos_entrega') }}"><button id="btn_recogida">Puntos de recogida</button></a>
+            <a href="{{ route('proveedores') }}"><button id="btn_entrega">Puntos de Recogida</button></a>
+            <a href="{{ route('lista_puntos_entrega') }}"><button id="btn_recogida">Puntos de entrega</button></a>
         </div>
     </div>
 @endsection

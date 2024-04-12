@@ -30,4 +30,9 @@ class Tiendas extends Model
     {
         return $this->hasMany(pedido::class);
     }
+
+    public function marca(): BelongsTo
+    {
+        return $this->belongsTo(Marcas::class, 'id_marca');
+    }
 }
