@@ -17,45 +17,7 @@
         <ul class="main_list">
             @foreach ($tiendas as $tienda)
                 <li>
-                    {{-- Guardamos lat y long de la tienda actual en data-set--}}
-                    <div class="tienda" data-lat="{{ $tienda->tiendas[0]->marca->lat }}"
-                        data-long="{{ $tienda->tiendas[0]->marca->long }}">
-                        <img src="../resources/img/tienda.png">
-                        <div>
-                            {{-- Muestra el nombre de la tienda --}}
-                            <h4>{{ $tienda->nombre }}</h4>
-                            {{-- Boton para desplegar div de reserva de lote --}}
-                            <button class="toggle-button">Reservar Lotes</button>
-                            <ul>
-                                {{-- Muestra la direccion y los lotes disponibles --}}
-                                @foreach ($tienda->tiendas as $tienda_individual)
-                                    <p>Dirección: {{ $tienda_individual->direccion }}</p>
-                                    <p>Lotes: {{ $tienda_individual->menus }}</p>
-                                @endforeach
-                            </ul>
-                            {{-- Div para reservar lotes --}}
-                            <div class="lotes-container" style="display: none;">
-                                <p>Cantidad: <span class="lotes-count">0</span>/{{ $tienda_individual->menus }}</p>
-                                {{-- Numero de lotes a reservar --}}
-                                <p class="max-lotes" style="display: none;">{{ $tienda_individual->menus }}</p>
-                                {{-- Añadir o quitar lotes a reservar --}}
-                                <button class="ajuste-lotes" data-action="decrement">-</button>
-                                <button class="ajuste-lotes" data-action="increment">+</button>
-
-                                <!-- Formulario para crear pedido -->
-                                <form id="reservaForm" action="{{ route('crear_pedido') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" name="tienda_id" id="tiendaIdInput"
-                                        value="{{ $tienda_individual->tienda_id_usuario }}">
-                                    <!-- Value 0 como default de lotes predeterminados -->
-                                    <input type="hidden" name="cantidad_menus" id="lotesReservados" value="0"> 
-                                    <button type="submit">Crear Pedido</button>
-                                </form>
-
-                            </div>
-
-                        </div>
-                    </div>
+                    <p>{{ $tienda }}</p>
                 </li>
             @endforeach
         </ul>
