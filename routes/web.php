@@ -30,17 +30,14 @@ Route::get('/regisrtoElec', function () {return view('login_pages.selection');})
 
 
 route::middleware(['auth'])->group(function(){
-    Route::group(["middleware" => "rol:3,0,2"], function () {
+    Route::group(["middleware" => "rol:3,0"], function () {
         Route::get('/mainRaider', function () {return view('main_pages.main_screen');})->name('main');
     });
     Route::group(["middleware" => "rol:1,0"], function () {
         Route::get('/mainAdmin', function () {return view('administracion.admins', compact(Auth::user()));});
     });
     Route::group(["middleware" => "rol:2,0"], function () {
-
-    });
-    Route::group(["middleware" => "rol:0"], function () {
-        
+        Route::get('/mainProveedor', [PerfilProveedorControler::class, 'index']);
     });
 });
 
