@@ -41,7 +41,9 @@
                                     <th>Telefono</th>
                                     <th>Foto</th>
                                     <th v-if="selectedType === 'provee'">Dirección</th>
-                                    <th>Tipo usuario</th>
+                                    <th v-if="selectedType === 'provee'">Categoria</th>
+                                    <th v-if="selectedType === 'provee'">Menus</th>
+                                    <th v-if="selectedType === 'provee'">Horario</th>
                                     <th>Activo</th>
                                     <td></td>
                                     <td></td>
@@ -60,7 +62,6 @@
                                                 }}</div>
                                         </div>
                                     </td>
-                                    <td>{{ usuario.tipo_usuario.nombre_tipo }}</td>
                                     <td>{{ usuario.activo ? 'Sí' : 'No' }}</td>
                                     <td>
                                         <button class="btn btn-primary" @click="editUser(usuario)">Editar</button>
@@ -126,7 +127,7 @@
                             <input type="email" class="form-control" id="correo" name="correo" required
                                 v-model="usuario.correo">
                         </div>
-                        <div class="mb-3">
+                        <div v-if="insert" class="mb-3">
                             <label for="password" class="form-label">Contraseña</label>
                             <input type="password" class="form-control" id="password" name="password" required
                                 v-model="usuario.password">

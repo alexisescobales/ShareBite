@@ -39,9 +39,6 @@ class gestionController extends Controller
         $usuario->foto = $request->input('foto');
         $usuario->activo = $request->has('activo');
         $usuario->tipo_usuario_id_tipo = $request->input('tipo_usuario_id_tipo');
-        if($request->input('tipo_usuario_id_tipo') == 2) {
-            
-        }
 
         try {
             $usuario->save();
@@ -50,7 +47,7 @@ class gestionController extends Controller
             $response = response()->json([
                 'error' => $e,
             ], 400);
-        }  
+        }
 
         return $response;
     }
@@ -108,7 +105,7 @@ class gestionController extends Controller
     public function destroy($id)
     {
         $usuario = usuario::findOrFail($id);
-        
+
         $usuario->activo = 0;
         $usuario->save();
 
