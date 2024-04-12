@@ -172,8 +172,7 @@
                         </div>
                         <div class="mb-3" v-if="usuario.tipo_usuario_id_tipo === '2'">
                             <label for="menus" class="form-label">Menus</label>
-                            <input type="text" class="form-control" id="menus" name="menus"
-                                v-model="usuario.menus">
+                            <input type="text" class="form-control" id="menus" name="menus" v-model="usuario.menus">
                         </div>
                         <div class="mb-3" v-if="usuario.tipo_usuario_id_tipo === '2'">
                             <label for="horario" class="form-label">Horario</label>
@@ -181,8 +180,8 @@
                                 v-model="usuario.horario">
                         </div>
                         <div class="mb-3 form-check">
-                            <input type="checkbox" class="form-check-input" id="activo" name="activo" checked
-                                v-model="usuario.activo">
+                            <input type="checkbox" class="form-check-input" id="activo" name="activo"
+                                v-model="usuario.activo" :checked="usuario.activo">
                             <label class="form-check-label" for="activo">Activo</label>
                         </div>
                     </form>
