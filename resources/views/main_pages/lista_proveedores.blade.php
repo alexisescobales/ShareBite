@@ -12,7 +12,7 @@
 @section('leftColumn')
     <div class="left-column-container">
         <div style="padding: 35px">
-            <h3>Puntos de recogida</h3>
+            <h3>Puntos De Recogida</h3>
         </div>
         <ul class="main_list">
             @foreach ($tiendas as $tienda)
@@ -25,16 +25,16 @@
 
                             {{-- Muestra el nombre de la tienda  ($loop->index para acceder al índice actual del bucle y obtener el nombre de la tienda correspondiente desde el array $nombre_tiendas.) --}}
                             <h4>{{ $nombre_tiendas[$loop->index]->nombre }}</h4>
-
-                            {{-- Boton para desplegar div de reserva de lote --}}
-                            <button class="toggle-button">Reservar Lotes</button>
+                            <h6>{{ ucwords($categoria_tiendas[$loop->index]->categoria) }}</h6>
                             <ul>
                                 {{-- Muestra la direccion y los lotes disponibles --}}
                                 @foreach ($tienda->tiendas as $tienda_individual)
-                                    <p>Dirección: {{ $tienda_individual->direccion }}</p>
+                                    <p>Dirección: {{ ucwords($tienda_individual->direccion) }}</p>
                                     <p>Lotes: {{ $tienda_individual->menus }}</p>
                                 @endforeach
                             </ul>
+                            {{-- Boton para desplegar div de reserva de lote --}}
+                            <button style="margin-left:140px;" class="toggle-button">Reservar Lotes</button>
                             {{-- Div para reservar lotes --}}
                             <div class="lotes-container" style="display: none;">
                                 <p>Cantidad: <span class="lotes-count">0</span>/{{ $tienda_individual->menus }}</p>
@@ -72,66 +72,65 @@
     <script src="{{ asset('../resources/js/mapbox.js') }}"></script>
 
     <script>
-        // Convertimos la variable PHP a JSON
+        // Convertimos las variable PHP a JSON
         let tiendas = @json($tiendas);
-
-        console.log(tiendas)
 
         let nombre_tiendas = @json($nombre_tiendas);
 
-        console.log(nombre_tiendas)
+        let categoria_tiendas = @json($categoria_tiendas);
 
-        // Función para agregar marcadores
+        console.log(categoria_tiendas)
+
         function addMarkers(tiendas, nombre_tiendas) {
-            tiendas.forEach(function(tienda) {
-                tienda.tiendas.forEach(function(tienda_individual) {
-                    let marca = tienda_individual.marca;
-                    if (marca) {
-                        let lat = marca.lat;
-                        let long = marca.long;
-                        if (lat && long) {
-                            // Encontrar el nombre correspondiente a la tienda actual
-                            let nombre_tienda = nombre_tiendas.find(item => item.id === tienda_individual
-                                .id).nombre;
+    tiendas.forEach(function(tienda, index) {
+        tienda.tiendas.forEach(function(tienda_individual) {
+            let marca = tienda_individual.marca;
+            if (marca) {
+                let lat = marca.lat;
+                let long = marca.long;
+                if (lat && long) {
+                    // Obtener el nombre de la tienda correspondiente usando el índice actual del bucle
+                    let nombre_tienda = nombre_tiendas[index].nombre;
 
-                            // Crear un elemento de imagen para el marcador
-                            let el = document.createElement('img');
-                            el.src = "../resources/img/tienda_pua.png"; // Ruta de la imagen del marcador
-                            el.style.width = '40px'; // Ajusta el ancho según tus preferencias
-                            el.style.height = '40px'; // Ajusta la altura según tus preferencias
+                    // Crear un elemento de imagen para el marcador
+                    let el = document.createElement('img');
+                    el.src = "../resources/img/tienda_pua.png"; // Ruta de la imagen del marcador
+                    el.style.width = '40px'; // Ajusta el ancho según tus preferencias
+                    el.style.height = '40px'; // Ajusta la altura según tus preferencias
 
-                            // Crear el marcador con el elemento de imagen personalizado
-                            let marker = new mapboxgl.Marker(el)
-                                .setLngLat([parseFloat(long), parseFloat(lat)])
-                                .addTo(map);
+                    // Crear el marcador con el elemento de imagen personalizado
+                    let marker = new mapboxgl.Marker(el)
+                        .setLngLat([parseFloat(long), parseFloat(lat)])
+                        .addTo(map);
 
-                            // Agregar popup al marcador
-                            let popup = new mapboxgl.Popup()
-                                .setHTML(
-                                    `<h4>${nombre_tienda}</h4><p>Dirección: ${tienda_individual.direccion}</p><p>Lotes: ${tienda_individual.menus}</p>`
-                                );
+                    // Agregar popup al marcador
+                    let popup = new mapboxgl.Popup()
+                        .setHTML(
+                            `<h4>${nombre_tienda}</h4><p>${tienda_individual.categoria}</p><p>${tienda_individual.direccion}</p>`
+                        );
 
-                            marker.setPopup(popup);
-                        }
-                    }
-                });
+                    marker.setPopup(popup);
+                }
+            }
+        });
+    });
+
+    // Agregar evento de clic a todos los divs de la clase 'tienda'
+    document.querySelectorAll('.tienda').forEach(function(tiendaDiv, index) {
+        tiendaDiv.addEventListener('click', function() {
+            let lat = tiendaDiv.getAttribute('data-lat');
+            let long = tiendaDiv.getAttribute('data-long');
+
+            // Hacer zoom en la ubicación de la tienda
+            map.flyTo({
+                center: [long, lat],
+                zoom: 15, // Nivel de zoom deseado
+                essential: true // Marcar como esencial para evitar el bloqueo por el navegador
             });
+        });
+    });
+}
 
-            // Agregar evento de clic a todos los divs de la clase 'tienda'
-            document.querySelectorAll('.tienda').forEach(function(tiendaDiv, index) {
-                tiendaDiv.addEventListener('click', function() {
-                    let lat = tiendaDiv.getAttribute('data-lat');
-                    let long = tiendaDiv.getAttribute('data-long');
-
-                    // Hacer zoom en la ubicación de la tienda
-                    map.flyTo({
-                        center: [long, lat],
-                        zoom: 15, // Nivel de zoom deseado
-                        essential: true // Marcar como esencial para evitar el bloqueo por el navegador
-                    });
-                });
-            });
-        }
 
 
 

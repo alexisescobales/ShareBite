@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB; //Para acceder a la BD
 
 class ControlerUsuario extends Controller
 {
@@ -154,6 +156,14 @@ class ControlerUsuario extends Controller
         $direccion = $request->input('direccion');
         $horario = $request->input('horario');
 
+        // Realizar una solicitud a la API de geocodificación de Mapbox para obtener las coordenadas
+        $response = Http::get('https://api.mapbox.com/geocoding/v5/mapbox.places/' . urlencode($direccion) . '.json', [
+            'access_token' => 'pk.eyJ1IjoiYWxleGlzcG9saXRlY25pY3MiLCJhIjoiY2x0b2hwNmIzMGdoZzJqbzY4NmlpdzVlYiJ9.CZoNf9VOaZAV8iojEmzQtw'
+        ]);
+
+        $latitud = $response['features'][0]['geometry']['coordinates'][1];
+        $longitud = $response['features'][0]['geometry']['coordinates'][0];
+
         $name = $request->input('name') . $request->input('apellido');
         $password = $request->input('password');
         $correo = $request->input('correo');
@@ -167,14 +177,26 @@ class ControlerUsuario extends Controller
         $usuario->save();
         $usuarioo = Usuario::orderBy('id_usuario', 'desc')->first();
 
+        // Crear una nueva marca asociada a las coordenadas proporcionadas
+        $marca = new Marcas();
+        $marca->estado = 1;
+        $marca->usuario_id_usuario = $usuario->id_usuario;
+        $marca->tipo_marca_id_tipo_marca = 1;
+        $marca->lat = $latitud;
+        $marca->long = $longitud;
+        $marca->save();
+
+        $ultimoId = DB::table('marcas')->max('id_marcas');
+
         $tienda = new Tiendas();
         $tienda->tienda_id_usuario = $usuarioo->id_usuario;
-        $tienda->menus = 0;
+        $tienda->estado = 1;
+        $tienda->menus = 10;
         $tienda->direccion = $direccion;
         $tienda->categoria = $categoria;
         $tienda->horario = $horario;
         $tienda->nombre = $nombreTienda;
-        $tienda->estado = 1;
+        $tienda->id_marca = $ultimoId;
         $tienda->save();
 
         $response = redirect('/');

@@ -121,4 +121,9 @@ button.btn_secondary {
     background: rgba(0, 0, 0, 0);
 }
 
+        /* Estilo para la lista de entregas deshabilitada */
+        #entregas[disabled] {
+            background-color: #dbdbcf; /* Cambia el color de fondo a gris */
+        }
+
  
