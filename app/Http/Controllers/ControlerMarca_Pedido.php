@@ -15,20 +15,16 @@ class ControlerMarca_has_pedido extends Controller
         $lotesAsignados = $request->input('lotesAsignados');
     
         // Iterar sobre los lotes asignados y crear un nuevo registro en la tabla para cada punto de entrega
-
-            // Obtener el ID del punto de entrega
-      
-    
-            // Crear un nuevo registro en la tabla marcas_has_pedido
+        foreach ($lotesAsignados as $lote) {
+            // Crear un nuevo registro en la tabla marcas_has_pedido para cada lote asignado
             $marcaPedido = new marcas_has_pedido();
-            $marcaPedido->marcas_id_marcas = 18;
-            $marcaPedido->pedido_id_pedido = 1; // Utilizar el ID del pedido desde el objeto pedido
-            $marcaPedido->cantidad_menus = 5; // Obtener la cantidad de lotes desde el detalle
+            $marcaPedido->marcas_id_marcas = $lote['id'];
+            $marcaPedido->pedido_id_pedido = $pedido->id; // Utilizar el ID del pedido desde el objeto pedido
+            $marcaPedido->cantidad_menus = $lote['cantidad']; // Obtener la cantidad de lotes desde el detalle
             $marcaPedido->save();
-        
+        }
     
         // Respuesta de éxito
         return response()->json(['message' => 'Datos guardados exitosamente'], 200);
     }
-    
 }

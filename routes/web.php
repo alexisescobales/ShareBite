@@ -99,6 +99,7 @@ Route::post('/marca_has_pedido', [ControlerMarca_has_pedido::class, 'marca_has_p
 
 
 
+
 // Route::post('/proveedor_screen/{proveedor_id}', [CoordenadasController::class, 'cargarProveedor'])->name('proveedor_screen'); 
 
 
