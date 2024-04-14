@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\CoordenadasController;
 use App\Http\Controllers\PerfilProveedorControler;
+use App\Http\Controllers\ControlerMarca_has_pedido;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -91,6 +92,9 @@ Route::post('/pedido',  [ControlerPedido::class, 'crearPedido'])->name('crear_pe
 
 //Crea una pua en el mapa
 Route::post('/crear_pua', [ControlerCrearPua::class, 'crearPua'])->name('crear_pua'); 
+
+//Crear nueva marca_has_pedido
+Route::post('/marca_has_pedido', [ControlerMarca_has_pedido::class, 'marca_has_pedido'])->name('marca_has_pedido'); 
 
 
 

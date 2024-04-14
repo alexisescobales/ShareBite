@@ -13,7 +13,7 @@
         <ul class="main_list" id="pedidos">
             @foreach ($pedidos as $pedido)
                 <li>
-                    <div class="pedidos">
+                    <div class="pedidos" data-id="{{ $pedido->id_pedido }}">
                         <p>Tienda: {{ $pedido->tiendas->nombre }}</p>
                         <p>Menús: {{ $pedido->cantidad_menus }}</p>
                         <button class="elegir-btn" type="submit">Seleccionar</button>
@@ -69,6 +69,8 @@
     </style>
 
     <script>
+
+    let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         // Convertimos las coordenadas PHP a JSON
         let coordenadas = @json($coordenadas);
         console.log(coordenadas)
@@ -93,10 +95,14 @@
 // Agregar evento de clic a los elementos de la clase 'pedidos'
 document.querySelectorAll('.pedidos').forEach(function(pedido) {
     pedido.addEventListener('click', function() {
+        // Obtener el ID del pedido del atributo data-id
+        let pedidoId = pedido.dataset.id;
+
         // Eliminar la clase 'seleccionado' de todos los pedidos
         document.querySelectorAll('.pedidos').forEach(function(pedido) {
             pedido.classList.remove('seleccionado');
         });
+
         // Agregar la clase 'seleccionado' al pedido seleccionado
         pedido.classList.add('seleccionado');
 
@@ -106,6 +112,7 @@ document.querySelectorAll('.pedidos').forEach(function(pedido) {
 
         // Guardar el pedido seleccionado en la variable
         pedidoSeleccionado = {
+            id: pedidoId,
             tienda: tienda,
             menus: menus
         };
@@ -117,6 +124,7 @@ document.querySelectorAll('.pedidos').forEach(function(pedido) {
         console.log('Pedido seleccionado:', pedidoSeleccionado);
     });
 });
+
 
 // Habilitar la lista de entregas cuando se hace clic en el botón "Elegir"
 document.querySelectorAll('.elegir-btn').forEach(function(btn) {
@@ -144,34 +152,45 @@ listaEntregasConBoton.forEach(function(entrega) {
     lotesAsignadosElement.textContent = 'Lotes: 0';
     entrega.appendChild(lotesAsignadosElement);
 
-    // Agregar evento de clic al botón "+" para agregar menús
-    addButton.addEventListener('click', function() {
-        // Obtener el ID del punto de entrega actual
-        let puntoEntregaId = entrega.getAttribute('data-id');
-        // Verificar si hay un pedido seleccionado
-        if (pedidoSeleccionado) {
-            // Verificar si aún hay menús disponibles para asignar
-            if (totalMenusDisponibles > 0) {
-                // Verificar si se han asignado lotes a este punto de entrega
-                if (!(puntoEntregaId in menusAsignados)) {
-                    menusAsignados[puntoEntregaId] = 0;
-                }
-                // Agregar un lote al punto de entrega
-                menusAsignados[puntoEntregaId]++;
-                // Actualizar el total de menús disponibles
-                totalMenusDisponibles--;
-                // Actualizar el elemento que muestra la cantidad de lotes asignados
-                lotesAsignadosElement.textContent = 'Lotes: ' + menusAsignados[puntoEntregaId];
-                // Aquí puedes implementar la lógica para agregar el lote al punto de entrega correspondiente
-                console.log(`Se agregó 1 lote al punto de entrega con ID ${puntoEntregaId}`);
-                console.log(`Menús restantes: ${totalMenusDisponibles}`);
-            } else {
-                console.log('No hay más menús disponibles para asignar.');
+// Agregar evento de clic al botón "+" para agregar menús
+addButton.addEventListener('click', function() {
+    // Convertir el ID del punto de entrega de cadena de texto a entero
+let puntoEntregaId = parseInt(entrega.getAttribute('data-id'));
+
+    // Verificar si hay un pedido seleccionado
+    if (pedidoSeleccionado) {
+        // Verificar si aún hay menús disponibles para asignar
+        if (totalMenusDisponibles > 0) {
+            // Verificar si ya existe un objeto para este punto de entrega en el pedido seleccionado
+            if (!(pedidoSeleccionado.id in menusAsignados)) {
+                menusAsignados[pedidoSeleccionado.id] = {}; // Crear un objeto vacío para el ID del pedido
             }
+            // Verificar si ya existe un objeto para este punto de entrega en el pedido seleccionado
+            if (!(puntoEntregaId in menusAsignados[pedidoSeleccionado.id])) {
+                menusAsignados[pedidoSeleccionado.id][puntoEntregaId] = {
+                    id: puntoEntregaId,
+                    lotes: 0 // Inicializar el número de lotes asignados a cero
+                };
+            }
+            // Incrementar el número de lotes asignados al punto de entrega para el pedido seleccionado
+            menusAsignados[pedidoSeleccionado.id][puntoEntregaId].lotes++;
+            // Actualizar el total de menús disponibles
+            totalMenusDisponibles--;
+            // Actualizar el elemento que muestra la cantidad de lotes asignados
+            lotesAsignadosElement.textContent = 'Lotes: ' + menusAsignados[pedidoSeleccionado.id][puntoEntregaId].lotes;
+            // Aquí puedes implementar la lógica para agregar el lote al punto de entrega correspondiente
+            console.log(`Se agregó 1 lote al punto de entrega con ID ${puntoEntregaId} para el pedido con ID ${pedidoSeleccionado.id}`);
+            console.log(`Menús restantes: ${totalMenusDisponibles}`);
         } else {
-            console.log('No hay un pedido seleccionado.');
+            console.log('No hay más menús disponibles para asignar.');
         }
-    });
+    } else {
+        console.log('No hay un pedido seleccionado.');
+    }
+});
+
+
+
 });
     });
 });
@@ -243,8 +262,6 @@ listaEntregasConBoton.forEach(function(entrega) {
 
             console.log(data);
 
-            // Obtener el token CSRF
-            let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
             // Realizar la solicitud AJAX para enviar los datos al servidor
             fetch('{{ route('crear_pua') }}', {
@@ -271,15 +288,54 @@ listaEntregasConBoton.forEach(function(entrega) {
                 });
         });
 
-        // Agregar evento de clic al botón para guardar los datos en el servidor
-    document.getElementById('guardarDatosButton').addEventListener('click', function(event) {
-        // Crear un objeto con los datos a enviar al servidor
-        let datosParaEnviar = {
-            pedido: pedidoSeleccionado,
-            lotesAsignados: menusAsignados
-        };
+// Agregar evento de clic al botón para guardar los datos en el servidor
+document.getElementById('guardarDatosButton').addEventListener('click', function(event) {
+    // Convertir el ID del pedido a entero
+    let pedidoId = parseInt(pedidoSeleccionado.id);
 
-        console.log(datosParaEnviar);
+    // Convertir los IDs de los lotes a enteros
+    let lotesAsignadosInt = {};
+    for (let puntoEntregaId in menusAsignados[pedidoSeleccionado.id]) {
+        let puntoEntregaIdInt = parseInt(puntoEntregaId);
+        lotesAsignadosInt[puntoEntregaIdInt] = menusAsignados[pedidoSeleccionado.id][puntoEntregaId];
+    }
+
+    // Crear un objeto con los datos a enviar al servidor
+    let datosParaEnviar = {
+        pedido: {
+            id: pedidoId,
+            tienda: pedidoSeleccionado.tienda,
+            menus: pedidoSeleccionado.menus
+        },
+        lotesAsignados: lotesAsignadosInt
+    };
+
+    console.log(datosParaEnviar);
+
+
+    // Realizar la solicitud AJAX para enviar los datos al servidor
+    fetch('{{ route('marca_has_pedido') }}', {
+        method: 'POST', // Método POST para enviar los datos al servidor
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': token
+        },
+        body: JSON.stringify(datosParaEnviar) // Convertir el objeto a formato JSON y enviarlo en el cuerpo de la solicitud
+    })
+    .then(response => {
+        if (response.ok) {
+            // La solicitud fue exitosa, puedes recargar la página o realizar alguna otra acción
+            console.log('Datos guardados exitosamente');
+        } else {
+            // La solicitud no fue exitosa, manejar el error según sea necesario
+            console.error('Error al guardar los datos');
+        }
+    })
+    .catch(error => {
+        // Manejar cualquier error de red u otro tipo
+        console.error('Error de red:', error);
     });
+});
+
     </script>
 @endsection
