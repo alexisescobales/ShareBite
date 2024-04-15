@@ -26,9 +26,10 @@ class Marcas extends Model
         return $this->belongsTo(Tipo_marca::class);
     }
 
-    public function marcas_has_pedido(): HasMany
-    {
-        return $this->hasMany(marcas_has_pedido::class);
+    public function pedido(){
+
+        return $this->belongsToMany(Pedido::class, 'marcas_has_pedido', 'marcas_id_marcas', 'pedido_id_pedido')->withPivot('cantidad_menus');
+
     }
 
 }

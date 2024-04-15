@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\marcas_has_pedido;
+use App\Models\pedido;
+use App\Models\Marcas;
 use Illuminate\Http\Request;
 
 class ControlerMarca_has_pedido extends Controller
@@ -17,11 +19,11 @@ class ControlerMarca_has_pedido extends Controller
         // Iterar sobre los lotes asignados y crear un nuevo registro en la tabla para cada punto de entrega
         foreach ($lotesAsignados as $lote) {
             // Crear un nuevo registro en la tabla marcas_has_pedido para cada lote asignado
-            $marcaPedido = new marcas_has_pedido();
-            $marcaPedido->marcas_id_marcas = $lote['id'];
-            $marcaPedido->pedido_id_pedido = $pedido->id; // Utilizar el ID del pedido desde el objeto pedido
-            $marcaPedido->cantidad_menus = $lote['cantidad']; // Obtener la cantidad de lotes desde el detalle
-            $marcaPedido->save();
+            $pedidoo = pedido::where(['id_pedido' => $pedido->id]);
+
+            $pedidoo->marcas=Marcas::where(['id_pedido' => $lote['id']]);
+
+            $pedidoo->save();
         }
     
         // Respuesta de éxito

@@ -36,7 +36,7 @@ route::middleware(['auth'])->group(function(){
         Route::get('/perfilRaider', [PerfilRaiderControler::class, 'index'])->name('perfilRaider');
     });
     Route::group(["middleware" => "rol:1,0"], function () {
-        Route::get('/mainAdmin', function () {return view('administracion.admins', compact(Auth::user()));});
+        Route::get('/adminsvue', function () {return view('administracion.admins');})->name('administracion');
     });
     Route::group(["middleware" => "rol:2,0"], function () {
         Route::get('/mainProveedor', [PerfilProveedorControler::class, 'index']);
