@@ -53,7 +53,30 @@
                                     <td>{{ usuario.correo }}</td>
                                     <td>{{ usuario.telefono }}</td>
                                     <td>{{ usuario.foto }}</td>
-                                    <td>{{ usuario.tipo_usuario.nombre_tipo }}</td>
+                                    <td v-if="selectedType === 'provee'">
+                                        <div>
+                                            <div v-for="tienda in usuario.tiendas" :key="tienda.id">{{ tienda.direccion
+                                                }}</div>
+                                        </div>
+                                    </td>
+                                    <td v-if="selectedType === 'provee'">
+                                        <div>
+                                            <div v-for="tienda in usuario.tiendas" :key="tienda.id">{{ tienda.categoria
+                                                }}</div>
+                                        </div>
+                                    </td>
+                                    <td v-if="selectedType === 'provee'">
+                                        <div>
+                                            <div v-for="tienda in usuario.tiendas" :key="tienda.id">{{ tienda.menus
+                                                }}</div>
+                                        </div>
+                                    </td>
+                                    <td v-if="selectedType === 'provee'">
+                                        <div>
+                                            <div v-for="tienda in usuario.tiendas" :key="tienda.id">{{ tienda.horario
+                                                }}</div>
+                                        </div>
+                                    </td>
                                     <td>{{ usuario.activo ? 'Sí' : 'No' }}</td>
                                     <td>
                                         <button class="btn btn-primary" @click="editUser(usuario)">Editar</button>
