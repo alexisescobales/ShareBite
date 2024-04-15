@@ -2,7 +2,7 @@
 
 @section('navbar')
     <li class="nav-item">
-        <a href=""><i class="fa-solid fa-house activo"></i></a>
+        <i class="fa-solid fa-house activo"></i>
     </li>
     <li class="nav-item">
         <button data-bs-toggle="modal" data-bs-target="#exampleModal3"><i class="fa-solid fa-user activo" ></i></button> 
@@ -32,29 +32,29 @@
                 </div>
                 <div class="form-row">
                     <label for="">Nombre tienda</label>
-                    <input type="text" value="{{ $tienda[0]->nombre }}">
+                    <input type="text" name="nombreTienda" value="{{ $tienda[0]->nombre }}">
                 </div>
                 <div class="form-row">
                     <label for="">Dereccion</label>
-                    <input type="text" name="" value="{{ $tienda[0]->direccion }}">
+                    <input type="text" name="direccion" value="{{ $tienda[0]->direccion }}">
+                </div>
+                <div class="form-row">
+                    <label for="">Nombre usuario</label>
+                    <input name="nombreUsuario" type="text" value="{{ $user->nombre }}">
+                </div>
+                <div class="form-row">
+                    <label for="">Correo</label>
+                    <input name="correo" type="text" value="{{ $user->correo }}">
+                </div>
+                <div class="form-row">
+                    <label for="">Cambiar contraseña</label>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fa-solid fa-pen-to-square"></i></button>
                 </div>
                 <div class="form-row">
                     <label for="">Telefono de contacto</label>
-                    <input type="text" value="{{ $user->telefono }}">
+                    <input name="telefono" type="text" value="{{ $user->telefono }}">
                 </div>
-            </div>
-            <label for="">Nombre tienda</label>
-            <input name="nombreTienda" type="text" value="{{ $tienda[0]->nombre }}">
-            <label for="">Direccion</label>
-            <input name="direccion" type="text" name="" value="{{ $tienda[0]->direccion }}">
-            <label for="">Nombre usuario</label>
-            <input name="nombreUsuario" type="text" value="{{ $user->nombre }}">
-            <label for="">Correo</label>
-            <input name="correo" type="text" value="{{ $user->correo }}">
-            <label for="">Cambiar contraseña</label>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fa-solid fa-pen-to-square"></i></button>
-            <label for="">Telefono de contacto</label>
-            <input name="telefono" type="text" value="{{ $user->telefono }}">
+            </div>            
         </form>
     </div>
 

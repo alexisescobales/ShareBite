@@ -31,12 +31,12 @@ class PerfilProveedorControler extends Controller
         $tienda = Auth::user()->tiendas;
         $tienda[0]->direccion =$request->input('direccion');
         $tienda[0]->nombre =$request->input('nombreTienda');
-        $tienda[0]->direccion =$request->input('direccion');
-
         $tienda[0]->save();
-        $user = Auth::user();
         Auth::user()->telefono = $request->input('telefono');
+        Auth::user()->nombre =$request->input('nombreUsuario');
+        Auth::user()->correo =$request->input('correo');
         Auth::user()->save();
+        $user = Auth::user();
 
         $response = view('main_pages.estadisticas', compact('tienda', 'user'));
 
