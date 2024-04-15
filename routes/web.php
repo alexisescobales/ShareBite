@@ -1,11 +1,15 @@
 <?php
 
+use App\Http\Controllers\adminController;
+use App\Http\Controllers\ControlerCrearPua;
+use App\Http\Controllers\ControlerPedido;
 use App\Http\Controllers\ControlerUsuario;
 use App\Http\Controllers\PerfilProveedorControler;
 use App\Http\Controllers\PerfilRaiderControler;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\CoordenadasController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +22,16 @@ use App\Http\Controllers\CoordenadasController;
 |
 */
 
+//Home de la pagina
 Route::get('/', function () {return view('principal');})->name('principal');
+
+
+//Home del registro a elegir rol...
 Route::get('/regisrtoElec', function () {return view('login_pages.selection');});
 
 
 route::middleware(['auth'])->group(function(){
-    Route::group(["middleware" => "rol:3,0,2"], function () {
+    Route::group(["middleware" => "rol:3,0,"], function () {
         Route::get('/mainRaider', [CoordenadasController::class, 'index'])->name('main');
         Route::get('/perfilRaider', [PerfilRaiderControler::class, 'index'])->name('perfilRaider');
     });
@@ -31,10 +39,7 @@ route::middleware(['auth'])->group(function(){
         Route::get('/mainAdmin', function () {return view('administracion.admins', compact(Auth::user()));});
     });
     Route::group(["middleware" => "rol:2,0"], function () {
-
-    });
-    Route::group(["middleware" => "rol:0"], function () {
-        
+        Route::get('/mainProveedor', [PerfilProveedorControler::class, 'index']);
     });
 });
 
@@ -73,15 +78,33 @@ Route::get('/selection', function () {
     return view('login_pages.selection');
 });
 
-Route::get('/lista_proveedores', function () {
-    return view('main_pages.lista_proveedores');
-})->name('proveedores');
+Route::get('/main', function () {
+    return view('main_pages.main_screen');
+})->name('main');
 
-Route::get('/lista_puntos_entrega', function () {
-    return view('main_pages.lista_puntos_entrega');
-})->name('lista_puntos_entrega');
+Route::get('/lista_proveedores',  [CoordenadasController::class, 'recogida'])->name('proveedores'); 
 
-Route::post('/proveedor_screen/{proveedor_id}', [ProveedorController::class, 'cargarProveedor'])->name('proveedor_screen'); 
+// Route::get('/lista_proveedores', function () {
+//     return view('main_pages.lista_proveedores');
+// })->name('proveedores');
+
+Route::get('/lista_puntos_entrega',  [CoordenadasController::class, 'entrega'])->name('lista_puntos_entrega'); 
+
+// Route::get('/lista_puntos_entrega', function () {
+//     return view('main_pages.lista_puntos_entrega');
+// })->name('lista_puntos_entrega');
+
+Route::post('/pedido',  [ControlerPedido::class, 'crearPedido'])->name('crear_pedido'); 
+
+//Crea una pua en el mapa
+Route::post('/crear_pua', [ControlerCrearPua::class, 'crearPua'])->name('crear_pua'); 
+
+
+
+
+// Route::post('/proveedor_screen/{proveedor_id}', [CoordenadasController::class, 'cargarProveedor'])->name('proveedor_screen'); 
+
+
 
 
 
@@ -93,4 +116,16 @@ Route::post('/proveedor_screen/{proveedor_id}', [ProveedorController::class, 'ca
 // });
 
 
+Route::get('/admins', [adminController::class, 'index'])->name('administrar');
+Route::get('/mostrar-usuarios', [adminController::class, 'mostrar'])->name('mostrar.usuarios');
+Route::post('crearUser', [adminController::class, 'store'])->name('crearUser');
+Route::get('/editarform/{id}', [adminController::class, 'editarUser'])->name('editarform');
+Route::get('/editar/{id}', [adminController::class, 'editar'])->name('editar');
+Route::delete('/usuarios/{id}', [adminController::class, 'eliminar'])->name('eliminar');
+Route::get('/crear', function () {
+    return view('administracion.crear');
+})->name('crear');
 
+Route::get('/adminsvue', function () {
+    return view('administracion.adminsvue');
+});

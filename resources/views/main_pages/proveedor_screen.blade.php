@@ -10,10 +10,8 @@
 @endsection
 
 @section('leftColumn')
-
-    
-
 @endsection
 
 @section('rightColumn')
+    {{-- poner estadísticas --}}
 @endsection

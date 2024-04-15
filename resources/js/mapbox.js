@@ -1,45 +1,79 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiYWxleGlzcG9saXRlY25pY3MiLCJhIjoiY2x0b2hwNmIzMGdoZzJqbzY4NmlpdzVlYiJ9.CZoNf9VOaZAV8iojEmzQtw';
-var map = new mapboxgl.Map({
+let map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/navigation-night-v1', // Estilo de mapa predeterminado
-    center: [2.1734, 41.3851], // Coordenadas del centro del mapa
-    zoom: 12 // Nivel de zoom
+    zoom: 14// Nivel de zoom
 });
 
-let btn_entrega = document.getElementById('btn_entrega');
-
-btn_entrega.addEventListener('click', mostrarEntregas);
 
 
-function mostrarEntregas() {
-    // Recorrer las coordenadas y agregar un marcador por cada una
-    coordenadas.forEach(function (coordenada, index) {
-        // Obtener la información de la marca correspondiente
-        const infoMarca = info_marca[index];
-        const tipoMarca = tipos_marca.find(tipo => tipo.id === infoMarca.tipo_marca_id_tipo_marca);
+// Obtener la ubicación actual del usuario
+navigator.geolocation.getCurrentPosition(function (position) {
+    var lng = position.coords.longitude;
+    var lat = position.coords.latitude;
 
-        // Crear un nuevo marcador con las coordenadas y color rojo
-        const marker = new mapboxgl.Marker({ color: 'red' })
-            .setLngLat([coordenada.long, coordenada.lat])
-            .addTo(map);
+    // Centrar el mapa en la ubicación actual del usuario
+    map.setCenter([lng, lat]);
+});
 
-        // Crear el contenido HTML del popup
-        let popupContent = `
-            <h5>Información de la marca</h5>
-            <p>Usuario: ${infoMarca.usuario_id_usuario}</p>
-            <p>Estado: ${infoMarca.estado}</p>
-        `;
+// Agregar control de navegación
+map.addControl(new mapboxgl.NavigationControl());
 
-        // Si se encontró el tipo de marca, agregar el nombre al contenido del popup
-        if (tipoMarca) {
-            popupContent += `<p>Tipo: ${tipoMarca.nombre_marca}</p>`;
-        } else {
-            popupContent += `<p>Tipo: Desconocido</p>`; // Si el tipo de marca no se encontró, mostrar "Desconocido"
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+//Maneja la funcionalidad de alternar la visibilidad de los elementos con la clase 
+document.querySelectorAll('.toggle-button').forEach(button => {
+    button.addEventListener('click', function () {
+        const lotesContainer = this.parentNode.querySelector('.lotes-container');
+        lotesContainer.style.display = (lotesContainer.style.display === 'none') ? 'block' : 'none';
+    });
+});
+
+
+// Cantidad de lotes: Este bloque maneja la funcionalidad de ajustar la cantidad de lotes. Para cada botón con la clase 'ajuste-lotes'
+document.querySelectorAll('.ajuste-lotes').forEach(button => {
+    button.addEventListener('click', function () {
+        const action = this.getAttribute('data-action');
+        const lotesCountElement = this.parentNode.querySelector('.lotes-count'); // Elemento que muestra la cantidad de lotes seleccionados
+        let lotesCount = parseInt(lotesCountElement.textContent); // Obtener la cantidad actual de lotes seleccionados
+        const maxLotes = parseInt(this.parentNode.querySelector('.max-lotes').textContent); // Número máximo de lotes disponibles en la tienda
+
+        if (action === 'increment' && lotesCount < maxLotes) {
+            lotesCount++; // Incrementar la cantidad de lotes seleccionados
+        } else if (action === 'decrement' && lotesCount > 0) {
+            lotesCount--; // Decrementar la cantidad de lotes seleccionados
         }
 
-        // Crear el popup y agregarlo al marcador
-        const popup = new mapboxgl.Popup().setHTML(popupContent);
-        marker.setPopup(popup);
+        // Actualizar el valor de la cantidad de lotes seleccionados en el elemento HTML
+        lotesCountElement.textContent = lotesCount;
+
+        // Actualizar el valor del campo oculto en el formulario
+        this.closest('.lotes-container').querySelector('.lotes-count').textContent = lotesCount;
+        this.closest('.lotes-container').querySelector('#lotesReservados').value = lotesCount;
+
+        // Imprimir el valor de lotesCount en la consola del navegador
+        console.log("Valor de lotesCount:", lotesCount);
     });
-}
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

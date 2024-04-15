@@ -11,10 +11,10 @@
 
 
 @section('leftColumn')
-    <div class="left-column-container">
+    <div class="left-column-container left-column-estadisticas">
         <div class="divImg">
             <img src="{{ asset('img/tiendas/fornet.jpg') }}" alt="">
-            <p><i class="fa-solid fa-pen-to-square"></i></p>
+            <div><i class="fa-solid fa-pen-to-square"></i></div>
         </div>
         
         <form class="formLocal" action="{{ action([App\Http\Controllers\PerfilProveedorControler::class, 'actualizarTienda']) }}" method="POST">
@@ -23,10 +23,25 @@
                 <h2 class="nombreLocal">{{ $tienda[0]->nombre }}</h2>
                 <button id="btnGuardar" type="submit" class="btn_guardar">Guardar</button>
             </div>
-            <div class="lotesDisp" style="display: flex">
-                <label for="">Lotes disponibles:</label>
-                <p>{{ $tienda[0]->menus }}</p>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square"></i></button>
+            <div class="settings-form">
+                <div class="lotesDisp" style="display: flex">
+                    <label for="">Lotes disponibles:</label>
+                    <p>{{ $tienda[0]->menus }}</p>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                            class="fa-solid fa-pen-to-square"></i></button>
+                </div>
+                <div class="form-row">
+                    <label for="">Nombre tienda</label>
+                    <input type="text" value="{{ $tienda[0]->nombre }}">
+                </div>
+                <div class="form-row">
+                    <label for="">Dereccion</label>
+                    <input type="text" name="" value="{{ $tienda[0]->direccion }}">
+                </div>
+                <div class="form-row">
+                    <label for="">Telefono de contacto</label>
+                    <input type="text" value="{{ $user->telefono }}">
+                </div>
             </div>
             <label for="">Nombre tienda</label>
             <input name="nombreTienda" type="text" value="{{ $tienda[0]->nombre }}">
@@ -60,15 +75,15 @@
                             <input id="inputMenus" name="inputMenus" type="text" hidden>
                             <button id="btnMasMenu" type="button" class="btn btn-primary">+</button>
                         </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
-          </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
         </div>
-      </div>
+    </div>
 
 
       <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -121,15 +136,15 @@
 
       <script>
 
+        // Obtener referencia a los elementos del DOM
         const h1menus = document.getElementById("numeroDeMenus");
         const btnMenosMenu = document.getElementById("btnMenosMenu");
         const btnMasMenu = document.getElementById("btnMasMenu");
-        const inputMenus = document.getElementById("inputMenus");
-    
 
+        // Agregar un event listener al botón de restar menú
         btnMenosMenu.addEventListener("click", restarMenu);
-    
 
+        // Definir la función para restar un menú
         function restarMenu() {
       
             let cantidadMenus = parseInt(h1menus.textContent);
@@ -141,9 +156,10 @@
             }
         }
 
+        // Agregar un event listener al botón de sumar menú
         btnMasMenu.addEventListener("click", sumarMenu);
-    
 
+        // Definir la función para sumar un menú
         function sumarMenu() {
 
             let cantidadMenus = parseInt(h1menus.textContent);
@@ -156,7 +172,82 @@
 
 
 @section('rightColumn')
-    <div class="right-column-container">
-        <div id='map' style='width: 1000px; height: 700px;'></div>
+    {{-- poner las estadísticas --}}
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', {
+            packages: ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            // Define the chart to be drawn.
+            var dataPieChart = new google.visualization.DataTable();
+            dataPieChart.addColumn('string', 'Element');
+            dataPieChart.addColumn('number', 'Percentage');
+            dataPieChart.addRows([
+                ['Mercadona', 0.40],
+                ['Vivari', 0.30],
+                ['365', 0.30]
+            ]);
+
+            var optionsPieChart = {
+                'legend': 'up',
+                'width': 500,
+                'height': 500,
+                'title': 'Lotes de comida salvados',
+                'is3D': false
+            }
+
+            // Instantiate and draw the chart.
+            var pieChart = new google.visualization.PieChart(document.getElementById('myPieChart'));
+            pieChart.draw(dataPieChart, optionsPieChart);
+
+
+            var dataColumnChart = google.visualization.arrayToDataTable([
+                ["Element", "Density", {
+                    role: "style"
+                }],
+                ["Lunes", 2, "blue"],
+                ["Martes", 10, "blue"],
+                ["Miercoles", 19, "blue"],
+                ["Jueves", 21, "blue"],
+                ["Viernes", 10, "blue"],
+                ["Sabado", 19, "blue"],
+                ["Domingo", 21, "blue"]
+            ]);
+
+            var view = new google.visualization.DataView(dataColumnChart);
+            view.setColumns([0, 1,
+                {
+                    calc: "stringify",
+                    sourceColumn: 1,
+                    type: "string",
+                    role: "annotation"
+                },
+                2
+            ]);
+
+            var optionsColumnChart = {
+                title: "Paquetes entregados en los ultimos 7 dias",
+                width: 500,
+                height: 500,                
+                bar: {
+                    groupWidth: "90%"
+                },
+                legend: {
+                    position: "none"
+                },
+            };
+
+            // Instantiate and draw the chart.
+            var columnChart = new google.visualization.ColumnChart(document.getElementById('myColumnChart'));
+            columnChart.draw(view, optionsColumnChart);
+        }
+    </script>
+
+    <div class="div-estadisticas">
+        <div id="myPieChart"></div>
+        <div id="myColumnChart"></div>
     </div>
 @endsection
