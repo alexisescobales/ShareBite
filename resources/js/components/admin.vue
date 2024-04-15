@@ -181,7 +181,7 @@
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="activo" name="activo"
-                                v-model="usuario.activo" :checked="usuario.activo">
+                                 :checked="usuario.activo" v-model="usuario.activo">
                             <label class="form-check-label" for="activo">Activo</label>
                         </div>
                     </form>
