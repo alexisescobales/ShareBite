@@ -4,11 +4,11 @@ use App\Http\Controllers\adminController;
 use App\Http\Controllers\ControlerCrearPua;
 use App\Http\Controllers\ControlerPedido;
 use App\Http\Controllers\ControlerUsuario;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProveedorController;
-use App\Http\Controllers\CoordenadasController;
 use App\Http\Controllers\PerfilProveedorControler;
+use App\Http\Controllers\PerfilRaiderControler;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CoordenadasController;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ControlerMarca_has_pedido;
 
 /*
@@ -31,8 +31,9 @@ Route::get('/regisrtoElec', function () {return view('login_pages.selection');})
 
 
 route::middleware(['auth'])->group(function(){
-    Route::group(["middleware" => "rol:3,0"], function () {
+    Route::group(["middleware" => "rol:3,0,"], function () {
         Route::get('/mainRaider', function () {return view('main_pages.main_screen');})->name('main');
+        Route::get('/perfilRaider', [PerfilRaiderControler::class, 'index'])->name('perfilRaider');
     });
     Route::group(["middleware" => "rol:1,0"], function () {
         Route::get('/mainAdmin', function () {return view('administracion.admins', compact(Auth::user()));});
@@ -48,6 +49,14 @@ Route::post('/registro/{eleccion}', [ControlerUsuario::class, 'seleccion']);
 Route::post('/registro1', [ControlerUsuario::class, 'registro1']);
 Route::post('/registro2', [ControlerUsuario::class, 'registro2']);
 Route::post('/registro3', [ControlerUsuario::class, 'registro3']);
+Route::get('/cerrarSesion', [ControlerUsuario::class, 'CerrarSesion']);
+Route::post('/actualizarMenu', [PerfilProveedorControler::class, 'actualizarMenu']);
+Route::post('/actualizarTienda', [PerfilProveedorControler::class, 'actualizarTienda']);
+Route::post('/actualizarContraseñaTienda', [PerfilProveedorControler::class, 'actualizarContraseña']);
+Route::post('/actualizarContraseña', [PerfilRaiderControler::class, 'actualizarContraseña']);
+Route::post('/actualizarUsuario', [PerfilRaiderControler::class, 'actualizarUsuario']);
+
+
 
 
 

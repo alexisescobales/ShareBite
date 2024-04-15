@@ -16,4 +16,53 @@ class PerfilProveedorControler extends Controller
 
         return $response;
     }
+
+    public function actualizarMenu(Request $request){
+        $tienda = Auth::user()->tiendas;
+        $tienda[0]->menus =$request->input('inputMenus');
+        $tienda[0]->save();
+        $user = Auth::user();
+        $response = view('main_pages.estadisticas', compact('tienda', 'user'));
+
+        return $response;
+    }
+
+    public function actualizarTienda(Request $request){
+        $tienda = Auth::user()->tiendas;
+        $tienda[0]->direccion =$request->input('direccion');
+        $tienda[0]->nombre =$request->input('nombreTienda');
+        $tienda[0]->save();
+        Auth::user()->telefono = $request->input('telefono');
+        Auth::user()->nombre =$request->input('nombreUsuario');
+        Auth::user()->correo =$request->input('correo');
+        Auth::user()->save();
+        $user = Auth::user();
+
+        $response = view('main_pages.estadisticas', compact('tienda', 'user'));
+
+        return $response;
+    }
+
+    public function actualizarContraseña(Request $request){
+        
+        $password = $request->input('password');
+        $passwordRepit = $request->input('passwordConfirm');
+        
+        if ($password != $passwordRepit) {
+            $response = redirect('/');
+        }else {
+            Auth::user()->password = \bcrypt($password);
+            Auth::user()->save();
+        }
+
+        
+        $tienda = Auth::user()->tiendas;
+        $user = Auth::user();
+
+        $response = view('main_pages.estadisticas', compact('tienda', 'user'));
+
+
+        return $response;
+        
+    }
 }

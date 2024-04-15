@@ -38,6 +38,6 @@ class Usuario extends Authenticatable
 
     public function raider(): HasMany
     {
-        return $this->hasMany(Raider::class, "id_raider_id_usuario");
+        return $this->hasMany(Raider::class, 'id_raider_id_usuario');
     }
 }
