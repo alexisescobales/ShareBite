@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\usuario;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\adminsResource;
@@ -17,7 +17,7 @@ class gestionController extends Controller
      */
     public function index()
     {
-        $usuarios = Usuario::with('tipo_usuario')->paginate(30);
+        $usuarios = Usuario::with(['tipo_usuario', 'tiendas'])->paginate(30);
 
         return adminsResource::collection($usuarios);
     }
@@ -47,7 +47,7 @@ class gestionController extends Controller
             $response = response()->json([
                 'error' => $e,
             ], 400);
-        }  
+        }
 
         return $response;
     }
@@ -105,7 +105,7 @@ class gestionController extends Controller
     public function destroy($id)
     {
         $usuario = usuario::findOrFail($id);
-        
+
         $usuario->activo = 0;
         $usuario->save();
 
