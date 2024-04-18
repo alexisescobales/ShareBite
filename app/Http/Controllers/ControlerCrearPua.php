@@ -37,6 +37,7 @@ class ControlerCrearPua extends Controller
 
         // Guardar el marca en la base de datos
         $marca->save(); // Guardar el marca en la base de datos
+
         
 
         // Redirigir a puntos de entrega

@@ -9,10 +9,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class marcas_has_pedido extends Model
 {
     use HasFactory;
-
-    public $incrementing = false;
-    protected $primaryKey = ['marcas_id_marcas', 'pedido_id_pedido'];
+    protected $primaryKey = ['id_marcas_has_pedido'];
     public $timestamps = false;
+
+    protected $fillable = [
+        'marcas_id_marcas', 'pedido_id_pedido', 'cantidad_menus'
+    ];
 
     public function marcas(): BelongsTo
     {

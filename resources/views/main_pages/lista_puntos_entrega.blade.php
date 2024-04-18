@@ -46,25 +46,25 @@
 
     <style>
 #entregas[disabled] {
-    background-color: #f2f2f2; /* Cambia el color de fondo a gris */
-    color: #888; /* Cambia el color del texto a gris oscuro */
-    cursor: not-allowed; /* Cambia el cursor a no permitido */
+    background-color: #f2f2f2; 
+    color: #888; 
+    cursor: not-allowed; 
 }
 
 #entregas[disabled] li {
-    background-color: #f2f2f2; /* Cambia el color de fondo a gris */
-    color: #888; /* Cambia el color del texto a gris oscuro */
-    cursor: not-allowed; /* Cambia el cursor a no permitido */
+    background-color: #f2f2f2;
+    color: #888; 
+    cursor: not-allowed;
 }
 
 #lista_entregas {
     background-color: #dbdbcf;
-    cursor: not-allowed; /* Cambia el cursor a no permitido */
+    cursor: not-allowed;
 }
 
 #lista_entregas li {
     background-color: #dbdbcf;
-    cursor: not-allowed; /* Cambia el cursor a no permitido */
+    cursor: not-allowed;
 }
     </style>
 
@@ -83,13 +83,13 @@
             document.getElementById('entregas').setAttribute('disabled', 'disabled'); // Deshabilita la lista
         });
 
-        // Variable para almacenar el pedido seleccionado
+        // Almacenar el pedido seleccionado
         let pedidoSeleccionado = null;
 
-        // Variable para mantener un registro de los menús asignados a cada punto de entrega
+        // Registro de los menús asignados a cada punto de entrega
         let menusAsignados = {};
 
-        // Variable para mantener un registro del total de menús disponibles
+        // Registro del total de menús disponibles
         let totalMenusDisponibles = 0;
 
 // Agregar evento de clic a los elementos de la clase 'pedidos'
@@ -120,7 +120,7 @@ document.querySelectorAll('.pedidos').forEach(function(pedido) {
         // Actualizar el total de menús disponibles
         totalMenusDisponibles = menus;
 
-        // Mostrar la información del pedido seleccionado en la consola
+        // Mostrar la información del pedido seleccionado por consola
         console.log('Pedido seleccionado:', pedidoSeleccionado);
     });
 });
@@ -130,20 +130,22 @@ document.querySelectorAll('.pedidos').forEach(function(pedido) {
 document.querySelectorAll('.elegir-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
         document.getElementById('entregas').removeAttribute('disabled'); // Habilita la lista
-        // Aplicar estilos a la lista de entregas
+
        // Mostrar los botones "+" a la derecha de cada punto de entrega
 let listaEntregasConBoton = document.querySelectorAll('.entregas');
 listaEntregasConBoton.forEach(function(entrega) {
+
     // Eliminar botones anteriores si existen
     let existingButton = entrega.querySelector('.agregar-menu-btn');
     if (existingButton) {
         existingButton.remove();
     }
-    // Crear y añadir el botón "+" para agregar menús
+
+    // Crear y añadir el boton "+" para agregar menus y sus estilos
     let addButton = document.createElement('button');
     addButton.textContent = '+';
     addButton.className = 'agregar-menu-btn';
-    addButton.style.marginLeft = '10px'; // Espacio entre el botón "+" y el texto
+    addButton.style.marginLeft = '10px';
     entrega.appendChild(addButton);
 
     // Crear elemento para mostrar la cantidad de lotes asignados
@@ -169,7 +171,7 @@ let puntoEntregaId = parseInt(entrega.getAttribute('data-id'));
             if (!(puntoEntregaId in menusAsignados[pedidoSeleccionado.id])) {
                 menusAsignados[pedidoSeleccionado.id][puntoEntregaId] = {
                     id: puntoEntregaId,
-                    lotes: 0 // Inicializar el número de lotes asignados a cero
+                    lotes: 0 // Inicializar lotes a cero
                 };
             }
             // Incrementar el número de lotes asignados al punto de entrega para el pedido seleccionado
@@ -179,7 +181,7 @@ let puntoEntregaId = parseInt(entrega.getAttribute('data-id'));
             // Actualizar el elemento que muestra la cantidad de lotes asignados
             lotesAsignadosElement.textContent = 'Lotes: ' + menusAsignados[pedidoSeleccionado.id][puntoEntregaId].lotes;
             // Aquí puedes implementar la lógica para agregar el lote al punto de entrega correspondiente
-            console.log(`Se agregó 1 lote al punto de entrega con ID ${puntoEntregaId} para el pedido con ID ${pedidoSeleccionado.id}`);
+            console.log(`Se agrego 1 lote al punto de entrega con ID ${puntoEntregaId} para el pedido con ID ${pedidoSeleccionado.id}`);
             console.log(`Menús restantes: ${totalMenusDisponibles}`);
         } else {
             console.log('No hay más menús disponibles para asignar.');
@@ -196,7 +198,7 @@ let puntoEntregaId = parseInt(entrega.getAttribute('data-id'));
 });
 
 
-        // Cuando el mapa esté completamente cargado
+        // Cuando el mapa cargado
         map.on('load', function() {
             // Llamar a la función para agregar los marcadores al mapa
             addMarkers(coordenadas);
@@ -210,11 +212,11 @@ let puntoEntregaId = parseInt(entrega.getAttribute('data-id'));
                 if (lat && long) {
                     // Crear un elemento de imagen para el marcador
                     let el = document.createElement('img');
-                    el.src = "../resources/img/destino.png"; // Ruta de la imagen del marcador
-                    el.style.width = '40px'; // Ajusta el ancho según tus preferencias
-                    el.style.height = '40px'; // Ajusta la altura según tus preferencias
+                    el.src = "../resources/img/destino.png"; 
+                    el.style.width = '40px'; 
+                    el.style.height = '40px';
 
-                    // Crear el marcador con el elemento de imagen personalizado
+                    // Crear el marcador con la imagen 
                     let marker = new mapboxgl.Marker(el)
                         .setLngLat([parseFloat(long), parseFloat(lat)])
                         .addTo(map);
@@ -255,37 +257,33 @@ let puntoEntregaId = parseInt(entrega.getAttribute('data-id'));
             let data = {
                 lat: lat,
                 long: long,
-                estado: 1, // Puedes definir el estado deseado aquí
-                usuario_id_usuario: 1, // ID del usuario que realiza la inserción (puedes cambiarlo según tu lógica)
-                tipo_marca_id_tipo_marca: 0 // ID del tipo de marca (puedes cambiarlo según tu lógica)
+                estado: 1, // Estado activo
+                usuario_id_usuario: 1, // Aplicar auth user;
+                tipo_marca_id_tipo_marca: 0 // Tipo 0, inidica punto de entrega
             };
 
             console.log(data);
 
 
-            // Realizar la solicitud AJAX para enviar los datos al servidor
+            // Solicitud AJAX
             fetch('{{ route('crear_pua') }}', {
-                method: 'POST', // Método POST para enviar los datos al servidor
+                method: 'POST', // Método POST
                 headers: {
                     'Content-Type': 'application/json',
                     'X-CSRF-TOKEN': token
                 },
                 body: JSON.stringify(
-                    data) // Convertir el objeto a formato JSON y enviarlo en el cuerpo de la solicitud
+                    data) // Convertir el objeto a formato JSON
             })
                 .then(response => {
                     if (response.ok) {
-                        // La solicitud fue exitosa, recargar la página
+                        // recargar la página
                         location.reload();
                     } else {
-                        // La solicitud no fue exitosa, manejar el error según sea necesario
+                        // error
                         console.error('Error al agregar la marca');
                     }
                 })
-                .catch(error => {
-                    // Manejar cualquier error de red u otro tipo
-                    console.error('Error de red:', error);
-                });
         });
 
 // Agregar evento de clic al botón para guardar los datos en el servidor
@@ -301,16 +299,15 @@ document.getElementById('guardarDatosButton').addEventListener('click', function
     }
 
     // Crear un objeto con los datos a enviar al servidor
-    let datosParaEnviar = {
+    let marca_pedido_tienda = {
         pedido: {
             id: pedidoId,
-            tienda: pedidoSeleccionado.tienda,
             menus: pedidoSeleccionado.menus
         },
         lotesAsignados: lotesAsignadosInt
     };
 
-    console.log(datosParaEnviar);
+    console.log(marca_pedido_tienda);
 
 
     // Realizar la solicitud AJAX para enviar los datos al servidor
@@ -320,21 +317,17 @@ document.getElementById('guardarDatosButton').addEventListener('click', function
             'Content-Type': 'application/json',
             'X-CSRF-TOKEN': token
         },
-        body: JSON.stringify(datosParaEnviar) // Convertir el objeto a formato JSON y enviarlo en el cuerpo de la solicitud
+        body: JSON.stringify(marca_pedido_tienda) // Convertir el objeto a formato JSON y enviarlo en el cuerpo de la solicitud
     })
     .then(response => {
         if (response.ok) {
-            // La solicitud fue exitosa, puedes recargar la página o realizar alguna otra acción
+            // La solicitud fue exitosa
             console.log('Datos guardados exitosamente');
         } else {
-            // La solicitud no fue exitosa, manejar el error según sea necesario
+            // La solicitud no fue exitosa
             console.error('Error al guardar los datos');
         }
     })
-    .catch(error => {
-        // Manejar cualquier error de red u otro tipo
-        console.error('Error de red:', error);
-    });
 });
 
     </script>
