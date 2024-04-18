@@ -21,7 +21,7 @@
                 </li>
             @endforeach
         </ul>
-        <button style="margin-top:30px;" id="guardarDatosButton">Guardar Datos</button>
+        <button style="margin-top:30px;" id="guardarDatosButton">Entregar Lotes</button>
         <h3 style="margin-top:30px; margin-bottom:10px;">Puntos De Entrega</h3>
         <ul class="main_list" id="entregas">
             @foreach ($coordenadas as $key => $coordenada)
@@ -323,6 +323,7 @@ document.getElementById('guardarDatosButton').addEventListener('click', function
         if (response.ok) {
             // La solicitud fue exitosa
             console.log('Datos guardados exitosamente');
+            location.reload();
         } else {
             // La solicitud no fue exitosa
             console.error('Error al guardar los datos');

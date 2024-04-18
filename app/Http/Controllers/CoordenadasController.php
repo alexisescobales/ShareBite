@@ -17,7 +17,7 @@ class CoordenadasController extends Controller
     public function entrega() //Esta funcion filtra solo por tipo_marca 0 = CLIENTE
     {
         // Obtener solo las coordenadas con tipo de marca igual a 1
-        $coordenadas = Marcas::select('id_marcas','tipo_marca_id_tipo_marca', 'long', 'lat')
+        $coordenadas = Marcas::select('id_marcas', 'tipo_marca_id_tipo_marca', 'long', 'lat')
             ->where('tipo_marca_id_tipo_marca', 0)
             ->get();
 
@@ -26,8 +26,11 @@ class CoordenadasController extends Controller
 
         //Guardamos los datos del usuario activo
         $usuario = Auth::user();
-        // Obtener los pedidos que coinciden con el ID del raider autenticado
-        $pedidos = Pedido::where('raider_id_raider_id_usuario', $usuario->id_usuario)->get();
+
+        // Obtener los pedidos que coinciden con el ID del raider autenticado y que tengan cantidad_menus mayor que 0
+        $pedidos = Pedido::where('raider_id_raider_id_usuario', $usuario->id_usuario)
+            ->where('cantidad_menus', '>', 0)
+            ->get();
 
         return view('main_pages.lista_puntos_entrega', compact('coordenadas', 'info_marca', 'pedidos'));
     }

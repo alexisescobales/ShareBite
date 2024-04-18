@@ -6,10 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class marcas_has_pedido extends Model
+class MarcasHasPedido extends Model
 {
     use HasFactory;
-    protected $primaryKey = ['id_marcas_has_pedido'];
+    
+    protected $table = 'marcas_has_pedido';
+    protected $primaryKey = 'id_marcas_has_pedido';
     public $timestamps = false;
 
     protected $fillable = [

@@ -4,17 +4,18 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
-            "name": "Listen for Xdebug",
+            "name": "Listen for Xdebug 2 (Legacy)",
             "type": "php",
             "request": "launch",
-            "port": [9000]
+            "port": 9003
         },
         {
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "http://localhost:80/ShareBite/public",
+            "url": "http://localhost:80/ShareBites/public",
             "webRoot": "${workspaceFolder}"
         }
     ]

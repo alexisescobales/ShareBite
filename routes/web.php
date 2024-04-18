@@ -93,8 +93,7 @@ Route::post('/pedido',  [ControlerPedido::class, 'crearPedido'])->name('crear_pe
 //Crea una pua en el mapa
 Route::post('/crear_pua', [ControlerCrearPua::class, 'crearPua'])->name('crear_pua'); 
 
-//Crear nueva marca_has_pedido
-Route::post('/marca_has_pedido', [ControlerMarca_has_pedido::class, 'marca_has_pedido'])->name('marca_has_pedido'); 
+
 
 
 

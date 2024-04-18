@@ -1,8 +1,11 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\gestionController;
+use App\Http\Controllers\Api\ControlerMarcaHasPedido;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('gestion', gestionController::class);
+//Crear nueva marca_has_pedido
+Route::post('/marca_has_pedido', [ControlerMarcaHasPedido::class, 'marca_has_pedido'])->name('marca_has_pedido'); 
