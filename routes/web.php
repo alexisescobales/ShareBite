@@ -31,7 +31,7 @@ Route::get('/regisrtoElec', function () {return view('login_pages.selection');})
 
 
 route::middleware(['auth'])->group(function(){
-    Route::group(["middleware" => "rol:3,0,"], function () {
+    Route::group(["middleware" => "rol:3,0"], function () {
         Route::get('/mainRaider', function () {return view('main_pages.main_screen');})->name('main');
         Route::get('/perfilRaider', [PerfilRaiderControler::class, 'index'])->name('perfilRaider');
     });
