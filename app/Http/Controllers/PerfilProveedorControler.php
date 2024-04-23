@@ -15,98 +15,118 @@ class PerfilProveedorControler extends Controller
         $tienda = Auth::user()->tiendas;
         $user = Auth::user();
 
+
+        
+
+        $results = DB::table('tiendas')
+        ->select('tiendas.nombre', 'marcas_has_pedido.cantidad_menus')
+        ->join('pedido', 'tiendas.tienda_id_usuario', '=', 'pedido.tiendas_tienda_id_usuario')
+        ->join('marcas_has_pedido', 'pedido.id_pedido', '=', 'marcas_has_pedido.pedido_id_pedido')
+        ->get()->toArray();
+        echo $results;
+
+        $list = array();
+
+        // foreach ($results as $elemento) {
+        //     $nombre = $elemento['nombre'];
+        //     $valor = $elemento['cantidad_menus'];
+            
+        //     if (array_key_exists($nombre, $list)) {
+        //         $list[$nombre] += $valor;
+        //     } else {
+        //         $list[$nombre] = $valor;
+        //     }
+        // }
+
+        // echo $list;
+
+        // Imprimir el resultado
+        foreach ($list as $nombre => $valor) {
+            echo $nombre . ": " . $valor . "\n";
+        }
+
+
         $pedidosEntregados = pedido::where("estado", "=", "entregado")->get();
         $tiendasNombres = Tiendas::distinct()->pluck('nombre')->toArray();
         $allTiendas = Tiendas::all();
         $tiendas = [];
 
         foreach ($tiendasNombres as $nombreTienda) {
-            $valor = 0; // Un array para almacenar los valores de esta tienda
-            
+            $valor = 0;
             foreach ($allTiendas as $tiendaaa) {
                 if ($tiendaaa->nombre == $nombreTienda) {
-                    $valor = $valor + 1; // Agregar el valor de la tienda a la lista de valores
+                    $valor = $valor + 1;
                 }
-            }
-            
-            // Asignar los valores a la clave de la tienda
+            } 
             $tiendas[$nombreTienda] = $valor;
         }
         
         //$tiendas es el resultado final;
+        
 
-        foreach ($tiendas as $clave => $valor) {
-            echo "Clave: $clave, Valor: $valor <br>";
-        }
-
-
-
-        function convertirNumeroADia()
-{
-    $pedidosSemana = [
-        'Domingo' => 0,
-        'Lunes' => 0,
-        'Martes' => 0,
-        'Miércoles' => 0,
-        'Jueves' => 0,
-        'Viernes' => 0,
-        'Sábado' => 0
-    ];
-
-    $pedidosUltimosSieteDias = Pedido::where('time_reco', '>=', now()->subDays(7))
-                            ->where('estado', 'entregado')
-                            ->get();
-
-    // Itera sobre los resultados y cuenta los pedidos para cada día de la semana
-    foreach ($pedidosUltimosSieteDias as $pedido) {
-        $dayOfWeek = Pedido::where('id_pedido', $pedido->id_pedido)
-                    ->value(DB::raw('DAYOFWEEK(time_reco)')); // Obtiene el día de la semana directamente en la consulta
-        echo "dayOfWeek = " .  $dayOfWeek; 
-        switch ($dayOfWeek) {
-            case 1:
-                $pedidosSemana['Domingo']++;
-                break;
-            case 2:
-                $pedidosSemana['Lunes']++;
-                break;
-            case 3:
-                $pedidosSemana['Martes']++;
-                break;
-            case 4:
-                $pedidosSemana['Miércoles']++;
-                break;
-            case 5:
-                $pedidosSemana['Jueves']++;
-                break;
-            case 6:
-                $pedidosSemana['Viernes']++;
-                break;
-            case 7:
-                $pedidosSemana['Sábado']++;
-                break;
-            default:
-                // Manejar el caso desconocido, si es necesario
-                break;
-        }
-    }
+        function convertirNumeroADia(){
+            $pedidosSemana = [
+                'Domingo' => 0,
+                'Lunes' => 0,
+                'Martes' => 0,
+                'Miércoles' => 0,
+                'Jueves' => 0,
+                'Viernes' => 0,
+                'Sábado' => 0
+            ];
     
-    return $pedidosSemana;
-}
-
-        $array = convertirNumeroADia();
-        foreach ($array as $clave => $valores) {
-            echo "Clave: $clave\n";
-            echo "Valor: $valor\n";
-            echo "\n";
+            $pedidosUltimosSieteDias = Pedido::where('time_reco', '>=', now()->subDays(7))
+                                    ->where('estado', 'entregado')
+                                    ->get();
+        
+    
+            //echo $pedidosUltimosSieteDias;
+    
+    
+            // Itera sobre los resultados y cuenta los pedidos para cada día de la semana
+            foreach ($pedidosUltimosSieteDias as $pedido) {
+                $dayOfWeek = Pedido::where('id_pedido','=',$pedido->id_pedido)
+                            ->value(DB::raw('DAYOFWEEK(time_reco)')); // Obtiene el día de la semana directamente en la consulta
+                echo "dayOfWeek = " .  $dayOfWeek . " "; 
+                switch ($dayOfWeek) {
+                    case 1:
+                        $pedidosSemana['Domingo']++;
+                        break;
+                    case 2:
+                        $pedidosSemana['Lunes']++;
+                        break;
+                    case 3:
+                        $pedidosSemana['Martes']++;
+                        break;
+                    case 4:
+                        $pedidosSemana['Miércoles']++;
+                        break;
+                    case 5:
+                        $pedidosSemana['Jueves']++;
+                        break;
+                    case 6:
+                        $pedidosSemana['Viernes']++;
+                        break;
+                    case 7:
+                        $pedidosSemana['Sábado']++;
+                        break;
+                    default:
+                        // Manejar el caso desconocido, si es necesario
+                        break;
+                }
+            }
+            
+            return $pedidosSemana;
         }
 
-
+        $diasSemana = convertirNumeroADia();
         
-        
-        $response = view('main_pages.estadisticas', compact('tienda', 'user'));
+        $response = view('main_pages.estadisticas', compact('tienda', 'user', 'diasSemana', 'tiendas'));
 
         return $response;
     }
+
+    
 
     public function actualizarMenu(Request $request){
         $tienda = Auth::user()->tiendas;
