@@ -23,7 +23,7 @@
         <div class="divider"></div>
         <div class="col right-column">
             <h1 class="title">SHARE<span class="amarillo">BITES</span></h1>
-            <img src="../resources/img/icon_white.svg" alt="Logo" class="logo" draggable="false">
+            <img src="{{ asset('img/icon_white.svg') }}" alt="Logo" class="logo" draggable="false">
         </div>
     </div>
 </body>
