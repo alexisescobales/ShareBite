@@ -63,7 +63,7 @@ class ControlerUsuario extends Controller
                 //$response = redirect('/estadisticas');
                 $response = redirect('/mainProveedor');
             }elseif ($user->tipo_usuario_id_tipo == 1) {
-                $response = redirect('/mainAdmin');
+                $response = redirect('/adminsvue');
             }
 
         } else {

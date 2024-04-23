@@ -23,7 +23,10 @@ use App\Http\Controllers\ControlerMarca_has_pedido;
 */
 
 //Home de la pagina
-Route::get('/', function () {return view('principal');})->name('principal');
+Route::get('/principal', function () {return view('principal');})->name('principal');
+
+//Landing Page
+Route::get('/', function () {return view('landing_page.landing');})->name('landing_page');
 
 
 //Home del registro a elegir rol...
@@ -31,12 +34,12 @@ Route::get('/regisrtoElec', function () {return view('login_pages.selection');})
 
 
 route::middleware(['auth'])->group(function(){
-    Route::group(["middleware" => "rol:3,0,"], function () {
+    Route::group(["middleware" => "rol:3"], function () {
         Route::get('/mainRaider', function () {return view('main_pages.main_screen');})->name('main');
         Route::get('/perfilRaider', [PerfilRaiderControler::class, 'index'])->name('perfilRaider');
     });
     Route::group(["middleware" => "rol:1,0"], function () {
-        Route::get('/adminsvue', function () {return view('administracion.admins');})->name('administracion');
+        Route::get('/adminsvue', function () {return view('administracion.adminsvue');})->name('administracion');
     });
     Route::group(["middleware" => "rol:2,0"], function () {
         Route::get('/mainProveedor', [PerfilProveedorControler::class, 'index']);

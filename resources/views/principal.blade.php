@@ -14,7 +14,7 @@
     <div class="container">
         <div class="row">
             <div class="col principal_container">
-                <h1 class="title">SHARE<span class="amarillo">BITES</span></h1>
+                <h1 class="title-principal">SHARE<span class="amarillo">BITES</span></h1>
                 <img src="../resources/img/icon_white.svg" alt="Logo" class="logo" draggable="false">
                 <div class="button_container">
                     <a href="{{ route('log_in_pages.log_in') }}">
