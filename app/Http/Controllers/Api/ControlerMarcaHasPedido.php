@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
-
 use Illuminate\Http\Request;
 use App\Models\MarcasHasPedido;
-use App\Models\pedido;
+use App\Models\Pedido; // Importar el modelo Pedido
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect; //Para refrescar la pagina
 
@@ -28,12 +27,18 @@ class ControlerMarcaHasPedido extends Controller
         }
 
         // Restar la cantidad de menús asignados en las marcas al pedido
-        $pedido = Pedido::find($pedido['id']);
-        if ($pedido) {
+        $pedidoModel = Pedido::find($pedido['id']);
+        if ($pedidoModel) {
             foreach ($lotesAsignados as $lote) {
-                $pedido->cantidad_menus -= $lote['lotes'];
+                $pedidoModel->cantidad_menus -= $lote['lotes'];
             }
-            $pedido->save();
+            $pedidoModel->save();
+
+            // Verificar si la cantidad de menús ahora es 0 y actualizar el estado del pedido
+            if ($pedidoModel->cantidad_menus == 0) {
+                $pedidoModel->estado = 'completado';
+                $pedidoModel->save();
+            }
         }
 
         // Respuesta de éxito
