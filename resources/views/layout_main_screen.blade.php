@@ -23,7 +23,7 @@
 <body>
     <nav class="navbar navbar-expand-md">
         <div class="container-fluid justify-content-between">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{ route('main') }}">
                 <h1 class="title">SHARE<span class="amarillo">BITES</span></h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"

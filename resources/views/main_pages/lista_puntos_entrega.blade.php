@@ -1,7 +1,12 @@
 @extends('layout_main_screen')
 
 @section('navbar')
-    <!-- Tu código de la barra de navegación si es necesario -->
+    <li class="nav-item">
+        <a href="{{ route('main') }}"><i class="fa-solid fa-house activo"></i></a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ route('perfilRaider') }}"><i class="fa-solid fa-user"></i></a>
+    </li>
 @endsection
 
 @section('leftColumn')
