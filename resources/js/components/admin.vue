@@ -160,28 +160,65 @@
                             <input type="text" class="form-control" id="foto" name="foto" required
                                 v-model="usuario.foto">
                         </div>
-                        <div class="mb-3" v-if="usuario.tipo_usuario_id_tipo === '2'">
-                            <label for="direccion" class="form-label">Dirección</label>
-                            <input type="text" class="form-control" id="direccion" name="direccion"
-                                v-model="usuario.direccion">
+                        <div v-if="insert">
+                            <div class="mb-3" v-if="usuario.tipo_usuario_id_tipo === '2'">
+                                <label for="direccion" class="form-label">Dirección</label>
+                                <input type="text" class="form-control" id="direccion" name="direccion"
+                                    v-model="usuario.tiendas[0].direccion">
+                            </div>
                         </div>
-                        <div class="mb-3" v-if="usuario.tipo_usuario_id_tipo === '2'">
-                            <label for="categoria" class="form-label">Categoria</label>
-                            <input type="text" class="form-control" id="categoria" name="categoria"
-                                v-model="usuario.categoria">
+                        <div v-else>
+                            <div class="mb-3" v-if="mostrar">
+                                <label for="direccion" class="form-label">Dirección</label>
+                                <input type="text" class="form-control" id="direccion" name="direccion"
+                                    v-model="usuario.tiendas[0].direccion">
+                            </div>
                         </div>
-                        <div class="mb-3" v-if="usuario.tipo_usuario_id_tipo === '2'">
-                            <label for="menus" class="form-label">Menus</label>
-                            <input type="text" class="form-control" id="menus" name="menus" v-model="usuario.menus">
+                        <div v-if="insert">
+                            <div class="mb-3" v-if="usuario.tipo_usuario_id_tipo === '2'">
+                                <label for="categoria" class="form-label">Categoria</label>
+                                <input type="text" class="form-control" id="categoria" name="categoria"
+                                    v-model="usuario.tiendas[0].categoria">
+                            </div>
                         </div>
-                        <div class="mb-3" v-if="usuario.tipo_usuario_id_tipo === '2'">
-                            <label for="horario" class="form-label">Horario</label>
-                            <input type="text" class="form-control" id="horario" name="horario"
-                                v-model="usuario.horario">
+                        <div v-else>
+                            <div class="mb-3" v-if="mostrar">
+                                <label for="categoria" class="form-label">Categoria</label>
+                                <input type="text" class="form-control" id="categoria" name="categoria"
+                                    v-model="usuario.tiendas[0].categoria">
+                            </div>
+                        </div>
+                        <div v-if="insert">
+                            <div class="mb-3" v-if="usuario.tipo_usuario_id_tipo === '2'">
+                                <label for="menus" class="form-label">Menus</label>
+                                <input type="text" class="form-control" id="menus" name="menus"
+                                    v-model="usuario.tiendas[0].menus">
+                            </div>
+                        </div>
+                        <div v-else>
+                            <div class="mb-3" v-if="mostrar">
+                                <label for="menus" class="form-label">Menus</label>
+                                <input type="text" class="form-control" id="menus" name="menus"
+                                    v-model="usuario.tiendas[0].menus">
+                            </div>
+                        </div>
+                        <div v-if="insert">
+                            <div class="mb-3" v-if="usuario.tipo_usuario_id_tipo === '2'">
+                                <label for="horario" class="form-label">Horario</label>
+                                <input type="text" class="form-control" id="horario" name="horario"
+                                    v-model="usuario.tiendas[0].horario">
+                            </div>
+                        </div>
+                        <div v-else>
+                            <div class="mb-3" v-if="mostrar">
+                                <label for="horario" class="form-label">Horario</label>
+                                <input type="text" class="form-control" id="horario" name="horario"
+                                    v-model="usuario.tiendas[0].horario">
+                            </div>
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="activo" name="activo"
-                                 :checked="usuario.activo" v-model="usuario.activo">
+                                :checked="usuario.activo" v-model="usuario.activo">
                             <label class="form-check-label" for="activo">Activo</label>
                         </div>
                     </form>
@@ -206,16 +243,55 @@ export default {
         return {
             usuarios: [],
             myModal: {},
-            usuario: {},
+            usuario: {
+                id_usuario: null,
+                tipo_usuario_id_tipo: '',
+                nombre: '',
+                correo: '',
+                password: '',
+                telefono: '',
+                foto: '',
+                tiendas: [
+                    {
+                        direccion: '',
+                        categoria: '',
+                        menus: '',
+                        horario: ''
+                    }
+                ],
+                activo: false
+            },
+            mostrar: false,
             insert: false,
             selectedType: 'admins',
             filteredUsuarios: []
         };
     },
     methods: {
+        resetUsuario() {
+            this.usuario = {
+                id_usuario: null,
+                tipo_usuario_id_tipo: '',
+                nombre: '',
+                correo: '',
+                password: '',
+                telefono: '',
+                foto: '',
+                tiendas: [
+                    {
+                        direccion: '',
+                        categoria: '',
+                        menus: '',
+                        horario: ''
+                    }
+                ],
+                activo: false
+            };
+        },
         selectUsers() {
             axios.get('http://localhost:8080/practicas/ShareBites/public/api/gestion')
                 .then(response => {
+                    console.log(response.data.data);
                     this.usuarios = response.data.data;
                     this.filterUsuarios();
                 })
@@ -236,12 +312,16 @@ export default {
         },
         showForm() {
             this.insert = true;
+            this.resetUsuario();
             this.myModal = new bootstrap.Modal('#crearModal');
             this.myModal.show();
         },
         editUser(usuario) {
             this.insert = false;
             this.usuario = usuario;
+            if (this.usuario.tipo_usuario_id_tipo === 2) {
+                this.mostrar = true;
+            }
             this.myModal = new bootstrap.Modal('#crearModal');
             this.myModal.show();
         },
@@ -253,8 +333,7 @@ export default {
         insertarUsuario() {
             const me = this;
             console.log(me.usuario);
-
-            axios.post('http://localhost:8080/practicas/ShareBites/public/api/gestion', me.usuario)
+            axios.post('http://localhost/ShareBites/public/api/gestion', me.usuario)
                 .then(response => {
                     console.log(response.data);
                     me.selectUsers()

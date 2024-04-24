@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\tiendas;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -33,21 +34,34 @@ class gestionController extends Controller
         $usuario = new usuario();
 
         $usuario->nombre = $request->input('nombre');
+        $nombre_tienda = $request->input('nombre');
         $usuario->correo = $request->input('correo');
         $usuario->password = bcrypt($request->input('password'));
         $usuario->telefono = $request->input('telefono');
         $usuario->foto = $request->input('foto');
         $usuario->activo = $request->has('activo');
         $usuario->tipo_usuario_id_tipo = $request->input('tipo_usuario_id_tipo');
+        $tipo_usuario = $request->input('tipo_usuario_id_tipo');
 
-        try {
-            $usuario->save();
-            $response = (new adminsResource($usuario))->response()->setStatusCode(201);
-        } catch (QueryException $e) {
-            $response = response()->json([
-                'error' => $e,
-            ], 400);
+        $usuario->save();
+
+        if ($tipo_usuario == 2) {
+            $t = $request->input('tiendas');
+            $usuarioo = usuario::orderBy('id_usuario', 'desc')->first();
+            $tienda = new tiendas();
+
+            $tienda->tienda_id_usuario = $usuarioo->id_usuario;
+            $tienda->menus = $t[0]["menus"];
+            $tienda->direccion = $t[0]["direccion"];
+            $tienda->categoria = $t[0]["categoria"];
+            $tienda->horario = $t[0]["horario"];
+            $tienda->nombre = $nombre_tienda;
+            $tienda->save();
         }
+        
+
+        $response = (new adminsResource($usuario))->response()->setStatusCode(201);
+
 
         return $response;
     }
@@ -84,12 +98,29 @@ class gestionController extends Controller
         $usuario = usuario::findOrFail($id);
 
         $usuario->nombre = $request->input('nombre');
+        $nombre_tienda = $request->input('nombre');
         $usuario->correo = $request->input('correo');
         $usuario->telefono = $request->input('telefono');
         $usuario->foto = $request->input('foto');
         $usuario->activo = $request->has('activo');
         $usuario->tipo_usuario_id_tipo = $request->input('tipo_usuario_id_tipo');
+        $tipo_usuario = $request->input('tipo_usuario_id_tipo');
         $usuario->save();
+
+        if ($tipo_usuario == 2) {
+
+            $t = $request->input('tiendas');
+
+            $tienda = tiendas::findOrFail($id);
+
+            $tienda->menus = $t[0]["menus"];
+            $tienda->direccion = $t[0]["direccion"];
+            $tienda->categoria = $t[0]["categoria"];
+            $tienda->horario = $t[0]["horario"];
+            $tienda->nombre = $nombre_tienda;
+            $tienda->save();
+        }
+
 
         $response = (new adminsResource($usuario))->response()->setStatusCode(201);
 
