@@ -113,11 +113,15 @@
             var dataPieChart = new google.visualization.DataTable();
             dataPieChart.addColumn('string', 'Element');
             dataPieChart.addColumn('number', 'Percentage');
-            dataPieChart.addRows([
-                ['Mercadona', 0.40],
-                ['Vivari', 0.30],
-                ['365', 0.30]
-            ]);
+            var chartData = [];
+
+            // Iterar sobre las tiendas y sus sumas correspondientes
+            <?php foreach ($sumas_por_tiendas as $nombre => $suma) { ?>
+                chartData.push(['<?php echo $nombre; ?>', <?php echo $suma; ?>]);
+            <?php } ?>
+
+            // Añadir los datos al DataTable
+            dataPieChart.addRows(chartData); 
 
             var optionsPieChart = {
                 'legend': 'up',
