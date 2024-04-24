@@ -189,11 +189,15 @@
             var dataPieChart = new google.visualization.DataTable();
             dataPieChart.addColumn('string', 'Element');
             dataPieChart.addColumn('number', 'Percentage');
-            dataPieChart.addRows([
-                ['Mercadona', 0.40],
-                ['Vivari', 0.30],
-                ['365', 0.30]
-            ]);
+            var chartData = [];
+
+            // Iterar sobre las tiendas y sus sumas correspondientes
+            <?php foreach ($sumas_por_tiendas as $nombre => $suma) { ?>
+                chartData.push(['<?php echo $nombre; ?>', <?php echo $suma; ?>]);
+            <?php } ?>
+
+            // Añadir los datos al DataTable
+            dataPieChart.addRows(chartData); 
 
             var optionsPieChart = {
                 'legend': 'up',
@@ -204,21 +208,38 @@
             }
 
             // Instantiate and draw the chart.
+            // Instantiate and draw the chart.
             var pieChart = new google.visualization.PieChart(document.getElementById('myPieChart'));
             pieChart.draw(dataPieChart, optionsPieChart);
 
+            var chartDataSemana = [];
+
+            // Array asociativo con los nombres de los días de la semana en español
+            var diasSemana = {
+                'Domingo': '<?php echo $diasSemana["Domingo"]; ?>',
+                'Lunes': '<?php echo $diasSemana["Lunes"]; ?>',
+                'Martes': '<?php echo $diasSemana["Martes"]; ?>',
+                'Miércoles': '<?php echo $diasSemana["Miércoles"]; ?>',
+                'Jueves': '<?php echo $diasSemana["Jueves"]; ?>',
+                'Viernes': '<?php echo $diasSemana["Viernes"]; ?>',
+                'Sábado': '<?php echo $diasSemana["Sábado"]; ?>'
+            };
+
+            // Iterar sobre los días de la semana y agregar los datos al array del gráfico
+            for (var dia in diasSemana) {
+                chartDataSemana.push([dia, parseInt(diasSemana[dia])]);
+            }
+
 
             var dataColumnChart = google.visualization.arrayToDataTable([
-                ["Element", "Density", {
-                    role: "style"
-                }],
-                ["Lunes", 2, "blue"],
-                ["Martes", 10, "blue"],
-                ["Miercoles", 19, "blue"],
-                ["Jueves", 21, "blue"],
-                ["Viernes", 10, "blue"],
-                ["Sabado", 19, "blue"],
-                ["Domingo", 21, "blue"]
+                ["Element", "Density", { role: "style" }],
+                ["Lunes", parseInt(diasSemana['Lunes']), "blue"],
+                ["Martes", parseInt(diasSemana['Martes']), "blue"],
+                ["Miércoles", parseInt(diasSemana['Miércoles']), "blue"], // Nota: 'Miércoles' con tilde
+                ["Jueves", parseInt(diasSemana['Jueves']), "blue"],
+                ["Viernes", parseInt(diasSemana['Viernes']), "blue"],
+                ["Sábado", parseInt(diasSemana['Sábado']), "blue"], // Nota: 'Sábado' con tilde
+                ["Domingo", parseInt(diasSemana['Domingo']), "blue"]
             ]);
 
             var view = new google.visualization.DataView(dataColumnChart);
