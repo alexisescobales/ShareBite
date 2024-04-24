@@ -7,7 +7,7 @@
     <li class="nav-item">
         <button style="background: none;" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i
                 class="fa-solid fa-right-from-bracket"></i></button>
-    </li>>
+    </li>
 @endsection
 
 
@@ -25,15 +25,26 @@
                 <h2 class="nombreLocal">{{ $user->nombre }}</h2>
                 <button id="btnGuardar" type="submit" class="btn_guardar">Guardar</button>
             </div>
-            <label for="">Nombre usuario</label>
-            <input name="nombreUsuario" type="text" value="{{ $user->nombre }}">
-            <label for="">Correo</label>
-            <input name="correo" type="text" value="{{ $user->correo }}">
-            <label for="">Cambiar contraseña</label>
-            <button type="button" class="btn btn_principal_yellow btn_mediano" data-bs-toggle="modal"
-                data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square"></i></button>
-            <label for="">Telefono de contacto</label>
-            <input name="telefono" type="text" value="{{ $user->telefono }}">
+            <div class="settings-form">
+                <div class="form-row">
+                    <label for="">Nombre usuario</label>
+                    <input name="nombreUsuario" type="text" value="{{ $user->nombre }}">
+                </div>
+                <div class="form-row">
+                    <label for="">Correo</label>
+                    <input name="correo" type="text" value="{{ $user->correo }}">
+                </div>
+                <div class="form-row">
+                    <label for="">Cambiar contraseña</label>
+                    <button type="button" class="btn btn_principal_yellow btn_mediano" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal"><i class="fa-solid fa-pen-to-square"></i></button>
+                </div>
+                <div class="form-row">
+                    <label for="">Telefono de contacto</label>
+                    <input name="telefono" type="text" value="{{ $user->telefono }}">
+                </div>
+            </div>
+
         </form>
     </div>
 

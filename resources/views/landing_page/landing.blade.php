@@ -76,7 +76,7 @@
                 <div class="col">
                     <div class="content-row-text">
                         <h4>Proveedores</h4>
-                        <img src="{{ asset('img/bolsa.png') }}" alt="" draggable="false">
+                        <img src="{{ asset('img/proveedor.jpg') }}" alt="" draggable="false">
                         <p>Los proveedores son socios como mercados, restaurantes y bares, donando alimentos excedentes
                             para reducir el desperdicio y apoyar la misión solidaria de la organización mediante
                             relaciones de colaboración sostenibles.</p>
@@ -84,7 +84,7 @@
                 </div>
                 <div class="col">
                     <h4>Riders</h4>
-                    <img src="{{ asset('img/bolsa.png') }}" alt="" draggable="false">
+                    <img src="{{ asset('img/rider.jpg') }}" alt="" draggable="false">
                     <div class="content-row-text">
                         <p>Los riders solidarios, como voluntarios, se encargan de transportar los alimentos
                             recolectados desde los proveedores hasta los destinatarios, garantizando una distribución
@@ -94,7 +94,7 @@
                 <div class="col">
                     <div class="content-row-text">
                         <h4>Personas Necesitadas</h4>
-                        <img src="{{ asset('img/bolsa.png') }}" alt="" draggable="false">
+                        <img src="{{ asset('img/homeless.jpg') }}" alt="" draggable="false">
                         <p>Las personas necesitadas son los receptores de los alimentos distribuidos por la organización
                             solidaria, utilizando estos alimentos para cubrir sus necesidades nutricionales básicas. La
                             colaboración con refugios u otras entidades facilita una distribución efectiva de los

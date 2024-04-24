@@ -2,11 +2,9 @@
 
 @section('navbar')
     <li class="nav-item">
-        <i class="fa-solid fa-house activo"></i>
+        <button style="background: none;" data-bs-toggle="modal" data-bs-target="#exampleModal3"><i
+                class="fa-solid fa-right-from-bracket"></i></button>
     </li>
-    <li class="nav-item">
-        <button data-bs-toggle="modal" data-bs-target="#exampleModal3"><i class="fa-solid fa-user activo" ></i></button> 
-    </li>>
 @endsection
 
 
@@ -16,8 +14,10 @@
             <img src="{{ asset('img/tiendas/fornet.jpg') }}" alt="">
             <div><i class="fa-solid fa-pen-to-square"></i></div>
         </div>
-        
-        <form class="formLocal" action="{{ action([App\Http\Controllers\PerfilProveedorControler::class, 'actualizarTienda']) }}" method="POST">
+
+        <form class="formLocal"
+            action="{{ action([App\Http\Controllers\PerfilProveedorControler::class, 'actualizarTienda']) }}"
+            method="POST">
             @csrf
             <div class="container-header" style="display: flex">
                 <h2 class="nombreLocal">{{ $tienda[0]->nombre }}</h2>
@@ -27,7 +27,7 @@
                 <div class="lotesDisp" style="display: flex">
                     <label for="">Lotes disponibles:</label>
                     <p>{{ $tienda[0]->menus }}</p>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                    <button type="button" class="btn btn_mediano btn_principal_yellow" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
                             class="fa-solid fa-pen-to-square"></i></button>
                 </div>
                 <div class="form-row">
@@ -48,37 +48,39 @@
                 </div>
                 <div class="form-row">
                     <label for="">Cambiar contraseña</label>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fa-solid fa-pen-to-square"></i></button>
+                    <button type="button" class="btn btn_mediano btn_principal_yellow" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i
+                            class="fa-solid fa-pen-to-square"></i></button>
                 </div>
                 <div class="form-row">
                     <label for="">Telefono de contacto</label>
                     <input name="telefono" type="text" value="{{ $user->telefono }}">
                 </div>
-            </div>            
+            </div>
         </form>
     </div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="{{ action([App\Http\Controllers\PerfilProveedorControler::class, 'actualizarMenu']) }}" method="POST">
-                @csrf
-                <div class="modal-body">
-                    
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Añadir menus</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ action([App\Http\Controllers\PerfilProveedorControler::class, 'actualizarMenu']) }}"
+                    method="POST">
+                    @csrf
+                    <div class="modal-body">
+
                         <div style="display: flex">
-                            <button id="btnMenosMenu" type="button" class="btn btn-primary">-</button>
+                            <button id="btnMenosMenu" type="button" class="btn btn_mediano">-</button>
                             <h1 id="numeroDeMenus">{{ $tienda[0]->menus }}</h1>
                             <input id="inputMenus" name="inputMenus" type="text" hidden>
-                            <button id="btnMasMenu" type="button" class="btn btn-primary">+</button>
+                            <button id="btnMasMenu" type="button" class="btn btn_mediano">+</button>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary btn_mediano" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn_mediano btn_principal_yellow">Save changes</button>
                     </div>
                 </form>
             </div>
@@ -86,56 +88,58 @@
     </div>
 
 
-      <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form action="{{ action([App\Http\Controllers\PerfilProveedorControler::class, 'actualizarContraseña']) }}" method="POST">
-                @csrf
-                <div class="modal-body">
-                    
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar contraseña</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form
+                    action="{{ action([App\Http\Controllers\PerfilProveedorControler::class, 'actualizarContraseña']) }}"
+                    method="POST">
+                    @csrf
+                    <div class="modal-body">
+
                         <div>
                             <label for="">Nueva contraseña</label>
                             <input name="password" type="password">
                             <label for="">Comfirma contraseña</label>
                             <input name="passwordConfirm" type="password">
                         </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Cerrar Sesión</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn_mediano" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary btn_mediano btn_principal_yellow">Save changes</button>
+                    </div>
+                </form>
             </div>
-            <form action="{{ action([App\Http\Controllers\ControlerUsuario::class, 'CerrarSesion']) }}" method="GET">
-                @csrf
-                <div class="modal-body">
-                    <h1>Quieres cerrar sesion?</h1>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-danger">Salir</button>
-                </div>
-            </form>
-          </div>
         </div>
-      </div>
+    </div>
 
-      <script>
+    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Cerrar Sesión</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ action([App\Http\Controllers\ControlerUsuario::class, 'CerrarSesion']) }}"
+                    method="GET">
+                    @csrf
+                    <div class="modal-body">
+                        <h1>Quieres cerrar sesion?</h1>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn_mediano" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger btn_mediano btn_principal_yellow">Salir</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
+    <script>
         // Obtener referencia a los elementos del DOM
         const h1menus = document.getElementById("numeroDeMenus");
         const btnMenosMenu = document.getElementById("btnMenosMenu");
@@ -146,9 +150,9 @@
 
         // Definir la función para restar un menú
         function restarMenu() {
-      
+
             let cantidadMenus = parseInt(h1menus.textContent);
-         
+
             if (cantidadMenus > 0) {
                 cantidadMenus--;
                 h1menus.textContent = cantidadMenus;
@@ -231,7 +235,7 @@
             var optionsColumnChart = {
                 title: "Paquetes entregados en los ultimos 7 dias",
                 width: 500,
-                height: 500,                
+                height: 500,
                 bar: {
                     groupWidth: "90%"
                 },
