@@ -5,7 +5,7 @@
         <a href="{{ route('main') }}"><i class="fa-solid fa-house activo"></i></a>
     </li>
     <li class="nav-item">
-        <a href="{{ route('main') }}"><i class="fa-solid fa-user"></i></a>
+        <a href="{{ route('perfilRaider') }}"><i class="fa-solid fa-user"></i></a>
     </li>
 @endsection
 
@@ -41,8 +41,8 @@
                                 {{-- Numero de lotes a reservar --}}
                                 <p class="max-lotes" style="display: none;">{{ $tienda_individual->menus }}</p>
                                 {{-- Añadir o quitar lotes a reservar --}}
-                                <button class="ajuste-lotes" data-action="decrement">-</button>
-                                <button class="ajuste-lotes" data-action="increment">+</button>
+                                <button class="ajuste-lotes btn_secondary btn_mediano" data-action="decrement">-</button>
+                                <button class="ajuste-lotes btn_secondary btn_mediano" data-action="increment">+</button>
 
                                 <!-- Formulario para crear pedido -->
                                 <form id="reservaForm" action="{{ route('crear_pedido') }}" method="POST">

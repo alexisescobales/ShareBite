@@ -26,8 +26,9 @@ class pedido extends Model
         return $this->belongsTo(Raider::class);
     }
 
-    public function marcas_has_pedido(): HasMany
-    {
-        return $this->hasMany(marcas_has_pedido::class);
+    public function marcas(){
+
+        return $this->belongsToMany(Pedido::class, 'marcas_has_pedido', 'pedido_id_pedido', 'marcas_id_marcas')->withPivot('cantidad_menus');
+
     }
 }

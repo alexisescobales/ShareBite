@@ -12,13 +12,13 @@ body{
 }
 
 
-.title{
+.title-principal{
     font-size: 90px;
     color: var(--color-white);
     margin-top: 4vh;
 }
 
-.title .amarillo{
+.amarillo{
     color: var(--color-yellow);
 }
 

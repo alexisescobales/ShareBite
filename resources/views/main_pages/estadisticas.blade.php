@@ -2,10 +2,10 @@
 
 @section('navbar')
     <li class="nav-item">
-        <a href="{{ route('main') }}"><i class="fa-solid fa-house activo"></i></a>
+        <i class="fa-solid fa-house activo"></i>
     </li>
     <li class="nav-item">
-        <a href="{{ route('main') }}"><i class="fa-solid fa-user"></i></a>
+        <button data-bs-toggle="modal" data-bs-target="#exampleModal3"><i class="fa-solid fa-user activo" ></i></button> 
     </li>>
 @endsection
 
@@ -16,9 +16,10 @@
             <img src="{{ asset('img/tiendas/fornet.jpg') }}" alt="">
             <div><i class="fa-solid fa-pen-to-square"></i></div>
         </div>
-
-        <form class="formLocal" action="">
-            <div class="container-header">
+        
+        <form class="formLocal" action="{{ action([App\Http\Controllers\PerfilProveedorControler::class, 'actualizarTienda']) }}" method="POST">
+            @csrf
+            <div class="container-header" style="display: flex">
                 <h2 class="nombreLocal">{{ $tienda[0]->nombre }}</h2>
                 <button id="btnGuardar" type="submit" class="btn_guardar">Guardar</button>
             </div>
@@ -31,33 +32,47 @@
                 </div>
                 <div class="form-row">
                     <label for="">Nombre tienda</label>
-                    <input type="text" value="{{ $tienda[0]->nombre }}">
+                    <input type="text" name="nombreTienda" value="{{ $tienda[0]->nombre }}">
                 </div>
                 <div class="form-row">
                     <label for="">Dereccion</label>
-                    <input type="text" name="" value="{{ $tienda[0]->direccion }}">
+                    <input type="text" name="direccion" value="{{ $tienda[0]->direccion }}">
+                </div>
+                <div class="form-row">
+                    <label for="">Nombre usuario</label>
+                    <input name="nombreUsuario" type="text" value="{{ $user->nombre }}">
+                </div>
+                <div class="form-row">
+                    <label for="">Correo</label>
+                    <input name="correo" type="text" value="{{ $user->correo }}">
+                </div>
+                <div class="form-row">
+                    <label for="">Cambiar contraseña</label>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="fa-solid fa-pen-to-square"></i></button>
                 </div>
                 <div class="form-row">
                     <label for="">Telefono de contacto</label>
-                    <input type="text" value="{{ $user->telefono }}">
+                    <input name="telefono" type="text" value="{{ $user->telefono }}">
                 </div>
-            </div>
+            </div>            
         </form>
     </div>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="">
-                    <div class="modal-body">
-
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ action([App\Http\Controllers\PerfilProveedorControler::class, 'actualizarMenu']) }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    
                         <div style="display: flex">
                             <button id="btnMenosMenu" type="button" class="btn btn-primary">-</button>
                             <h1 id="numeroDeMenus">{{ $tienda[0]->menus }}</h1>
+                            <input id="inputMenus" name="inputMenus" type="text" hidden>
                             <button id="btnMasMenu" type="button" class="btn btn-primary">+</button>
                         </div>
                     </div>
@@ -70,7 +85,57 @@
         </div>
     </div>
 
-    <script>
+
+      <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ action([App\Http\Controllers\PerfilProveedorControler::class, 'actualizarContraseña']) }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    
+                        <div>
+                            <label for="">Nueva contraseña</label>
+                            <input name="password" type="password">
+                            <label for="">Comfirma contraseña</label>
+                            <input name="passwordConfirm" type="password">
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Cerrar Sesión</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ action([App\Http\Controllers\ControlerUsuario::class, 'CerrarSesion']) }}" method="GET">
+                @csrf
+                <div class="modal-body">
+                    <h1>Quieres cerrar sesion?</h1>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger">Salir</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <script>
+
         // Obtener referencia a los elementos del DOM
         const h1menus = document.getElementById("numeroDeMenus");
         const btnMenosMenu = document.getElementById("btnMenosMenu");
@@ -81,14 +146,13 @@
 
         // Definir la función para restar un menú
         function restarMenu() {
-            // Obtener el valor actual del número de menús
+      
             let cantidadMenus = parseInt(h1menus.textContent);
-            // Verificar si la cantidad de menús es mayor que 0
+         
             if (cantidadMenus > 0) {
-                // Restar un menú
                 cantidadMenus--;
-                // Actualizar el valor mostrado en el elemento h1
                 h1menus.textContent = cantidadMenus;
+                inputMenus.value = cantidadMenus;
             }
         }
 
@@ -97,12 +161,11 @@
 
         // Definir la función para sumar un menú
         function sumarMenu() {
-            // Obtener el valor actual del número de menús
+
             let cantidadMenus = parseInt(h1menus.textContent);
-            // Sumar un menú
             cantidadMenus++;
-            // Actualizar el valor mostrado en el elemento h1
             h1menus.textContent = cantidadMenus;
+            inputMenus.value = cantidadMenus;
         }
     </script>
 @endsection

@@ -26,20 +26,36 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <i class="fa-solid fa-house activo"></i>
-                    </li>
-                    <li class="nav-item">
-                        <i class="fa-solid fa-chart-simple"></i>
-                    </li>
-                    <li class="nav-item">
-                        <i class="fa-solid fa-user"></i>
-                    </li>
+                        <button style="background: none;" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i
+                                class="fa-solid fa-right-from-bracket"></i></button>
+                    </li>>
                 </ul>
             </div>
         </div>
     </nav>
     <div class="container">
         @yield('contenido')
+    </div>
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Logout</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ action([App\Http\Controllers\ControlerUsuario::class, 'CerrarSesion']) }}"
+                    method="GET">
+                    @csrf
+                    <div class="modal-body">
+                        <h1>Quieres cerrar sesion?</h1>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Salir</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </body>
 
