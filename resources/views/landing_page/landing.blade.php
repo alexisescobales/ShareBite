@@ -126,17 +126,12 @@
                                     <img src="{{ asset('img/foto_mario.png') }}" alt="...">
                                     <div class="profiles-content">
                                         <h4>Mario</h4>
-                                        <p>Los "homeless" son las personas sin hogar que reciben los alimentos
-                                            distribuidos por la
-                                            organización solidaria. Su función es la de beneficiarios, recibiendo y
-                                            utilizando los
-                                            alimentos proporcionados para satisfacer sus necesidades nutricionales
-                                            básicas. La
-                                            organización puede colaborar con refugios, centros comunitarios u otras
-                                            organizaciones que
-                                            trabajen con personas sin hogar para garantizar una distribución efectiva de
-                                            los alimentos
-                                            recolectados.</p>
+                                        <p>Hola, soy Mario. Siempre estoy lleno de ideas frescas y creativas. Me encanta
+                                            pensar fuera de lo común y proponer soluciones innovadoras para los desafíos
+                                            del proyecto. Constantemente estoy buscando nuevas tecnologías y enfoques
+                                            que puedan mejorar nuestro producto. A veces mis ideas pueden parecer un
+                                            poco locas, ¡pero siempre estoy emocionado de explorar nuevas posibilidades
+                                            y llevar nuestro proyecto al siguiente nivel!</p>
                                         <a href="https://github.com/Mario23leiva" target="_blank"><i
                                                 class="fa-brands fa-square-github"></i></a>
                                     </div>
@@ -144,20 +139,16 @@
                             </div>
                             <div class="carousel-item">
                                 <div class="carousel-item-content">
-                                    <img src="{{ asset('img/bolsa.png') }}" alt="...">
+                                    <img src="{{ asset('img/alexis.png') }}" alt="...">
                                     <div class="profiles-content">
                                         <h4>Alexis</h4>
-                                        <p>Los "homeless" son las personas sin hogar que reciben los alimentos
-                                            distribuidos por la
-                                            organización solidaria. Su función es la de beneficiarios, recibiendo y
-                                            utilizando los
-                                            alimentos proporcionados para satisfacer sus necesidades nutricionales
-                                            básicas. La
-                                            organización puede colaborar con refugios, centros comunitarios u otras
-                                            organizaciones que
-                                            trabajen con personas sin hogar para garantizar una distribución efectiva de
-                                            los alimentos
-                                            recolectados.</p>
+                                        <p>Hola, soy Alexis. No solo me encanta programar, sino que también disfruto de
+                                            interactuar con las personas. Soy el encargado de mantener una comunicación
+                                            fluida dentro del equipo y con los demás departamentos. Me aseguro de que
+                                            todos estén en la misma página y de que las ideas se compartan de manera
+                                            efectiva. Además, soy el enlace entre nuestro equipo técnico y el resto de
+                                            la empresa, asegurándome de que nuestro trabajo contribuya al éxito general
+                                            del proyecto.</p>
                                         <a href="https://github.com/alexisescobales" target="_blank"><i
                                                 class="fa-brands fa-square-github"></i></a>
                                     </div>
@@ -165,20 +156,16 @@
                             </div>
                             <div class="carousel-item">
                                 <div class="carousel-item-content">
-                                    <img src="{{ asset('img/bolsa.png') }}" alt="...">
+                                    <img src="{{ asset('img/alex.jpg') }}" alt="...">
                                     <div class="profiles-content">
                                         <h4>Alex</h4>
-                                        <p>Los "homeless" son las personas sin hogar que reciben los alimentos
-                                            distribuidos por la
-                                            organización solidaria. Su función es la de beneficiarios, recibiendo y
-                                            utilizando los
-                                            alimentos proporcionados para satisfacer sus necesidades nutricionales
-                                            básicas. La
-                                            organización puede colaborar con refugios, centros comunitarios u otras
-                                            organizaciones que
-                                            trabajen con personas sin hogar para garantizar una distribución efectiva de
-                                            los alimentos
-                                            recolectados.</p>
+                                        <p>Hola, soy Alex. Mi pasión es la tecnología y tengo un profundo conocimiento
+                                            técnico en varias áreas. Desde lenguajes de programación hasta las últimas
+                                            tendencias en desarrollo, estoy siempre al tanto de todo. Me gusta aplicar
+                                            mis habilidades técnicas para resolver problemas complejos y encontrar
+                                            soluciones eficientes para nuestro proyecto. Pueden contar conmigo para
+                                            estar al tanto de las últimas herramientas y técnicas que nos ayuden a
+                                            alcanzar nuestros objetivos.</p>
                                         <a href="https://github.com/aalbala17" target="_blank"><i
                                                 class="fa-brands fa-square-github"></i></a>
                                     </div>
@@ -186,20 +173,16 @@
                             </div>
                             <div class="carousel-item">
                                 <div class="carousel-item-content">
-                                    <img src="{{ asset('img/bolsa.png') }}" alt="...">
+                                    <img src="{{ asset('img/rachid.jpg') }}" alt="...">
                                     <div class="profiles-content">
                                         <h4>Rachid</h4>
-                                        <p>Los "homeless" son las personas sin hogar que reciben los alimentos
-                                            distribuidos por la
-                                            organización solidaria. Su función es la de beneficiarios, recibiendo y
-                                            utilizando los
-                                            alimentos proporcionados para satisfacer sus necesidades nutricionales
-                                            básicas. La
-                                            organización puede colaborar con refugios, centros comunitarios u otras
-                                            organizaciones que
-                                            trabajen con personas sin hogar para garantizar una distribución efectiva de
-                                            los alimentos
-                                            recolectados.</p>
+                                        <p>Hola, soy Rachid. Mi habilidad principal es resolver problemas. Cuando nos
+                                            enfrentamos a un desafío técnico, me pongo manos a la obra para encontrar la
+                                            mejor solución posible. Me encanta analizar cada problema desde diferentes
+                                            ángulos y trabajar en equipo para encontrar la mejor manera de abordarlo. Mi
+                                            enfoque es pragmático y eficiente, y siempre estoy listo para enfrentar
+                                            cualquier obstáculo que se presente en nuestro camino hacia el éxito del
+                                            proyecto.</p>
                                         <a href="https://github.com/rachidjkl" target="_blank"><i
                                                 class="fa-brands fa-square-github"></i></a>
                                     </div>
