@@ -1,10 +1,9 @@
-
 body {
     position: relative;
     display: block;
 }
 
-.landing-main-container{
+.landing-main-container {
     width: 100%;
     height: 90vh;
     position: sticky;
@@ -13,48 +12,62 @@ body {
 
 /* ---------------- NAVBAR ---------------- */
 
-#navbar-landing{
+#navbar-landing {
     background-color: var(--color-black);
 }
 
-.navbar-title{
+.navbar-title {
     color: var(--color-white);
     font-size: 30px;
-} 
+}
 
-ul.navbar-nav{
+ul.navbar-nav {
     width: 100%;
     display: flex;
     justify-content: end;
 }
 
-#navbar-landing-list{
+#navbar-landing-list {
     justify-content: end;
 }
 
-.navbar-landing-list-item{
+.navbar-landing-list-item {
     margin: 0 20px;
 }
 
-.navbar-landing-list-item a{
+.navbar-landing-list-item a {
     color: var(--color-white);
     font-size: 20px;
+
+    &:hover {
+        color: var(--color-yellow);
+    }
+
 }
 
-.navbar-landing-list-item-comenzar{
+.navbar-landing-list-item-comenzar {
     border: 1px solid var(--color-white);
     border-radius: 5px;
+
+    &:hover {
+        background-color: var(--color-yellow);
+    }
+
+}
+
+.navbar-landing-list-item-comenzar a:hover {
+    color: var(--color-black);
 }
 
 /* ---------------- MAIN PAGE ---------------- */
 
-.container-landing-main{
+.container-landing-main {
     display: flex;
     height: 85%;
     padding: 25px;
 }
 
-.container-landing-main-izq{
+.container-landing-main-izq {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -63,7 +76,7 @@ ul.navbar-nav{
     width: 50%;
 }
 
-.container-landing-main-der{
+.container-landing-main-der {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,23 +84,23 @@ ul.navbar-nav{
     width: 50%;
 }
 
-.container-landing-main-der img{
+.container-landing-main-der img {
     width: 80%;
 }
 
-.container-landing-main-izq h1{
+.container-landing-main-izq h1 {
     font-size: calc(1.375rem + 3vw);
     color: aliceblue;
 }
 
-.container-landing-main-izq p{
+.container-landing-main-izq p {
     color: aliceblue;
 }
 
 
 /* ---------------- PAGE 1 ---------------- */
 
-.container-landing-page{
+.container-landing-page {
     width: 100%;
     height: 80vh;
     background-color: var(--color-white);
@@ -99,30 +112,31 @@ ul.navbar-nav{
     border: 1px solid var(--color-black);
     box-shadow: 0px -5px 5px 0px rgba(0, 0, 0, 0.241);
     overflow-y: auto;
+    margin-bottom: 300px;
 }
 
 
-.container-landing-page .title{
+.container-landing-page .title {
     width: 100%;
     padding: 10px 25px 25px 25px;
 
     cursor: pointer;
 }
 
-.page1{
+.page1 {
     top: 10%;
 }
 
-.page2{
+.page2 {
     top: 15%;
 }
 
-.page3{
+.page3 {
     top: 20%;
     display: block;
 }
 
-.page1 .content{
+.page1 .content {
     display: flex;
     justify-content: center;
     align-items: start;
@@ -132,19 +146,19 @@ ul.navbar-nav{
     padding-left: 7%;
 }
 
-.page1 .content p{
+.page1 .content p {
     width: 50%;
     min-width: 300px;
     max-width: 500px;
 }
 
-.page1 img{
+.page1 img {
     position: absolute;
     width: 30%;
     right: 10%;
 }
 
-.footer-landing-page{
+.footer-landing-page {
     color: var(--color-white);
     background-color: var(--color-black);
     position: sticky;
@@ -153,25 +167,25 @@ ul.navbar-nav{
 
 /* ---------------- PAGE 2 ---------------- */
 
-.content-row{
+.content-row {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
 }
 
-.content-row-text{
+.content-row-text {
     padding: 10px;
     max-width: 400px;
 }
 
-.content-row img{
+.content-row img {
     width: 300px;
     height: 300px;
 }
 
 /* ---------------- PAGE 3 ---------------- */
 
-.carousel-content{
+.carousel-content {
     display: flex;
     justify-content: space-around;
     align-items: start;
@@ -179,14 +193,15 @@ ul.navbar-nav{
     height: 100%;
 }
 
-#carouselProfiles{
+#carouselProfiles {
     width: 70%;
     max-width: 1000px;
     height: 50%;
     border: 1px solid var(--color-black);
+    padding: 20px;
 }
 
-.carousel-item-content{
+.carousel-item-content {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -195,20 +210,21 @@ ul.navbar-nav{
     background-color: var(--color-white);
 }
 
-.carousel-item-content .profiles-content{
+.carousel-item-content .profiles-content {
     width: 50%;
 }
 
-.carousel-item-content .profiles-content a i{
+.carousel-item-content .profiles-content a i {
     font-size: 50px;
     cursor: pointer;
 }
 
-.carousel-item img{
-    width: 40%;
+.carousel-item img {
+    width: 347px;
+    height: 347px;
 }
 
-footer{
+footer {
     border: 1px solid var(--color-black);
     box-shadow: 0px -5px 5px 0px rgba(0, 0, 0, 0.241);
 }
