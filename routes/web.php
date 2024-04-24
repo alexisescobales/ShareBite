@@ -7,6 +7,7 @@ use App\Http\Controllers\ControlerUsuario;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\CoordenadasController;
 use App\Http\Controllers\PerfilProveedorControler;
+use App\Http\Controllers\traductorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,7 +45,7 @@ Route::post('/registro/{eleccion}', [ControlerUsuario::class, 'seleccion']);
 Route::post('/registro1', [ControlerUsuario::class, 'registro1']);
 Route::post('/registro2', [ControlerUsuario::class, 'registro2']);
 Route::post('/registro3', [ControlerUsuario::class, 'registro3']);
-
+Route::post('/translate', [traductorController::class, 'translate'])->name('translate');
 
 
 Route::get('/estadisticas', [PerfilProveedorControler::class, 'index'])->name('estadisticas');

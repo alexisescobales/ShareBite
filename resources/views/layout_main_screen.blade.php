@@ -51,23 +51,27 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <textarea name="" id="" cols="50" rows="10"></textarea>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Selecciona el idioma</option>
-                        <option value="AR">Arabe</option>
-                        <option value="DE">Aleman</option>
-                        <option value="EN-US">Ingles</option>
-                        <option value="FR">Frances</option>
-                        <option value="PL">Polaco</option>
-                        <option value="RO">Rumano</option>
-                        <option value="RU">Ruso</option>
-                        <option value="TR">Turco</option>
-                        <option value="UK">Ucraniano</option>
-                    </select>
+                    <form method="POST" action="{{ route('translate') }}">
+                        @csrf
+                        <textarea name="" id="" cols="50" rows="10"></textarea>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Selecciona el idioma</option>
+                            <option value="AR">Arabe</option>
+                            <option value="DE">Aleman</option>
+                            <option value="EN-US">Ingles</option>
+                            <option value="FR">Frances</option>
+                            <option value="PL">Polaco</option>
+                            <option value="RO">Rumano</option>
+                            <option value="RU">Ruso</option>
+                            <option value="TR">Turco</option>
+                            <option value="UK">Ucraniano</option>
+                        </select>
+                        <button type="submit" class="btn btn-primary">Traducir</button>
+                    </form>
+                    @yield('trad')
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Traducir</button>
                 </div>
             </div>
         </div>

@@ -567,6 +567,7 @@ class ComposerStaticInitfe33f98a750b8c5a51b30c78bd3fab21
         'App\\Http\\Controllers\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/RegisterController.php',
         'App\\Http\\Controllers\\RegisterShopController' => __DIR__ . '/../..' . '/app/Http/Controllers/RegisterShopController.php',
         'App\\Http\\Controllers\\adminController' => __DIR__ . '/../..' . '/app/Http/Controllers/adminController.php',
+        'App\\Http\\Controllers\\traductorController' => __DIR__ . '/../..' . '/app/Http/Controllers/traductorController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
