@@ -23,27 +23,25 @@ class PerfilProveedorControler extends Controller
         ->join('pedido', 'tiendas.tienda_id_usuario', '=', 'pedido.tiendas_tienda_id_usuario')
         ->join('marcas_has_pedido', 'pedido.id_pedido', '=', 'marcas_has_pedido.pedido_id_pedido')
         ->get()->toArray();
-        echo $results;
 
-        $list = array();
+        
+        $sumas_por_tiendas = array();
 
-        // foreach ($results as $elemento) {
-        //     $nombre = $elemento['nombre'];
-        //     $valor = $elemento['cantidad_menus'];
+        foreach ($results as $elemento) {
+            $nombre = $elemento->nombre;
+            $valor = $elemento->cantidad_menus;
             
-        //     if (array_key_exists($nombre, $list)) {
-        //         $list[$nombre] += $valor;
-        //     } else {
-        //         $list[$nombre] = $valor;
-        //     }
-        // }
-
-        // echo $list;
-
-        // Imprimir el resultado
-        foreach ($list as $nombre => $valor) {
-            echo $nombre . ": " . $valor . "\n";
+            if (array_key_exists($nombre, $sumas_por_tiendas)) {
+                
+                $sumas_por_tiendas[$nombre] += $valor;
+            } else {
+                
+                $sumas_por_tiendas[$nombre] = $valor;
+            }
         }
+
+
+
 
 
         $pedidosEntregados = pedido::where("estado", "=", "entregado")->get();
@@ -87,7 +85,6 @@ class PerfilProveedorControler extends Controller
             foreach ($pedidosUltimosSieteDias as $pedido) {
                 $dayOfWeek = Pedido::where('id_pedido','=',$pedido->id_pedido)
                             ->value(DB::raw('DAYOFWEEK(time_reco)')); // Obtiene el día de la semana directamente en la consulta
-                echo "dayOfWeek = " .  $dayOfWeek . " "; 
                 switch ($dayOfWeek) {
                     case 1:
                         $pedidosSemana['Domingo']++;
@@ -120,8 +117,10 @@ class PerfilProveedorControler extends Controller
         }
 
         $diasSemana = convertirNumeroADia();
+
         
-        $response = view('main_pages.estadisticas', compact('tienda', 'user', 'diasSemana', 'tiendas'));
+        
+        $response = view('main_pages.estadisticas', compact('tienda', 'user', 'diasSemana', 'sumas_por_tiendas'));
 
         return $response;
     }
