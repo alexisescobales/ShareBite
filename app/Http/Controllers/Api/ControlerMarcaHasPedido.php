@@ -40,9 +40,6 @@ class ControlerMarcaHasPedido extends Controller
                 $pedidoModel->save();
             }
         }
-
-        // Respuesta de éxito
-        // return response()->json(['message' => 'Datos guardados exitosamente'], 200);
         return Redirect::back()->with('status', 'Marca agregada exitosamente');
     }
 }

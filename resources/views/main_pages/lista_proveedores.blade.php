@@ -124,8 +124,8 @@
             // Hacer zoom en la ubicación de la tienda
             map.flyTo({
                 center: [long, lat],
-                zoom: 15, // Nivel de zoom deseado
-                essential: true // Marcar como esencial para evitar el bloqueo por el navegador
+                zoom: 15, // Nivel de zoom 
+                essential: true // Evitar el bloqueo por el navegador
             });
         });
     });

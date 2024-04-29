@@ -132,4 +132,14 @@ button.btn_secondary {
     background-color: #dbdbcf; /* Cambia el color de fondo a gris */
 }
 
+#guardarDatosButton {
+    margin-top: 30px;
+    padding: 10px 20px;
+    border: 2px solid #4CAF50; /* Color del borde verde */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #E0F2F1; /* Fondo verde suave */
+    color: #000; /* Color del texto */
+    font-size: 16px; /* Tamaño del texto */
+    cursor: pointer;
+  }
  
