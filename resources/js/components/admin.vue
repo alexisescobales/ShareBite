@@ -333,13 +333,15 @@ export default {
         insertarUsuario() {
             const me = this;
             console.log(me.usuario);
-            axios.post('http://localhost/ShareBites/public/api/gestion', me.usuario)
+            axios.post('http://localhost:8080/practicas/ShareBites/public/api/gestion', me.usuario)
                 .then(response => {
+                    debugger
                     console.log(response.data);
                     me.selectUsers()
                     me.myModal.hide()
                 })
                 .catch(error => {
+                    debugger
                     console.error('Error al crear el usuario:', error);
                 });
         },
